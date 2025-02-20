@@ -1,10 +1,9 @@
 import {FC} from 'react';
-import useMount from 'ahooks/es/useMount';
+import {useSearchParams} from 'react-router-dom';
 
 export const LoginCallbackPage: FC = () => {
-  useMount(() => {
-    console.log(window.location.href);
-  });
+  const [searchParams] = useSearchParams();
+  const authCode = searchParams.get('code') ?? '';
 
-  return <div>{window.location.href}</div>;
+  return <div>{authCode}</div>;
 };
