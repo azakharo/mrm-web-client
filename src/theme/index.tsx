@@ -78,6 +78,11 @@ const theme = createTheme(
           noSsr: true,
         },
       },
+      MuiButtonBase: {
+        defaultProps: {
+          disableRipple: true,
+        },
+      },
       MuiButton: {
         defaultProps: {
           variant: 'contained',

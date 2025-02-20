@@ -1,7 +1,9 @@
 import {FC} from 'react';
-import {Box, Typography} from '@mui/material';
+import {Box, Button, Stack, Typography} from '@mui/material';
 
 import {HelpButton} from './HelpButton';
+import lentaSputnikIconUrl from './lentaSputnik.jpg';
+import {LoginButton} from './LoginButton';
 import Logo from './logo.svg?react';
 
 export const LoginPage: FC = () => {
@@ -10,13 +12,16 @@ export const LoginPage: FC = () => {
       display="flex"
       justifyContent="center"
       alignItems="center"
-      sx={{height: '100dvh'}}
+      sx={{
+        height: '100dvh',
+        backgroundColor: '#F6F6F6',
+      }}
       p={4}
     >
-      <Box flex="0 1 400px">
+      <Box flex="0 1 360px">
         {/* This container is necessary to align the logo and title center horizontally */}
-        <Box display="flex" flexDirection="column" alignItems={'center'} mb={5}>
-          <Logo width={210} height={'100%'} style={{marginBottom: 32}} />
+        <Box display="flex" flexDirection="column" alignItems={'center'} mb={3}>
+          <Logo width={210} height={'100%'} style={{marginBottom: 45}} />
 
           <Typography
             sx={{
@@ -28,7 +33,19 @@ export const LoginPage: FC = () => {
             Войти
           </Typography>
         </Box>
-        Here will be a stack of buttons
+
+        <Stack spacing={2}>
+          <Button color="inherit">С Лента Спутник</Button>
+
+          <Button>Через QR код</Button>
+
+          <LoginButton
+            icon={<img src={lentaSputnikIconUrl} alt="С Лента Спутник" />}
+            text="С Лента Спутник"
+            url2goOnClick="#"
+          />
+        </Stack>
+
         <Box
           sx={{
             position: 'fixed',
