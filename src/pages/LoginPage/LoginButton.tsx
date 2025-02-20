@@ -10,27 +10,12 @@ const backgroundColorOnHover = darken(COLOR__WHITE, 0.1);
 interface Props {
   icon: ReactNode;
   text: string;
-  url2goOnClick: string;
-  onClick?: () => void;
+  onClick: () => void;
 }
 
-export const LoginButton: FC<Props> = ({
-  icon,
-  text,
-  url2goOnClick,
-  onClick,
-}) => {
-  const handleClick = () => {
-    if (onClick) {
-      onClick();
-      return;
-    }
-
-    window.location.href = url2goOnClick;
-  };
-
+export const LoginButton: FC<Props> = ({icon, text, onClick}) => {
   return (
-    <ButtonBase onClick={handleClick}>
+    <ButtonBase onClick={onClick}>
       <Box
         display="flex"
         alignItems="center"
