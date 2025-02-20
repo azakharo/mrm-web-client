@@ -11,10 +11,21 @@ interface Props {
   icon: ReactNode;
   text: string;
   url2goOnClick: string;
+  onClick?: () => void;
 }
 
-export const LoginButton: FC<Props> = ({icon, text, url2goOnClick}) => {
+export const LoginButton: FC<Props> = ({
+  icon,
+  text,
+  url2goOnClick,
+  onClick,
+}) => {
   const handleClick = () => {
+    if (onClick) {
+      onClick();
+      return;
+    }
+
     window.location.href = url2goOnClick;
   };
 

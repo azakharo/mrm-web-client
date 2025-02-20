@@ -46,6 +46,9 @@ export const LoginPage: FC = () => {
             icon={<QrCodeIcon width={24} height={24} />}
             text="Через QR код"
             url2goOnClick="#"
+            onClick={() => {
+              alert('Not implemented yet');
+            }}
           />
         </Stack>
 
