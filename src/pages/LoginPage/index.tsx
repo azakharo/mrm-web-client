@@ -9,7 +9,8 @@ import QrCodeIcon from './qrCode.svg?react';
 
 import {ROUTE__LOGIN, ROUTE__LOGIN_CALLBACK} from '@/constants';
 
-const authFormUrl = import.meta.env.VITE_AUTH_FORM_URL ?? '';
+// TODO get from providers
+const authFormUrl = 'https://oauth-form.vercel.app';
 
 export const LoginPage: FC = () => {
   const handleLoginWithLentaSputnik = () => {
@@ -20,6 +21,7 @@ export const LoginPage: FC = () => {
 
     const searchParams = new URLSearchParams();
     searchParams.append('response_type', 'code');
+    // TODO get from providers
     searchParams.append('client_id', 'MRM');
     searchParams.append('redirect_uri', callbackUrl);
     searchParams.append('scope', 'email');
@@ -55,9 +57,11 @@ export const LoginPage: FC = () => {
           </Typography>
         </Box>
 
+        {/* TODO the list is generated based on the returned providers */}
         <Stack spacing={2}>
           <LoginButton
             icon={<img src={lentaSputnikIconUrl} alt="С Лента Спутник" />}
+            // TODO get from providers
             text="С Лента Спутник"
             onClick={handleLoginWithLentaSputnik}
           />
