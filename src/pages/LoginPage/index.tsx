@@ -1,10 +1,11 @@
 import {FC} from 'react';
-import {Box, Button, Stack, Typography} from '@mui/material';
+import {Box, Stack, Typography} from '@mui/material';
 
 import {HelpButton} from './HelpButton';
 import lentaSputnikIconUrl from './lentaSputnik.jpg';
 import {LoginButton} from './LoginButton';
 import Logo from './logo.svg?react';
+import QrCodeIcon from './qrCode.svg?react';
 
 export const LoginPage: FC = () => {
   return (
@@ -35,13 +36,15 @@ export const LoginPage: FC = () => {
         </Box>
 
         <Stack spacing={2}>
-          <Button color="inherit">С Лента Спутник</Button>
-
-          <Button>Через QR код</Button>
-
           <LoginButton
             icon={<img src={lentaSputnikIconUrl} alt="С Лента Спутник" />}
             text="С Лента Спутник"
+            url2goOnClick="#"
+          />
+
+          <LoginButton
+            icon={<QrCodeIcon width={24} height={24} />}
+            text="Через QR код"
             url2goOnClick="#"
           />
         </Stack>
