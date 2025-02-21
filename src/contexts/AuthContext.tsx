@@ -7,7 +7,7 @@ import React, {
   useState,
 } from 'react';
 
-import {getAuthToken, remAuthToken} from '@/helpers/localStorage';
+import {getAuthToken, remAuthToken, setAuthToken} from '@/helpers/localStorage';
 
 const isAuthed = (): boolean => !!getAuthToken();
 
@@ -20,11 +20,13 @@ const initialAuthState: AuthState = {
 };
 
 export interface AuthContextType extends AuthState {
+  onLoginSuccess: (authToken: string) => void;
   logout: () => void;
 }
 
 export const AuthContext = createContext<AuthContextType>({
   ...initialAuthState,
+  onLoginSuccess: () => {},
   logout: () => {},
 });
 
@@ -37,6 +39,11 @@ export const AuthProvider: FC<React.PropsWithChildren<Props>> = ({
 }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(() => isAuthed());
 
+  const onLoginSuccess = useCallback((authToken: string) => {
+    setAuthToken(authToken);
+    setIsAuthenticated(true);
+  }, []);
+
   const logout = useCallback(() => {
     remAuthToken();
     setIsAuthenticated(false);
@@ -45,9 +52,10 @@ export const AuthProvider: FC<React.PropsWithChildren<Props>> = ({
   const contextValue = useMemo(
     () => ({
       isAuthenticated,
+      onLoginSuccess,
       logout,
     }),
-    [isAuthenticated, logout],
+    [isAuthenticated, onLoginSuccess, logout],
   );
 
   return (

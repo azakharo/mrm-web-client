@@ -1,6 +1,7 @@
 import {FC, memo} from 'react';
 import {Route, Routes as ReactRoutes} from 'react-router-dom';
 
+import {ProtectedRoute} from '@/components/ProtectedRoute';
 import {
   ROUTE__DASHBOARD,
   ROUTE__LOGIN,
@@ -16,7 +17,14 @@ const Routes: FC = () => {
     <ReactRoutes>
       <Route path={ROUTE__LOGIN} element={<LoginPage />} />
       <Route path={ROUTE__LOGIN_CALLBACK} element={<LoginCallbackPage />} />
-      <Route path={ROUTE__DASHBOARD} element={<DashboardPage />} />
+      <Route
+        path={ROUTE__DASHBOARD}
+        element={
+          <ProtectedRoute>
+            <DashboardPage />
+          </ProtectedRoute>
+        }
+      />
       <Route path="*" element={<ErrorPage404 />} />
     </ReactRoutes>
   );

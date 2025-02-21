@@ -5,7 +5,7 @@ import useRequest from 'ahooks/es/useRequest';
 
 import {getAuthToken} from '@/api';
 import {ROUTE__DASHBOARD} from '@/constants';
-import {setAuthToken} from '@/helpers/localStorage';
+import {useAuth} from '@/hooks/useAuth';
 
 export const LoginCallbackPage: FC = () => {
   const navigate = useNavigate();
@@ -13,12 +13,13 @@ export const LoginCallbackPage: FC = () => {
   const providerId = Number(providerIdStr);
   const [searchParams] = useSearchParams();
   const authCode = searchParams.get('code') ?? '';
+  const {onLoginSuccess} = useAuth();
 
   const {loading, error} = useRequest(
     () => getAuthToken(providerId, authCode),
     {
       onSuccess: authToken => {
-        setAuthToken(authToken);
+        onLoginSuccess(authToken);
         navigate(ROUTE__DASHBOARD);
       },
     },
