@@ -2,14 +2,9 @@ import {AxiosResponse} from 'axios';
 
 import {axi} from './loginApiAxiosSetup';
 
-export const getLoginProviders = async (): Promise<
-  Array<{
-    providerId: number;
-    appName: string;
-    appId: string;
-    authPageUrl: string;
-  }>
-> => {
+import {LoginProvider} from '@/types';
+
+export const getLoginProviders = async (): Promise<LoginProvider[]> => {
   const response = await axi.get<
     Array<{
       id: number;
@@ -20,7 +15,7 @@ export const getLoginProviders = async (): Promise<
   >('/api/oauth/providers');
 
   return response.data.map(({id, name, app_id, auth_page_url}) => ({
-    providerId: id,
+    id,
     appName: name,
     appId: app_id,
     authPageUrl: auth_page_url,
