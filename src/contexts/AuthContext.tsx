@@ -51,7 +51,7 @@ export const AuthProvider: FC<React.PropsWithChildren<Props>> = ({
     try {
       user = await getCurrentUser();
     } catch (err) {
-      // TODO toast
+      console.error('could not get the current user');
       return;
     }
 
