@@ -1,33 +1,47 @@
 import {FC} from 'react';
-import {Box, Stack, Typography} from '@mui/material';
+import {Alert, Box, Skeleton, Stack, Typography} from '@mui/material';
+import useRequest from 'ahooks/es/useRequest';
 
 import {HelpButton} from './HelpButton';
 import lentaSputnikIconUrl from './lentaSputnik.jpg';
 import {LoginButton} from './LoginButton';
 import Logo from './logo.svg?react';
-import QrCodeIcon from './qrCode.svg?react';
 
+import {getLoginProviders} from '@/api';
 import {ROUTE__LOGIN, ROUTE__LOGIN_CALLBACK} from '@/constants';
 
-// TODO get from providers
-const authFormUrl = 'https://oauth-form.vercel.app';
+const skeleton = (
+  <Skeleton
+    variant="rounded"
+    width="100%"
+    height={57}
+    sx={{borderRadius: '15px'}}
+  />
+);
 
 export const LoginPage: FC = () => {
-  const handleLoginWithLentaSputnik = () => {
-    const callbackUrl = window.location.href.replace(
-      ROUTE__LOGIN,
-      ROUTE__LOGIN_CALLBACK,
-    );
+  const {loading, error, data: loginProviders} = useRequest(getLoginProviders);
+
+  const handleLogin = (providerId: number) => {
+    const provider = loginProviders?.find(p => p.id === providerId);
+    if (!provider) {
+      return;
+    }
+
+    const {id, appId, authPageUrl} = provider;
+
+    const callbackUrl = window.location.href
+      .replace(ROUTE__LOGIN, ROUTE__LOGIN_CALLBACK)
+      .replace(':providerId', id.toString());
 
     const searchParams = new URLSearchParams();
     searchParams.append('response_type', 'code');
-    // TODO get from providers
-    searchParams.append('client_id', 'MRM');
+    searchParams.append('client_id', appId);
     searchParams.append('redirect_uri', callbackUrl);
     searchParams.append('scope', 'email');
     searchParams.append('state', 'JHuuyg679f96f976');
 
-    window.location.href = `${authFormUrl}?${searchParams.toString()}`;
+    window.location.href = `${authPageUrl}?${searchParams.toString()}`;
   };
 
   return (
@@ -57,22 +71,25 @@ export const LoginPage: FC = () => {
           </Typography>
         </Box>
 
-        {/* TODO the list is generated based on the returned providers */}
         <Stack spacing={2}>
-          <LoginButton
-            icon={<img src={lentaSputnikIconUrl} alt="С Лента Спутник" />}
-            // TODO get from providers
-            text="С Лента Спутник"
-            onClick={handleLoginWithLentaSputnik}
-          />
+          {loading && (
+            <>
+              {skeleton}
 
-          <LoginButton
-            icon={<QrCodeIcon width={24} height={24} />}
-            text="Через QR код"
-            onClick={() => {
-              alert('Not implemented yet');
-            }}
-          />
+              {skeleton}
+            </>
+          )}
+
+          {error && <Alert severity="error">{error.message}</Alert>}
+
+          {loginProviders?.map(({id, appName}) => (
+            <LoginButton
+              key={id}
+              icon={<img src={lentaSputnikIconUrl} alt={appName} />}
+              text={appName}
+              onClick={() => handleLogin(id)}
+            />
+          ))}
         </Stack>
 
         <Box
