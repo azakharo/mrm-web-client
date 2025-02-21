@@ -42,17 +42,30 @@ interface Props {
 export const AuthProvider: FC<React.PropsWithChildren<Props>> = ({
   children,
 }) => {
-  const [isAuthenticated, setIsAuthenticated] = useState(() => isAuthed());
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [currentUser, setCurrentUser] = useState<User | null>(null);
+  const [initializing, setInitializing] = useState(true);
 
-  const onLoginSuccess = useCallback((authToken: string) => {
-    setAuthToken(authToken);
-    setIsAuthenticated(true);
-    void getCurrentUser().then(user => {
-      setCurrentUser(user);
+  const getLoggedInUser = useCallback(async () => {
+    let user: User | null = null;
+    try {
+      user = await getCurrentUser();
+    } catch (err) {
+      // TODO toast
       return;
-    });
+    }
+
+    setCurrentUser(user);
+    setIsAuthenticated(true);
   }, []);
+
+  const onLoginSuccess = useCallback(
+    (authToken: string) => {
+      setAuthToken(authToken);
+      void getLoggedInUser();
+    },
+    [getLoggedInUser],
+  );
 
   const logout = useCallback(() => {
     remAuthToken();
@@ -71,11 +84,19 @@ export const AuthProvider: FC<React.PropsWithChildren<Props>> = ({
   );
 
   useMount(() => {
-    void getCurrentUser().then(user => {
-      setCurrentUser(user);
-      return;
-    });
+    if (isAuthed()) {
+      void getLoggedInUser().then(() => {
+        setInitializing(false);
+        return;
+      });
+    } else {
+      setInitializing(false);
+    }
   });
+
+  if (initializing) {
+    return null;
+  }
 
   return (
     <AuthContext.Provider value={contextValue}>{children}</AuthContext.Provider>
