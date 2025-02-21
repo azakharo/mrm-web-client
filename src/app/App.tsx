@@ -8,6 +8,7 @@ import './font.css';
 
 import Routes from '@/app/Routes';
 import {isProduction} from '@/constants';
+import {AuthProvider} from '@/contexts/AuthContext';
 import theme from '@/theme';
 
 const vitePreloadErrorEvent = 'vite:preloadError';
@@ -36,7 +37,9 @@ const App = () => {
     <ThemeProvider theme={theme}>
       <BrowserRouter>
         <GlobalStyles />
-        <Routes />
+        <AuthProvider>
+          <Routes />
+        </AuthProvider>
       </BrowserRouter>
     </ThemeProvider>
   );
