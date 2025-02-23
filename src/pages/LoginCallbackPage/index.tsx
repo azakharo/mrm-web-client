@@ -19,8 +19,10 @@ export const LoginCallbackPage: FC = () => {
     () => getAuthToken(providerId, authCode),
     {
       onSuccess: authToken => {
-        onLoginSuccess(authToken);
-        navigate(ROUTE__DASHBOARD);
+        void onLoginSuccess(authToken).then(() => {
+          navigate(ROUTE__DASHBOARD);
+          return;
+        });
       },
     },
   );
