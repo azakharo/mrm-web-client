@@ -1,16 +1,18 @@
 import {FC} from 'react';
-import {Alert, Box} from '@mui/material';
+import {Box} from '@mui/material';
+
+import {SideBar} from './SideBar';
 
 export const DashboardPrototypePage: FC = () => {
   return (
-    <Box
-      maxWidth={400}
-      marginX="auto"
-      display="flex"
-      flexDirection="column"
-      gap={2}
-    >
-      <Alert>Here will be Dashboard soon</Alert>
+    <Box display="flex" height="100dvh">
+      <Box flex="0 1 240px">
+        <SideBar />
+      </Box>
+
+      <Box flex="1 1 0" sx={{backgroundColor: '#F6F6F6'}}>
+        Content
+      </Box>
     </Box>
   );
 };
