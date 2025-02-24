@@ -8,6 +8,7 @@ import {
   ROUTE__LOGIN_CALLBACK,
 } from '@/constants';
 import {DashboardPage} from '@/pages/DashboardPage';
+import {DashboardPrototypePage} from '@/pages/DashboardPrototypePage';
 import ErrorPage404 from '@/pages/Errors/404';
 import {LoginCallbackPage} from '@/pages/LoginCallbackPage';
 import {LoginPage} from '@/pages/LoginPage';
@@ -17,6 +18,7 @@ const Routes: FC = () => {
     <ReactRoutes>
       <Route path={ROUTE__LOGIN} element={<LoginPage />} />
       <Route path={ROUTE__LOGIN_CALLBACK} element={<LoginCallbackPage />} />
+      <Route path="/test" element={<DashboardPrototypePage />} />
       <Route
         path={ROUTE__DASHBOARD}
         element={
