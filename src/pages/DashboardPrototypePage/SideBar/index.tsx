@@ -1,6 +1,6 @@
 import {FC} from 'react';
 import {useNavigate} from 'react-router-dom';
-import {Box, Button, Stack} from '@mui/material';
+import {Box, Button, Stack, Typography} from '@mui/material';
 
 import AllTasksIcon from './icons/allTasks.svg?react';
 import DashboardIcon from './icons/dashboard.svg?react';
@@ -10,32 +10,35 @@ import NotifsIcon from './icons/notifications.svg?react';
 import {SideBarMenuItem} from './types';
 
 import Logo from '@/pages/LoginPage/logo.svg?react';
+import {COLOR__MAIN_BLACK} from '@/theme/colors';
 
 const iconSize = 24; // px
 
+const commonIconProps = {width: iconSize, height: '100%'};
+
 const menuItems: SideBarMenuItem[] = [
   {
-    icon: <DashboardIcon width={iconSize} height="auto" />,
-    text: 'Дашбоард',
+    icon: <DashboardIcon {...commonIconProps} />,
+    text: 'Дашборд',
     route: '/',
   },
   {
-    icon: <MyTasksIcon width={iconSize} height="auto" />,
+    icon: <MyTasksIcon {...commonIconProps} />,
     text: 'Мои задачи',
     route: '/my-tasks',
   },
   {
-    icon: <AllTasksIcon width={iconSize} height="auto" />,
+    icon: <AllTasksIcon {...commonIconProps} />,
     text: 'Все задачи',
     route: '/tasks',
   },
   {
-    icon: <EmployeesIcon width={iconSize} height="auto" />,
+    icon: <EmployeesIcon {...commonIconProps} />,
     text: 'Сотрудники',
     route: '/employees',
   },
   {
-    icon: <NotifsIcon width={iconSize} height="auto" />,
+    icon: <NotifsIcon {...commonIconProps} />,
     text: 'Уведомления',
     route: '/notifications',
   },
@@ -53,12 +56,28 @@ export const SideBar: FC = () => {
           <Button
             key={text}
             variant="outlined"
-            startIcon={icon}
             onClick={() => {
               navigate(route);
             }}
+            sx={{
+              padding: '12px 16px',
+              justifyContent: 'flex-start',
+            }}
           >
-            {text}
+            <Box display="flex" gap={1} alignItems="center">
+              {icon}
+
+              <Typography
+                sx={{
+                  fontWeight: 400,
+                  fontSize: 16,
+                  lineHeight: '20px',
+                  color: COLOR__MAIN_BLACK,
+                }}
+              >
+                {text}
+              </Typography>
+            </Box>
           </Button>
         ))}
       </Stack>
