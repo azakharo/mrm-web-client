@@ -1,6 +1,6 @@
 <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M7 10.6666C9 10.6666 10 9.66656 10 7.66656V5.66656C10 3.66656 9 2.66656 7 2.66656H5C3 2.66656 2 3.66656 2 5.66656V7.66656C2 9.66656 3 10.6666 5 10.6666H7Z" stroke="#171717" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M19 10.6666C21 10.6666 22 9.66656 22 7.66656V5.66656C22 3.66656 21 2.66656 19 2.66656H17C15 2.66656 14 3.66656 14 5.66656V7.66656C14 9.66656 15 10.6666 17 10.6666H19Z" stroke="#171717" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M19 22.6666C21 22.6666 22 21.6666 22 19.6666V17.6666C22 15.6666 21 14.6666 19 14.6666H17C15 14.6666 14 15.6666 14 17.6666V19.6666C14 21.6666 15 22.6666 17 22.6666H19Z" stroke="#171717" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M7 22.6666C9 22.6666 10 21.6666 10 19.6666V17.6666C10 15.6666 9 14.6666 7 14.6666H5C3 14.6666 2 15.6666 2 17.6666V19.6666C2 21.6666 3 22.6666 5 22.6666H7Z" stroke="#171717" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M7 10.6666C9 10.6666 10 9.66656 10 7.66656V5.66656C10 3.66656 9 2.66656 7 2.66656H5C3 2.66656 2 3.66656 2 5.66656V7.66656C2 9.66656 3 10.6666 5 10.6666H7Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M19 10.6666C21 10.6666 22 9.66656 22 7.66656V5.66656C22 3.66656 21 2.66656 19 2.66656H17C15 2.66656 14 3.66656 14 5.66656V7.66656C14 9.66656 15 10.6666 17 10.6666H19Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M19 22.6666C21 22.6666 22 21.6666 22 19.6666V17.6666C22 15.6666 21 14.6666 19 14.6666H17C15 14.6666 14 15.6666 14 17.6666V19.6666C14 21.6666 15 22.6666 17 22.6666H19Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M7 22.6666C9 22.6666 10 21.6666 10 19.6666V17.6666C10 15.6666 9 14.6666 7 14.6666H5C3 14.6666 2 15.6666 2 17.6666V19.6666C2 21.6666 3 22.6666 5 22.6666H7Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>

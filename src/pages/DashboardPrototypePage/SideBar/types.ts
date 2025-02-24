@@ -1,7 +1,7 @@
-import {ReactElement} from 'react';
+import {ComponentType} from 'react';
 
 export interface SideBarMenuItem {
-  icon: ReactElement;
+  Icon: ComponentType;
   text: string;
   route: string;
 }

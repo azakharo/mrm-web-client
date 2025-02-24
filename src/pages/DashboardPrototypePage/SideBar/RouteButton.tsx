@@ -1,10 +1,10 @@
 import {FC} from 'react';
-import {useNavigate} from 'react-router-dom';
+import {matchPath, useLocation, useNavigate} from 'react-router-dom';
 import {Box, Button, Typography} from '@mui/material';
 
 import {SideBarMenuItem} from './types';
 
-import {COLOR__MAIN_BLACK} from '@/theme/colors';
+import {COLOR__MAIN_BLACK, COLOR__WHITE} from '@/theme/colors';
 
 interface Props {
   menuItem: SideBarMenuItem;
@@ -12,7 +12,10 @@ interface Props {
 
 export const RouteButton: FC<Props> = ({menuItem}) => {
   const navigate = useNavigate();
-  const {icon, text, route} = menuItem;
+  const {pathname} = useLocation();
+  const {Icon, text, route} = menuItem;
+  const isCurrentRoute = matchPath(route, pathname);
+  const currentColor = isCurrentRoute ? '#FF9900' : COLOR__MAIN_BLACK;
 
   return (
     <Button
@@ -24,17 +27,36 @@ export const RouteButton: FC<Props> = ({menuItem}) => {
       sx={{
         padding: '12px 16px',
         justifyContent: 'flex-start',
+
+        backgroundColor: isCurrentRoute ? '#FFFAEC' : COLOR__WHITE,
+        border: '1px solid transparent',
+        '&:hover': {
+          backgroundColor: '#FFFAEC',
+          border: '1px solid transparent',
+        },
+        '&:active': {
+          backgroundColor: '#FFFAEC',
+          border: '1px solid transparent',
+        },
       }}
     >
       <Box display="flex" gap={1} alignItems="center">
-        {icon}
+        <Icon
+          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+          // @ts-ignore
+          style={{
+            width: '24px',
+            height: '100%',
+            color: currentColor,
+          }}
+        />
 
         <Typography
           sx={{
             fontWeight: 400,
             fontSize: 16,
             lineHeight: '20px',
-            color: COLOR__MAIN_BLACK,
+            color: currentColor,
           }}
         >
           {text}

@@ -11,33 +11,29 @@ import {SideBarMenuItem} from './types';
 
 import Logo from '@/pages/LoginPage/logo.svg?react';
 
-const iconSize = 24; // px
-
-const commonIconProps = {width: iconSize, height: '100%'};
-
 const menuItems: SideBarMenuItem[] = [
   {
-    icon: <DashboardIcon {...commonIconProps} />,
+    Icon: DashboardIcon,
     text: 'Дашборд',
-    route: '/',
+    route: '/test',
   },
   {
-    icon: <MyTasksIcon {...commonIconProps} />,
+    Icon: MyTasksIcon,
     text: 'Мои задачи',
     route: '/my-tasks',
   },
   {
-    icon: <AllTasksIcon {...commonIconProps} />,
+    Icon: AllTasksIcon,
     text: 'Все задачи',
     route: '/tasks',
   },
   {
-    icon: <EmployeesIcon {...commonIconProps} />,
+    Icon: EmployeesIcon,
     text: 'Сотрудники',
     route: '/employees',
   },
   {
-    icon: <NotifsIcon {...commonIconProps} />,
+    Icon: NotifsIcon,
     text: 'Уведомления',
     route: '/notifications',
   },
