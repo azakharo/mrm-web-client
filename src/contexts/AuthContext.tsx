@@ -25,13 +25,13 @@ const initialAuthState: AuthState = {
 };
 
 export interface AuthContextType extends AuthState {
-  onLoginSuccess: (authToken: string) => void;
+  onLoginSuccess: (authToken: string) => Promise<void>;
   logout: () => void;
 }
 
 export const AuthContext = createContext<AuthContextType>({
   ...initialAuthState,
-  onLoginSuccess: () => {},
+  onLoginSuccess: () => Promise.resolve(),
   logout: () => {},
 });
 
@@ -62,7 +62,7 @@ export const AuthProvider: FC<React.PropsWithChildren<Props>> = ({
   const onLoginSuccess = useCallback(
     (authToken: string) => {
       setAuthToken(authToken);
-      void getLoggedInUser();
+      return getLoggedInUser();
     },
     [getLoggedInUser],
   );
