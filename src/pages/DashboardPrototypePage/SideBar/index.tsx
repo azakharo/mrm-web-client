@@ -6,6 +6,7 @@ import DashboardIcon from './icons/dashboard.svg?react';
 import EmployeesIcon from './icons/employees.svg?react';
 import MyTasksIcon from './icons/myTasks.svg?react';
 import NotifsIcon from './icons/notifications.svg?react';
+import UserProfileIcon from './icons/userProfile.svg?react';
 import {RouteButton} from './RouteButton';
 import {SideBarMenuItem} from './types';
 
@@ -31,6 +32,11 @@ const menuItems: SideBarMenuItem[] = [
     Icon: EmployeesIcon,
     text: 'Сотрудники',
     route: 'employees',
+  },
+  {
+    Icon: UserProfileIcon,
+    text: 'Профиль',
+    route: 'user-profile',
   },
   {
     Icon: NotifsIcon,

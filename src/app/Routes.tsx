@@ -11,6 +11,7 @@ import {DashboardPage} from '@/pages/DashboardPage';
 import {DashboardPrototypePage} from '@/pages/DashboardPrototypePage';
 import {Dashboard} from '@/pages/DashboardPrototypePage/Dashboard';
 import NotImplemented from '@/pages/DashboardPrototypePage/NotImplemented';
+import {UserProfile} from '@/pages/DashboardPrototypePage/UserProfile';
 import ErrorPage404 from '@/pages/Errors/404';
 import {LoginCallbackPage} from '@/pages/LoginCallbackPage';
 import {LoginPage} from '@/pages/LoginPage';
@@ -35,6 +36,7 @@ const Routes: FC = () => {
           path="employees"
           element={<NotImplemented pageName="Сотрудники" />}
         />
+        <Route path="user-profile" element={<UserProfile />} />
         <Route
           path="notifications"
           element={<NotImplemented pageName="Уведомления" />}

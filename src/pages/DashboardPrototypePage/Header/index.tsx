@@ -5,9 +5,10 @@ import {UserProfileButton} from './UserProfileButton';
 
 interface Props {
   title: string;
+  hiddenUserProfileButton?: boolean;
 }
 
-export const Header: FC<Props> = ({title}) => {
+export const Header: FC<Props> = ({title, hiddenUserProfileButton = false}) => {
   return (
     <Box
       display="flex"
@@ -16,18 +17,18 @@ export const Header: FC<Props> = ({title}) => {
       px={4}
       pt={4}
       pb={3}
+      minHeight={114}
     >
       <Typography
         sx={{
           fontWeight: 500,
           fontSize: 32,
-          lineHeight: '41px',
         }}
       >
         {title}
       </Typography>
 
-      <UserProfileButton />
+      {!hiddenUserProfileButton && <UserProfileButton />}
     </Box>
   );
 };
