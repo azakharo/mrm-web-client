@@ -18,7 +18,16 @@ const Routes: FC = () => {
     <ReactRoutes>
       <Route path={ROUTE__LOGIN} element={<LoginPage />} />
       <Route path={ROUTE__LOGIN_CALLBACK} element={<LoginCallbackPage />} />
-      <Route path="/test" element={<DashboardPrototypePage />} />
+
+      <Route path="dashboard" element={<DashboardPrototypePage />}>
+        <Route index element={<div>Дашборд</div>} />
+        <Route path="my-tasks" element={<div>Мои задачи</div>} />
+        <Route path="tasks" element={<div>Все задачи</div>} />
+        <Route path="employees" element={<div>Сотрудники</div>} />
+        <Route path="notifications" element={<div>Уведомления</div>} />
+        <Route path="*" element={<div>Страница не найдена</div>} />
+      </Route>
+
       <Route
         path={ROUTE__DASHBOARD}
         element={

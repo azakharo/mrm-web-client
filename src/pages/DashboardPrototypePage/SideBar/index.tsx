@@ -15,27 +15,27 @@ const menuItems: SideBarMenuItem[] = [
   {
     Icon: DashboardIcon,
     text: 'Дашборд',
-    route: '/test',
+    route: '',
   },
   {
     Icon: MyTasksIcon,
     text: 'Мои задачи',
-    route: '/my-tasks',
+    route: 'my-tasks',
   },
   {
     Icon: AllTasksIcon,
     text: 'Все задачи',
-    route: '/tasks',
+    route: 'tasks',
   },
   {
     Icon: EmployeesIcon,
     text: 'Сотрудники',
-    route: '/employees',
+    route: 'employees',
   },
   {
     Icon: NotifsIcon,
     text: 'Уведомления',
-    route: '/notifications',
+    route: 'notifications',
   },
 ];
 

@@ -1,4 +1,5 @@
 import {FC} from 'react';
+import {Outlet} from 'react-router-dom';
 import {Box} from '@mui/material';
 
 import {SideBar} from './SideBar';
@@ -11,7 +12,7 @@ export const DashboardPrototypePage: FC = () => {
       </Box>
 
       <Box flex="1 1 0" sx={{backgroundColor: '#F6F6F6'}}>
-        Content
+        <Outlet />
       </Box>
     </Box>
   );
