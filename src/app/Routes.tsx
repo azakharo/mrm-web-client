@@ -9,9 +9,12 @@ import {
 } from '@/constants';
 import {DashboardPage} from '@/pages/DashboardPage';
 import {DashboardPrototypePage} from '@/pages/DashboardPrototypePage';
+import NotImplemented from '@/pages/DashboardPrototypePage/NotImplemented';
 import ErrorPage404 from '@/pages/Errors/404';
 import {LoginCallbackPage} from '@/pages/LoginCallbackPage';
 import {LoginPage} from '@/pages/LoginPage';
+
+const notImplemented = <NotImplemented />;
 
 const Routes: FC = () => {
   return (
@@ -21,11 +24,11 @@ const Routes: FC = () => {
 
       <Route path="dashboard" element={<DashboardPrototypePage />}>
         <Route index element={<div>Дашборд</div>} />
-        <Route path="my-tasks" element={<div>Мои задачи</div>} />
-        <Route path="tasks" element={<div>Все задачи</div>} />
-        <Route path="employees" element={<div>Сотрудники</div>} />
-        <Route path="notifications" element={<div>Уведомления</div>} />
-        <Route path="*" element={<div>Страница не найдена</div>} />
+        <Route path="my-tasks" element={notImplemented} />
+        <Route path="tasks" element={notImplemented} />
+        <Route path="employees" element={notImplemented} />
+        <Route path="notifications" element={notImplemented} />
+        <Route path="*" element={<ErrorPage404 />} />
       </Route>
 
       <Route
