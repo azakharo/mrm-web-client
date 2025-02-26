@@ -1,4 +1,5 @@
 import {FC} from 'react';
+import {useNavigate} from 'react-router-dom';
 import {Avatar, Box, ButtonBase, Stack, Typography} from '@mui/material';
 import {darken} from '@mui/material/styles';
 
@@ -9,13 +10,14 @@ import {COLOR__BACK, COLOR__WHITE} from '@/theme/colors';
 const backgroundColorOnHover = darken(COLOR__WHITE, 0.1);
 
 export const UserProfileButton: FC = () => {
+  const navigate = useNavigate();
+
   // TODO get user info from useAuth()
   const userName = 'Елена Викторовна';
   const userPosition = 'Директор';
 
   const handleClick = () => {
-    // TODO impl
-    alert('not implemented');
+    navigate('user-profile');
   };
 
   return (
