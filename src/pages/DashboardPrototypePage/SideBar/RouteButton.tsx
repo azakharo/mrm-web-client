@@ -14,7 +14,7 @@ export const RouteButton: FC<Props> = ({menuItem}) => {
   const navigate = useNavigate();
   const {pathname} = useLocation();
   const {Icon, text, route} = menuItem;
-  const isCurrentRoute = matchPath(route, pathname);
+  const isCurrentRoute = matchPath('/dashboard/' + route, pathname);
   const currentColor = isCurrentRoute ? '#FF9900' : COLOR__MAIN_BLACK;
 
   return (
