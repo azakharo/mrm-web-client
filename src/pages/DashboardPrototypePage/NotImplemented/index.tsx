@@ -1,9 +1,14 @@
+import {FC} from 'react';
 import {useNavigate} from 'react-router-dom';
 import {Box, Button, Typography} from '@mui/material';
 
 import Icon from '../../Errors/404/picture.svg?react';
 
-const NotImplemented = () => {
+interface Props {
+  pageName: string;
+}
+
+const NotImplemented: FC<Props> = ({pageName}) => {
   const navigate = useNavigate();
 
   const handleGoHome = () => {
@@ -21,11 +26,11 @@ const NotImplemented = () => {
         <Icon width={280} height={'100%'} />
 
         <Typography variant="h1" mt={3}>
-          Страница ещё не реализована
+          {pageName}
         </Typography>
 
         <Typography variant="b1light" mt={1} mb={3}>
-          Наша команда постарается её реализовать как можно быстрее
+          Страница ещё не реализована
         </Typography>
 
         <Button variant="contained" onClick={handleGoHome}>

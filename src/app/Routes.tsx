@@ -15,8 +15,6 @@ import ErrorPage404 from '@/pages/Errors/404';
 import {LoginCallbackPage} from '@/pages/LoginCallbackPage';
 import {LoginPage} from '@/pages/LoginPage';
 
-const notImplemented = <NotImplemented />;
-
 const Routes: FC = () => {
   return (
     <ReactRoutes>
@@ -25,10 +23,22 @@ const Routes: FC = () => {
 
       <Route path="dashboard" element={<DashboardPrototypePage />}>
         <Route index element={<Dashboard />} />
-        <Route path="my-tasks" element={notImplemented} />
-        <Route path="tasks" element={notImplemented} />
-        <Route path="employees" element={notImplemented} />
-        <Route path="notifications" element={notImplemented} />
+        <Route
+          path="my-tasks"
+          element={<NotImplemented pageName="Мои задачи" />}
+        />
+        <Route
+          path="tasks"
+          element={<NotImplemented pageName="Все задачи" />}
+        />
+        <Route
+          path="employees"
+          element={<NotImplemented pageName="Сотрудники" />}
+        />
+        <Route
+          path="notifications"
+          element={<NotImplemented pageName="Уведомления" />}
+        />
         <Route path="*" element={<ErrorPage404 />} />
       </Route>
 
