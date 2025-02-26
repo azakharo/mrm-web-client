@@ -1,6 +1,8 @@
 import {FC} from 'react';
 import {Box, Stack, Typography} from '@mui/material';
 
+import {StatForPeriod} from './StatForPeriod';
+
 import {COLOR__WHITE} from '@/theme/colors';
 
 export const TasksCompletedStat: FC = () => {
@@ -15,8 +17,10 @@ export const TasksCompletedStat: FC = () => {
     >
       <Typography variant="b1regular">🗓️ Задач выполнено</Typography>
 
-      <Box p={1} display="flex" alignItems="center" gap={2}>
-        ha-ha
+      <Box display="flex" gap={8}>
+        <StatForPeriod count={17} label={'За месяц'} />
+        <StatForPeriod count={5} label={'За неделю'} />
+        <StatForPeriod count={1} label={'Сегодня'} />
       </Box>
     </Stack>
   );
