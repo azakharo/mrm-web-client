@@ -9,6 +9,10 @@
       "dest": "/"
     },
     {
+      "src": "/dashboard.*",
+      "dest": "/"
+    },
+    {
       "src": "/",
       "dest": "/"
     }
