@@ -3,6 +3,7 @@ import {useNavigate} from 'react-router-dom';
 import {Avatar, Box, Stack, Typography} from '@mui/material';
 
 import {Header} from '../Header';
+import {About} from './About';
 import LogoutIcon from './logout.svg?react';
 import userAvatarSrc from './userAvatar.png';
 
@@ -76,6 +77,8 @@ export const UserProfile: FC = () => {
             />
           </Box>
         </Box>
+
+        <About />
       </Box>
     </>
   );
