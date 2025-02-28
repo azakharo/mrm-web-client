@@ -64,7 +64,7 @@ export const About: FC = () => {
         divider={<Divider />}
       >
         {items.map(({label, value}) => (
-          <Stack spacing={1}>
+          <Stack key={label} spacing={1}>
             <Typography
               sx={{
                 fontWeight: 500,
