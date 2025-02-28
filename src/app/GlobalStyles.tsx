@@ -2,6 +2,8 @@ import MuiGlobalStyles from '@mui/material/GlobalStyles';
 
 import {fontFamilyAdditional, fontFamilyMain} from '@/theme/typography';
 
+const fontFamily = `${fontFamilyMain}, ${fontFamilyAdditional}, Roboto, sans-serif, Helvetica, Arial`;
+
 const GlobalStyles = (): JSX.Element => {
   return (
     <MuiGlobalStyles
@@ -16,7 +18,7 @@ const GlobalStyles = (): JSX.Element => {
           MozOsxFontSmoothing: 'grayscale',
           height: '100%',
           width: '100%',
-          fontFamily: `${fontFamilyMain}, ${fontFamilyAdditional}, Roboto, sans-serif, Helvetica, Arial`,
+          fontFamily,
         },
         body: {
           height: '100%',
@@ -25,6 +27,9 @@ const GlobalStyles = (): JSX.Element => {
         '#app': {
           height: '100%',
           width: '100%',
+        },
+        button: {
+          fontFamily,
         },
       }}
     />

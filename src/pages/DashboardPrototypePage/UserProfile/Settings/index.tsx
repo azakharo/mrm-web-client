@@ -8,11 +8,11 @@ import HelpIcon from './icons/message.svg?react';
 import SunIcon from './icons/sun.svg?react';
 
 import {ButtonWithArrow} from '@/components/Buttons/ButtonWithArrow';
-import {COLOR__WARNING} from '@/theme/colors';
+import {COLOR__LIGHT_GRAY, COLOR__WARNING} from '@/theme/colors';
 
 const commonIconProps = {
   width: 24,
-  height: '100%',
+  height: 24,
   style: {color: COLOR__WARNING},
 };
 
@@ -29,10 +29,27 @@ export const Settings: FC = () => {
         Настройки профиля
       </Typography>
 
-      <Box display="flex" gap={3} flexWrap="wrap">
+      <Box
+        display="flex"
+        gap={3}
+        flexWrap="wrap"
+        sx={{
+          '&> button': {
+            minWidth: 300,
+          },
+        }}
+      >
         <ButtonWithArrow
           icon={<SunIcon {...commonIconProps} />}
-          text="Тема оформления"
+          content={
+            <Stack spacing={1} direction="row" alignItems="baseline">
+              <Typography>Тема оформления</Typography>
+
+              <Typography variant="b3regular" color={COLOR__LIGHT_GRAY}>
+                Светлая
+              </Typography>
+            </Stack>
+          }
           onClick={() => {
             alert('not implemented yet');
           }}
@@ -64,7 +81,15 @@ export const Settings: FC = () => {
 
         <ButtonWithArrow
           icon={<HelpIcon {...commonIconProps} />}
-          text="Нужна помощь"
+          content={
+            <Stack>
+              <Typography>Нужна помощь</Typography>
+
+              <Typography variant="b3regular" color={COLOR__LIGHT_GRAY}>
+                Служба поддержки
+              </Typography>
+            </Stack>
+          }
           onClick={() => {
             alert('not implemented yet');
           }}

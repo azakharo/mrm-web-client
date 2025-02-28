@@ -120,7 +120,7 @@ export const typographyOptions: TypographyOptions = {
   button: {
     textTransform: 'none',
     fontSize: 18,
-    fontWeight: 500,
+    fontWeight: 400,
     lineHeight: '23px',
   },
   b1regular: {
