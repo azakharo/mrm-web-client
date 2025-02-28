@@ -1,5 +1,5 @@
-import {FC} from 'react';
-import {Box, Stack, Typography} from '@mui/material';
+import {ChangeEvent, FC, useState} from 'react';
+import {Box, Stack, Switch, Typography} from '@mui/material';
 
 import NotifsIcon from '../../SideBar/icons/notifications.svg?react';
 import DocumentIcon from './icons/document.svg?react';
@@ -17,6 +17,12 @@ const commonIconProps = {
 };
 
 export const Settings: FC = () => {
+  const [enabledNotifs, setEnabledNotifs] = useState(true);
+
+  const handleEnabledNotifsChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setEnabledNotifs(event.target.checked);
+  };
+
   return (
     <Stack spacing={2} mt={3}>
       <Typography
@@ -61,6 +67,18 @@ export const Settings: FC = () => {
           onClick={() => {
             alert('not implemented yet');
           }}
+          arrow={
+            <Switch
+              checked={enabledNotifs}
+              onChange={handleEnabledNotifsChange}
+              sx={{marginLeft: 'auto'}}
+              inputProps={{
+                onClick: event => {
+                  event.stopPropagation();
+                },
+              }}
+            />
+          }
         />
 
         <ButtonWithArrow

@@ -19,6 +19,7 @@ import {
   COLOR__TEXT_PRIMARY,
   COLOR__TEXT_SECONDARY,
   COLOR__WARNING,
+  COLOR__WHITE,
 } from './colors';
 import typography from './typography';
 
@@ -215,6 +216,43 @@ const theme = createTheme(
           loadingIndicator: (
             <CircularProgress size={20} sx={{color: COLOR__MAIN_BLACK}} />
           ),
+        },
+      },
+      MuiSwitch: {
+        styleOverrides: {
+          root: {
+            width: 48,
+            height: 24,
+            padding: 0,
+            '& .MuiSwitch-switchBase': {
+              padding: 0,
+              margin: 3,
+              transitionDuration: '300ms',
+              transform: 'translate(4px, 1px)',
+              '&.Mui-checked': {
+                transform: 'translate(22px, 1px)',
+                color: COLOR__WHITE,
+                '& + .MuiSwitch-track': {
+                  backgroundColor: COLOR__PRIMARY,
+                  opacity: 1,
+                  border: 0,
+                },
+                '&.Mui-disabled + .MuiSwitch-track': {
+                  opacity: 0.5,
+                },
+              },
+            },
+            '& .MuiSwitch-thumb': {
+              boxSizing: 'border-box',
+              width: 16,
+              height: 16,
+            },
+            '& .MuiSwitch-track': {
+              borderRadius: 26 / 2,
+              backgroundColor: COLOR__PRIMARY,
+              opacity: 1,
+            },
+          },
         },
       },
     },
