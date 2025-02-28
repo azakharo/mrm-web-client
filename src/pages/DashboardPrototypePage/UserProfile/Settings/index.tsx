@@ -64,9 +64,7 @@ export const Settings: FC = () => {
         <ButtonWithArrow
           icon={<NotifsIcon {...commonIconProps} />}
           text="Уведомления"
-          onClick={() => {
-            alert('not implemented yet');
-          }}
+          onClick={() => {}}
           arrow={
             <Switch
               checked={enabledNotifs}
