@@ -5,6 +5,7 @@ import {Avatar, Box, Stack, Typography} from '@mui/material';
 import {Header} from '../Header';
 import {About} from './About';
 import LogoutIcon from './logout.svg?react';
+import {Settings} from './Settings';
 import userAvatarSrc from './userAvatar.png';
 
 import {ROUTE__LOGIN} from '@/constants';
@@ -79,6 +80,8 @@ export const UserProfile: FC = () => {
         </Box>
 
         <About />
+
+        <Settings />
       </Box>
     </>
   );

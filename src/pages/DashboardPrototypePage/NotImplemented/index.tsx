@@ -29,7 +29,7 @@ const NotImplemented: FC<Props> = ({pageName}) => {
           {pageName}
         </Typography>
 
-        <Typography variant="b1light" mt={1} mb={3}>
+        <Typography variant="b1medium" mt={1} mb={3}>
           Страница ещё не реализована
         </Typography>
 

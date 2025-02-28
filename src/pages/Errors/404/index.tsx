@@ -24,7 +24,7 @@ const ErrorPage404 = () => {
           404: Страница не найдена
         </Typography>
 
-        <Typography variant="b1light" mt={1} mb={3}>
+        <Typography variant="b1medium" mt={1} mb={3}>
           Наша команда обещает использовать свои суперспособности, чтобы её
           найти
         </Typography>

@@ -12,9 +12,10 @@ declare module '@mui/material/styles' {
     h3bold: CSSProperties;
     button: CSSProperties;
     b1regular: CSSProperties;
-    b1light: CSSProperties;
+    b1medium: CSSProperties;
     b1semibold: CSSProperties;
     b2regular: CSSProperties;
+    b2medium: CSSProperties;
     b2semibold: CSSProperties;
     b3regular: CSSProperties;
     b3semibold: CSSProperties;
@@ -29,9 +30,10 @@ declare module '@mui/material/styles' {
     h3bold?: CSSProperties;
     button?: CSSProperties;
     b1regular?: CSSProperties;
-    b1light?: CSSProperties;
+    b1medium?: CSSProperties;
     b1semibold?: CSSProperties;
     b2regular?: CSSProperties;
+    b2medium?: CSSProperties;
     b2semibold?: CSSProperties;
     b3regular?: CSSProperties;
     b3semibold?: CSSProperties;
@@ -64,9 +66,10 @@ declare module '@mui/material/Typography' {
     h3bold: true;
     button: true;
     b1regular: true;
-    b1light: true;
+    b1medium: true;
     b1semibold: true;
     b2regular: true;
+    b2medium: true;
     b2semibold: true;
     b3regular: true;
     b3semibold: true;
@@ -96,23 +99,23 @@ export const typographyOptions: TypographyOptions = {
   // Variants from Figma
   h1: {
     fontSize: 32,
-    fontWeight: 700,
-    lineHeight: '36px',
+    fontWeight: 500,
+    lineHeight: '41px',
   },
   h2: {
     fontSize: 22,
-    fontWeight: 700,
+    fontWeight: 500,
     lineHeight: '28px',
   },
   h3: {
     fontSize: 20,
-    fontWeight: 500,
-    lineHeight: '28px',
+    fontWeight: 400,
+    lineHeight: '26px',
   },
   h3bold: {
     fontSize: 20,
-    fontWeight: 700,
-    lineHeight: '28px',
+    fontWeight: 500,
+    lineHeight: '26px',
   },
   button: {
     textTransform: 'none',
@@ -121,38 +124,43 @@ export const typographyOptions: TypographyOptions = {
     lineHeight: '23px',
   },
   b1regular: {
-    fontSize: 17,
-    fontWeight: 500,
-    lineHeight: '24px',
-  },
-  b1light: {
     fontSize: 18,
     fontWeight: 400,
     lineHeight: '23px',
   },
+  b1medium: {
+    fontSize: 18,
+    fontWeight: 450,
+    lineHeight: '23px',
+  },
   b1semibold: {
-    fontSize: 17,
-    fontWeight: 700,
-    lineHeight: '24px',
+    fontSize: 18,
+    fontWeight: 500,
+    lineHeight: '23px',
   },
   b2regular: {
-    fontSize: 15,
-    fontWeight: 500,
-    lineHeight: '22px',
+    fontSize: 16,
+    fontWeight: 400,
+    lineHeight: '21px',
+  },
+  b2medium: {
+    fontSize: 16,
+    fontWeight: 450,
+    lineHeight: '21px',
   },
   b2semibold: {
-    fontSize: 15,
-    fontWeight: 700,
-    lineHeight: '22px',
+    fontSize: 16,
+    fontWeight: 500,
+    lineHeight: '21px',
   },
   b3regular: {
-    fontSize: 13,
-    fontWeight: 500,
+    fontSize: 14,
+    fontWeight: 400,
     lineHeight: '18px',
   },
   b3semibold: {
-    fontSize: 13,
-    fontWeight: 700,
+    fontSize: 14,
+    fontWeight: 500,
     lineHeight: '18px',
   },
   // Variants from Figma
