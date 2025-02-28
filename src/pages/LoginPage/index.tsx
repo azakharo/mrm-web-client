@@ -4,10 +4,10 @@ import useRequest from 'ahooks/es/useRequest';
 
 import {HelpButton} from './HelpButton';
 import lentaSputnikIconUrl from './lentaSputnik.jpg';
-import {LoginButton} from './LoginButton';
 import Logo from './logo.svg?react';
 
 import {getLoginProviders} from '@/api';
+import {ButtonWithArrow} from '@/components/Buttons/ButtonWithArrow';
 import {ROUTE__LOGIN, ROUTE__LOGIN_CALLBACK} from '@/constants';
 
 const skeleton = (
@@ -83,7 +83,7 @@ export const LoginPage: FC = () => {
           {error && <Alert severity="error">{error.message}</Alert>}
 
           {loginProviders?.map(({id, appName}) => (
-            <LoginButton
+            <ButtonWithArrow
               key={id}
               icon={<img src={lentaSputnikIconUrl} alt={appName} />}
               text={appName}

@@ -8,9 +8,9 @@ import LogoutIcon from './logout.svg?react';
 import {Settings} from './Settings';
 import userAvatarSrc from './userAvatar.png';
 
+import {ButtonWithArrow} from '@/components/Buttons/ButtonWithArrow';
 import {ROUTE__LOGIN} from '@/constants';
 import {useAuth} from '@/hooks/useAuth';
-import {LoginButton} from '@/pages/LoginPage/LoginButton';
 import {COLOR__LIGHT_GRAY, COLOR__WARNING} from '@/theme/colors';
 
 const avatarSize = 106;
@@ -65,7 +65,7 @@ export const UserProfile: FC = () => {
           </Stack>
 
           <Box marginLeft="auto">
-            <LoginButton
+            <ButtonWithArrow
               icon={
                 <LogoutIcon
                   width={logoutIconSize}

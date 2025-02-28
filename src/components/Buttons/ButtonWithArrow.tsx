@@ -9,11 +9,19 @@ const backgroundColorOnHover = darken(COLOR__WHITE, 0.1);
 
 interface Props {
   icon: ReactNode;
-  text: string;
+  text?: string;
+  content?: ReactNode; // pass either text or content
   onClick: () => void;
+  arrow?: ReactNode;
 }
 
-export const LoginButton: FC<Props> = ({icon, text, onClick}) => {
+export const ButtonWithArrow: FC<Props> = ({
+  icon,
+  text,
+  onClick,
+  arrow,
+  content,
+}) => {
   return (
     <ButtonBase onClick={onClick}>
       <Box
@@ -35,11 +43,13 @@ export const LoginButton: FC<Props> = ({icon, text, onClick}) => {
       >
         {icon}
 
-        <Typography noWrap variant="button">
-          {text}
-        </Typography>
+        {content ?? (
+          <Typography noWrap variant="button">
+            {text}
+          </Typography>
+        )}
 
-        <EastOutlinedIcon sx={{marginLeft: 'auto'}} />
+        {arrow ?? <EastOutlinedIcon sx={{marginLeft: 'auto'}} />}
       </Box>
     </ButtonBase>
   );
