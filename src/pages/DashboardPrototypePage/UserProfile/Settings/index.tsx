@@ -5,7 +5,6 @@ import NotifsIcon from '../../SideBar/icons/notifications.svg?react';
 import DocumentIcon from './icons/document.svg?react';
 import LayoutIcon from './icons/layout.svg?react';
 import HelpIcon from './icons/message.svg?react';
-import SunIcon from './icons/sun.svg?react';
 
 import {ButtonWithArrow} from '@/components/Buttons/ButtonWithArrow';
 import {COLOR__LIGHT_GRAY, COLOR__WARNING} from '@/theme/colors';
@@ -46,16 +45,16 @@ export const Settings: FC = () => {
         }}
       >
         <ButtonWithArrow
-          icon={<SunIcon {...commonIconProps} />}
-          content={
-            <Stack spacing={1} direction="row" alignItems="baseline">
-              <Typography>Тема оформления</Typography>
+          icon={<DocumentIcon {...commonIconProps} />}
+          text="Документы"
+          onClick={() => {
+            alert('not implemented yet');
+          }}
+        />
 
-              <Typography variant="b3regular" color={COLOR__LIGHT_GRAY}>
-                Светлая
-              </Typography>
-            </Stack>
-          }
+        <ButtonWithArrow
+          icon={<LayoutIcon {...commonIconProps} />}
+          text="Данные приложения"
           onClick={() => {
             alert('not implemented yet');
           }}
@@ -77,22 +76,6 @@ export const Settings: FC = () => {
               }}
             />
           }
-        />
-
-        <ButtonWithArrow
-          icon={<DocumentIcon {...commonIconProps} />}
-          text="Документы"
-          onClick={() => {
-            alert('not implemented yet');
-          }}
-        />
-
-        <ButtonWithArrow
-          icon={<LayoutIcon {...commonIconProps} />}
-          text="Данные приложения"
-          onClick={() => {
-            alert('not implemented yet');
-          }}
         />
 
         <ButtonWithArrow
