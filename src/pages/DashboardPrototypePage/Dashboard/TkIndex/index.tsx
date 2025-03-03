@@ -5,7 +5,12 @@ import {Box, Button, ButtonBase, Stack, Typography} from '@mui/material';
 import SettingsIcon from './settings.svg?react';
 import {Value} from './Value';
 
-import {COLOR__ERROR, COLOR__SECONDARY, COLOR__WHITE} from '@/theme/colors';
+import {
+  COLOR__ERROR,
+  COLOR__SECONDARY,
+  COLOR__SUCCESS,
+  COLOR__WHITE,
+} from '@/theme/colors';
 
 const iconSize = 24;
 
@@ -56,7 +61,7 @@ export const TkIndex: FC = () => {
         </Box>
 
         <Box display="flex" gap={8}>
-          <Value count={2} countColor="#00BE64" label="Прирост" />
+          <Value count={2} countColor={COLOR__SUCCESS} label="Прирост" />
           <Value count={3} countColor={COLOR__ERROR} label="Убыток" />
         </Box>
       </Stack>
