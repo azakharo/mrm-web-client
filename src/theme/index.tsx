@@ -208,6 +208,7 @@ const theme = createTheme(
       MuiTypography: {
         defaultProps: {
           variant: 'b1regular',
+          color: 'textPrimary',
         },
       },
       MuiLoadingButton: {
