@@ -1,37 +1,37 @@
 import {FC} from 'react';
-import {Box, Typography} from '@mui/material';
+import {Stack, Typography} from '@mui/material';
 
 import {COLOR__LIGHT_GRAY} from '@/theme/colors';
 
 interface Props {
   count: number;
+  countColor: string;
   label: string;
 }
 
-export const StatForPeriod: FC<Props> = ({count, label}) => {
+export const Value: FC<Props> = ({count, countColor, label}) => {
   return (
-    <Box display="flex" flexWrap="nowrap" alignItems="flex-end" py={1} gap={1}>
+    <Stack>
       <Typography
         sx={{
           fontWeight: 700,
-          fontSize: 32,
-          color: '#3991E5',
+          fontSize: 46,
+          lineHeight: '62px',
+          color: countColor,
         }}
       >
         {count}
       </Typography>
 
       <Typography
+        variant="b2regular"
         sx={{
-          fontWeight: 400,
-          fontSize: 16,
-          lineHeight: '16px',
           color: COLOR__LIGHT_GRAY,
         }}
         noWrap
       >
         {label}
       </Typography>
-    </Box>
+    </Stack>
   );
 };

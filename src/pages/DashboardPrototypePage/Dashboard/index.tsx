@@ -2,7 +2,7 @@ import {FC} from 'react';
 import {Box} from '@mui/material';
 
 import {Header} from '../Header';
-import {TasksCompletedStat} from './TasksCompletedStat';
+import {TkIndex} from './TkIndex';
 
 export const Dashboard: FC = () => {
   return (
@@ -10,9 +10,7 @@ export const Dashboard: FC = () => {
       <Header title="Дашборд" />
 
       <Box px={4}>
-        <Box width="fit-content">
-          <TasksCompletedStat />
-        </Box>
+        <TkIndex />
       </Box>
     </>
   );
