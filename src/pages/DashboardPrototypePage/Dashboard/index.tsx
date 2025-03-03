@@ -2,6 +2,7 @@ import {FC} from 'react';
 import {Box} from '@mui/material';
 
 import {Header} from '../Header';
+import {TasksForToday} from './TasksForToday';
 import {TkIndex} from './TkIndex';
 
 export const Dashboard: FC = () => {
@@ -10,7 +11,10 @@ export const Dashboard: FC = () => {
       <Header title="Дашборд" />
 
       <Box px={4}>
-        <TkIndex />
+        <Box display="flex" gap={4} flexWrap="wrap">
+          <TkIndex />
+          <TasksForToday />
+        </Box>
       </Box>
     </>
   );
