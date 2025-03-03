@@ -30,6 +30,7 @@ export const TkIndex: FC = () => {
           <Typography variant="b1semibold">Показатели по</Typography>
 
           <Button
+            href="#"
             variant="text"
             color="secondary"
             sx={{
