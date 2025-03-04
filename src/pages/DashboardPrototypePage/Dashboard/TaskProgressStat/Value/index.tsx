@@ -2,10 +2,11 @@ import {FC} from 'react';
 import {Badge, Box, Stack, Typography} from '@mui/material';
 
 import {COLOR__LIGHT_GRAY, COLOR__LINE} from '@/theme/colors';
+import {Color} from '@/types/ui';
 
 interface Props {
   count: number;
-  badgeColor: string;
+  badgeColor: Color;
   label: string;
 }
 
