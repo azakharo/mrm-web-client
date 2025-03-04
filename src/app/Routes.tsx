@@ -9,6 +9,7 @@ import {
 } from '@/constants';
 import {DashboardPage} from '@/pages/DashboardPage';
 import {Dashboard} from '@/pages/DashboardPage/Dashboard';
+import {MyTasks} from '@/pages/DashboardPage/MyTasks';
 import NotImplemented from '@/pages/DashboardPage/NotImplemented';
 import {UserProfile} from '@/pages/DashboardPage/UserProfile';
 import ErrorPage404 from '@/pages/Errors/404';
@@ -30,10 +31,7 @@ const Routes: FC = () => {
         }
       >
         <Route index element={<Dashboard />} />
-        <Route
-          path="my-tasks"
-          element={<NotImplemented pageName="Мои задачи" />}
-        />
+        <Route path="my-tasks" element={<MyTasks />} />
         <Route
           path="tasks"
           element={<NotImplemented pageName="Все задачи" />}
