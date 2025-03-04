@@ -10,7 +10,7 @@ import useMount from 'ahooks/es/useMount';
 
 import {getCurrentUser} from '@/api';
 import {getAuthToken, remAuthToken, setAuthToken} from '@/helpers/localStorage';
-import {User} from '@/types';
+import {User} from '@/types/auth';
 
 const isAuthed = (): boolean => !!getAuthToken();
 
