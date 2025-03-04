@@ -7,7 +7,6 @@ import {
   ROUTE__LOGIN,
   ROUTE__LOGIN_CALLBACK,
 } from '@/constants';
-import {DashboardPage} from '@/pages/DashboardPage';
 import {DashboardPrototypePage} from '@/pages/DashboardPrototypePage';
 import {Dashboard} from '@/pages/DashboardPrototypePage/Dashboard';
 import NotImplemented from '@/pages/DashboardPrototypePage/NotImplemented';
@@ -22,7 +21,14 @@ const Routes: FC = () => {
       <Route path={ROUTE__LOGIN} element={<LoginPage />} />
       <Route path={ROUTE__LOGIN_CALLBACK} element={<LoginCallbackPage />} />
 
-      <Route path="dashboard" element={<DashboardPrototypePage />}>
+      <Route
+        path={ROUTE__DASHBOARD}
+        element={
+          <ProtectedRoute>
+            <DashboardPrototypePage />
+          </ProtectedRoute>
+        }
+      >
         <Route index element={<Dashboard />} />
         <Route
           path="my-tasks"
@@ -44,14 +50,6 @@ const Routes: FC = () => {
         <Route path="*" element={<ErrorPage404 />} />
       </Route>
 
-      <Route
-        path={ROUTE__DASHBOARD}
-        element={
-          <ProtectedRoute>
-            <DashboardPage />
-          </ProtectedRoute>
-        }
-      />
       <Route path="*" element={<ErrorPage404 />} />
     </ReactRoutes>
   );
