@@ -4,6 +4,8 @@ import {Box, Button, Typography} from '@mui/material';
 
 import Icon from '../../Errors/404/picture.svg?react';
 
+import {ROUTE__DASHBOARD} from '@/constants';
+
 interface Props {
   pageName: string;
 }
@@ -12,7 +14,7 @@ const NotImplemented: FC<Props> = ({pageName}) => {
   const navigate = useNavigate();
 
   const handleGoHome = () => {
-    navigate('/dashboard', {replace: true});
+    navigate(ROUTE__DASHBOARD, {replace: true});
   };
 
   return (

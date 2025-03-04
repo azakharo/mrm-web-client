@@ -2,6 +2,7 @@ import {FC} from 'react';
 import {matchPath, useLocation, useNavigate} from 'react-router-dom';
 import {Box, Button, Typography} from '@mui/material';
 
+import {ROUTE__DASHBOARD} from '../../../constants';
 import {SideBarMenuItem} from './types';
 
 import {COLOR__MAIN_BLACK, COLOR__WARNING, COLOR__WHITE} from '@/theme/colors';
@@ -14,7 +15,7 @@ export const RouteButton: FC<Props> = ({menuItem}) => {
   const navigate = useNavigate();
   const {pathname} = useLocation();
   const {Icon, text, route} = menuItem;
-  const isCurrentRoute = matchPath('/dashboard/' + route, pathname);
+  const isCurrentRoute = matchPath(ROUTE__DASHBOARD + route, pathname);
   const currentColor = isCurrentRoute ? COLOR__WARNING : COLOR__MAIN_BLACK;
 
   return (
