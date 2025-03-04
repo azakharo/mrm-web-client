@@ -256,6 +256,13 @@ const theme = createTheme(
           },
         },
       },
+      MuiSvgIcon: {
+        styleOverrides: {
+          root: {
+            color: COLOR__MAIN_BLACK,
+          },
+        },
+      },
     },
     typography,
   },
