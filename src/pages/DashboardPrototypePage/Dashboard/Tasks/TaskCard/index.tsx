@@ -11,19 +11,21 @@ import {
 import {
   COLOR__LIGHT_BACK,
   COLOR__LIGHT_GRAY,
+  COLOR__SUCCESS,
   COLOR__WARNING,
   COLOR__WHITE,
 } from '@/theme/colors';
 import {Task, TaskStatus} from '@/types/tasks';
+import {Color} from '@/types/ui';
 
 const statusToIcon: Record<TaskStatus, ReactNode> = {
   [TaskStatus.inProgress]: '🔥',
   [TaskStatus.completed]: '✅',
 };
 
-const statusToColor: Record<TaskStatus, string> = {
-  [TaskStatus.inProgress]: 'warning',
-  [TaskStatus.completed]: 'success',
+const statusToColor: Record<TaskStatus, Color> = {
+  [TaskStatus.inProgress]: COLOR__WARNING,
+  [TaskStatus.completed]: COLOR__SUCCESS,
 };
 
 const statusToLabel: Record<TaskStatus, string> = {
@@ -31,12 +33,35 @@ const statusToLabel: Record<TaskStatus, string> = {
   [TaskStatus.completed]: 'Выполнено',
 };
 
+const progressBarContainerProps = {
+  minHeight: 23,
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
+} as const;
+
 interface Props {
   task: Task;
 }
 
 export const TaskCard: FC<Props> = ({task}) => {
   const {name, description, status, completionPercent} = task;
+
+  const progressBar = (
+    <LinearProgress
+      variant="determinate"
+      value={completionPercent}
+      color="info"
+      sx={{
+        height: 6,
+        borderRadius: '3px',
+        backgroundColor: COLOR__LIGHT_BACK,
+        '& .MuiLinearProgress-bar': {
+          background: COLOR__WARNING,
+        },
+      }}
+    />
+  );
 
   return (
     <ButtonBase
@@ -57,43 +82,51 @@ export const TaskCard: FC<Props> = ({task}) => {
         }}
       >
         <Box display="flex">
-          <Typography variant="b1semibold">{statusToIcon[status]}</Typography>
+          <Typography variant="b1semibold">
+            {statusToIcon[status]}&nbsp;
+          </Typography>
 
           <Typography variant="b1semibold">{name}</Typography>
         </Box>
 
-        <Typography variant="b2regular" sx={{color: COLOR__LIGHT_GRAY}}>
+        <Typography
+          variant="b2regular"
+          sx={{color: COLOR__LIGHT_GRAY}}
+          textAlign="left"
+          display="block"
+        >
           {description}
         </Typography>
 
-        <Box
-          display="flex"
-          alignItems="center"
-          justifyContent="space-between"
-          mb={1}
-        >
-          <Typography variant="b2semibold" sx={{color: statusToColor[status]}}>
-            {statusToLabel[status]}
-          </Typography>
+        <Stack>
+          {/* Here we render a hidden progress bar.
+          It's necessary for proper vertical alignment of the components.
+           The progress bar's height equals to the height of the status text. */}
+          {status !== TaskStatus.inProgress && (
+            <Box {...progressBarContainerProps} visibility="hidden">
+              {progressBar}
+            </Box>
+          )}
 
-          <Typography variant="b1semibold">{completionPercent}%</Typography>
-        </Box>
+          <Box
+            display="flex"
+            alignItems="center"
+            justifyContent="space-between"
+          >
+            <Typography
+              variant="b2semibold"
+              sx={{color: statusToColor[status]}}
+            >
+              {statusToLabel[status]}
+            </Typography>
 
-        {status === TaskStatus.inProgress && (
-          <LinearProgress
-            variant="determinate"
-            value={completionPercent}
-            color="info"
-            sx={{
-              // height: 12,
-              // borderRadius: '3px',
-              backgroundColor: COLOR__LIGHT_BACK,
-              '& .MuiLinearProgress-bar': {
-                background: COLOR__WARNING,
-              },
-            }}
-          />
-        )}
+            <Typography variant="b1semibold">{completionPercent}%</Typography>
+          </Box>
+
+          {status === TaskStatus.inProgress && (
+            <Box {...progressBarContainerProps}>{progressBar}</Box>
+          )}
+        </Stack>
 
         <Box display="flex" alignItems="center" justifyContent="space-between">
           <Typography variant="b3regular" sx={{color: COLOR__LIGHT_GRAY}}>

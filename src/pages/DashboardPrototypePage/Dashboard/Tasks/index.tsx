@@ -36,7 +36,7 @@ export const Tasks: FC = () => {
   return (
     <Box display="flex" gap={4} flexWrap="wrap">
       {tasks.map(task => (
-        <TaskCard task={task} />
+        <TaskCard key={task.id} task={task} />
       ))}
     </Box>
   );
