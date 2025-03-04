@@ -7,12 +7,12 @@ import LayoutIcon from './icons/layout.svg?react';
 import HelpIcon from './icons/message.svg?react';
 
 import {ButtonWithArrow} from '@/components/Buttons/ButtonWithArrow';
-import {COLOR__LIGHT_GRAY, COLOR__WARNING} from '@/theme/colors';
+import {COLOR__LIGHT_GRAY} from '@/theme/colors';
 
 const commonIconProps = {
   width: 24,
   height: 24,
-  style: {color: COLOR__WARNING},
+  style: {color: '#FE8414'},
 };
 
 export const Settings: FC = () => {

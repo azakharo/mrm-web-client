@@ -4,7 +4,7 @@ import {Box, Button, Typography} from '@mui/material';
 
 import {SideBarMenuItem} from './types';
 
-import {COLOR__MAIN_BLACK, COLOR__WHITE} from '@/theme/colors';
+import {COLOR__MAIN_BLACK, COLOR__WARNING, COLOR__WHITE} from '@/theme/colors';
 
 interface Props {
   menuItem: SideBarMenuItem;
@@ -15,7 +15,7 @@ export const RouteButton: FC<Props> = ({menuItem}) => {
   const {pathname} = useLocation();
   const {Icon, text, route} = menuItem;
   const isCurrentRoute = matchPath('/dashboard/' + route, pathname);
-  const currentColor = isCurrentRoute ? '#FF9900' : COLOR__MAIN_BLACK;
+  const currentColor = isCurrentRoute ? COLOR__WARNING : COLOR__MAIN_BLACK;
 
   return (
     <Button

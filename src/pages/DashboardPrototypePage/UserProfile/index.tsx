@@ -11,7 +11,7 @@ import userAvatarSrc from './userAvatar.png';
 import {ButtonWithArrow} from '@/components/Buttons/ButtonWithArrow';
 import {ROUTE__LOGIN} from '@/constants';
 import {useAuth} from '@/hooks/useAuth';
-import {COLOR__LIGHT_GRAY, COLOR__WARNING} from '@/theme/colors';
+import {COLOR__LIGHT_GRAY} from '@/theme/colors';
 
 const avatarSize = 106;
 const logoutIconSize = 24;
@@ -70,7 +70,7 @@ export const UserProfile: FC = () => {
                 <LogoutIcon
                   width={logoutIconSize}
                   height={logoutIconSize}
-                  style={{color: COLOR__WARNING}}
+                  style={{color: '#FE8414'}}
                 />
               }
               text="Выйти из профиля"
