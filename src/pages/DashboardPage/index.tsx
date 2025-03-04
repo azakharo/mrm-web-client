@@ -4,7 +4,7 @@ import {Box} from '@mui/material';
 
 import {SideBar} from './SideBar';
 
-export const DashboardPrototypePage: FC = () => {
+export const DashboardPage: FC = () => {
   return (
     <Box display="flex" height="100dvh">
       <Box flex="0 1 240px">

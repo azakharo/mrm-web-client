@@ -7,10 +7,10 @@ import {
   ROUTE__LOGIN,
   ROUTE__LOGIN_CALLBACK,
 } from '@/constants';
-import {DashboardPrototypePage} from '@/pages/DashboardPrototypePage';
-import {Dashboard} from '@/pages/DashboardPrototypePage/Dashboard';
-import NotImplemented from '@/pages/DashboardPrototypePage/NotImplemented';
-import {UserProfile} from '@/pages/DashboardPrototypePage/UserProfile';
+import {DashboardPage} from '@/pages/DashboardPage';
+import {Dashboard} from '@/pages/DashboardPage/Dashboard';
+import NotImplemented from '@/pages/DashboardPage/NotImplemented';
+import {UserProfile} from '@/pages/DashboardPage/UserProfile';
 import ErrorPage404 from '@/pages/Errors/404';
 import {LoginCallbackPage} from '@/pages/LoginCallbackPage';
 import {LoginPage} from '@/pages/LoginPage';
@@ -25,7 +25,7 @@ const Routes: FC = () => {
         path={ROUTE__DASHBOARD}
         element={
           <ProtectedRoute>
-            <DashboardPrototypePage />
+            <DashboardPage />
           </ProtectedRoute>
         }
       >
