@@ -1,6 +1,7 @@
 import {FC} from 'react';
 import {Box, Button} from '@mui/material';
 
+import {Tasks} from '../Dashboard/Tasks';
 import {Header} from '../Header';
 import {ActivityFilterButtons} from './ActivityFilterButtons';
 import {FilterProvider} from './FilterContext';
@@ -28,6 +29,12 @@ export const MyTasks: FC = () => {
             Создать задачу
           </Button>
         </Box>
+
+        <Box mb={2}>Here will be filter panel</Box>
+
+        <Box mb={3.5}>Here will be filter values</Box>
+
+        <Tasks />
       </Box>
     </FilterProvider>
   );
