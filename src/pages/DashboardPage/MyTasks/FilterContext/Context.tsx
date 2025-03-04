@@ -26,7 +26,7 @@ export const FilterProvider: FC<React.PropsWithChildren<Props>> = ({
 }) => {
   const [activityFilter, setActivityFilter] = useQueryState<
     ActivityFilter | ''
-  >('activity', '');
+  >('activity', ActivityFilter.all);
 
   const contextValue = useMemo(
     () => ({

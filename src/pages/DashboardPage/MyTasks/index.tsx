@@ -1,7 +1,8 @@
 import {FC} from 'react';
-import {Box} from '@mui/material';
+import {Box, Button} from '@mui/material';
 
 import {Header} from '../Header';
+import {ActivityFilterButtons} from './ActivityFilterButtons';
 import {FilterProvider} from './FilterContext';
 
 export const MyTasks: FC = () => {
@@ -10,10 +11,22 @@ export const MyTasks: FC = () => {
       <Header title="Мои задачи" />
 
       <Box px={4}>
-        <Box display="flex" gap={4} flexWrap="wrap" mb={4}>
-          <div>ha</div>
-          <div>ha</div>
-          <div>ha</div>
+        <Box
+          display="flex"
+          alignItems="center"
+          gap={4}
+          justifyContent="space-between"
+          mb={4}
+        >
+          <ActivityFilterButtons />
+
+          <Button
+            onClick={() => {
+              alert('Ещё не реализовано');
+            }}
+          >
+            Создать задачу
+          </Button>
         </Box>
       </Box>
     </FilterProvider>
