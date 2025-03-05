@@ -9,7 +9,7 @@ const hoverColor = '#E5E7ED';
 
 const valueToText: Record<ActivityFilter, string> = {
   [ActivityFilter.all]: '📝️ Все',
-  [ActivityFilter.active]: '💪 Активные',
+  [ActivityFilter.active]: '💪 В работе',
   [ActivityFilter.archive]: '📦 Архив',
 };
 

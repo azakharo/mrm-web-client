@@ -18,7 +18,7 @@ export const MyTasks: FC = () => {
           alignItems="center"
           gap={4}
           justifyContent="space-between"
-          mb={4}
+          mb={3.5}
         >
           <ActivityFilterButtons />
 

@@ -20,11 +20,13 @@ import {
 } from '@/theme/colors';
 
 const statusToIcon: Record<TaskStatus, ReactNode> = {
+  [TaskStatus.notAssigned]: '🔥',
   [TaskStatus.inProgress]: '🔥',
   [TaskStatus.completed]: '✅',
 };
 
 const statusToColor: Record<TaskStatus, Color> = {
+  [TaskStatus.notAssigned]: COLOR__WARNING,
   [TaskStatus.inProgress]: COLOR__WARNING,
   [TaskStatus.completed]: COLOR__SUCCESS,
 };
@@ -116,7 +118,9 @@ export const TaskCard: FC<Props> = ({task}) => {
               {statusToLabel[status]}
             </Typography>
 
-            <Typography variant="b1semibold">{completionPercent}%</Typography>
+            <Typography variant="b2medium" sx={{color: '#B5B5B5'}}>
+              380 000₽/400 000₽
+            </Typography>
           </Box>
 
           {status === TaskStatus.inProgress && (
@@ -125,11 +129,12 @@ export const TaskCard: FC<Props> = ({task}) => {
         </Stack>
 
         <Box display="flex" alignItems="center" justifyContent="space-between">
-          <Typography variant="b3regular" sx={{color: COLOR__LIGHT_GRAY}}>
-            380 000₽/400 000₽
-          </Typography>
+          <Typography variant="b2regular">🕒 12 часов | до 22.01.25</Typography>
 
-          <EastOutlinedIcon />
+          <Stack direction="row" spacing={0.5}>
+            <Typography variant="b1semibold">{completionPercent}%</Typography>
+            <EastOutlinedIcon />
+          </Stack>
         </Box>
       </Stack>
     </ButtonBase>
