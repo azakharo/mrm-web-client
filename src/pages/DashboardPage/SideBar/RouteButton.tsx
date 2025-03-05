@@ -5,7 +5,12 @@ import {Box, Button, Typography} from '@mui/material';
 import {ROUTE__DASHBOARD} from '@shared/constants';
 import {SideBarMenuItem} from './types';
 
-import {COLOR__MAIN_BLACK, COLOR__WARNING, COLOR__WHITE} from '@/theme/colors';
+import {
+  COLOR__MAIN_BLACK,
+  COLOR__PRIMARY_LIGHT,
+  COLOR__WARNING,
+  COLOR__WHITE,
+} from '@/theme/colors';
 
 interface Props {
   menuItem: SideBarMenuItem;
@@ -29,14 +34,14 @@ export const RouteButton: FC<Props> = ({menuItem}) => {
         padding: '12px 16px',
         justifyContent: 'flex-start',
 
-        backgroundColor: isCurrentRoute ? '#FFFAEC' : COLOR__WHITE,
+        backgroundColor: isCurrentRoute ? COLOR__PRIMARY_LIGHT : COLOR__WHITE,
         border: '1px solid transparent',
         '&:hover': {
-          backgroundColor: '#FFFAEC',
+          backgroundColor: COLOR__PRIMARY_LIGHT,
           border: '1px solid transparent',
         },
         '&:active': {
-          backgroundColor: '#FFFAEC',
+          backgroundColor: COLOR__PRIMARY_LIGHT,
           border: '1px solid transparent',
         },
       }}

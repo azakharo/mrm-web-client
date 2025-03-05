@@ -20,3 +20,14 @@ export const COLOR__SUCCESS = '#00BE64';
 export const COLOR__TEXT_PRIMARY = COLOR__MAIN_BLACK;
 export const COLOR__TEXT_SECONDARY = COLOR__GRAY;
 export const COLOR__TEXT_DISABLED = '#EDEDED';
+
+export const COLOR__PRIMARY_LIGHT = '#FFFAEC';
+export const COLOR__PRIMARY_DARK = '#6E5404';
+export const COLOR__SECONDARY_LIGHT = '#E5F0FF';
+export const COLOR__SECONDARY_DARK = '#031D43';
+export const COLOR__ERROR_LIGHT = '#FDEBED';
+export const COLOR__ERROR_DARK = '#401125';
+export const COLOR__SUCCESS_LIGHT = '#E4F6DF';
+export const COLOR__SUCCESS_DARK = '#401125';
+export const COLOR__WARNING_LIGHT = '#FAEED8';
+export const COLOR__WARNING_DARK = '#4D3B1A';

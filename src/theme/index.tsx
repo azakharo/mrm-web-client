@@ -13,6 +13,7 @@ import {
   COLOR__LINE,
   COLOR__MAIN_BLACK,
   COLOR__PRIMARY,
+  COLOR__PRIMARY_LIGHT,
   COLOR__SECONDARY,
   COLOR__SUCCESS,
   COLOR__TEXT_DISABLED,
@@ -108,7 +109,7 @@ const theme = createTheme(
               // },
             }),
             ...(ownerState.variant === 'outlined' && {
-              backgroundColor: '#FFFAEC',
+              backgroundColor: COLOR__PRIMARY_LIGHT,
               color: '#FFA806',
               border: '1px solid transparent',
               '& span.MuiCircularProgress-root': {
@@ -123,7 +124,7 @@ const theme = createTheme(
                 border: '1px solid transparent',
               },
               '&.Mui-disabled': {
-                backgroundColor: '#FFFAEC',
+                backgroundColor: COLOR__PRIMARY_LIGHT,
                 color: '#FFE083',
                 border: '1px solid transparent',
               },
