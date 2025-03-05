@@ -16,7 +16,10 @@
     "jsx": "react-jsx",
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["src/*"],
+      "@shared/*": ["src/shared/*"],
+      "@entities/*": ["src/entities/*"],
+      "@widgets/*": ["src/widgets/*"]
     },
 
     /* Additional Checks */

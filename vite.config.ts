@@ -18,6 +18,9 @@ export default defineConfig(({mode}) => {
     resolve: {
       alias: {
         '@': path.resolve(__dirname, './src'),
+        '@shared': path.resolve(__dirname, './src/shared'),
+        '@entities': path.resolve(__dirname, './src/entities'),
+        '@widgets': path.resolve(__dirname, './src/widgets'),
       },
     },
     server: {
