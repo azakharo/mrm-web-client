@@ -5,6 +5,7 @@ import {Tasks} from '../Dashboard/Tasks';
 import {Header} from '../Header';
 import {ActivityFilterButtons} from './ActivityFilterButtons';
 import {FilterProvider} from './FilterContext';
+import FilterPanel from './FilterPanel';
 
 export const MyTasks: FC = () => {
   return (
@@ -30,9 +31,7 @@ export const MyTasks: FC = () => {
           </Button>
         </Box>
 
-        <Box mb={2}>Here will be filter panel</Box>
-
-        <Box mb={3.5}>Here will be filter values</Box>
+        <FilterPanel />
 
         <Tasks />
       </Box>
