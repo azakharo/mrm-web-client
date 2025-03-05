@@ -1,6 +1,8 @@
 import {FC, ReactNode} from 'react';
 import EastOutlinedIcon from '@mui/icons-material/EastOutlined';
 import {
+  Badge,
+  badgeClasses,
   Box,
   ButtonBase,
   LinearProgress,
@@ -19,10 +21,24 @@ import {
   COLOR__WHITE,
 } from '@/theme/colors';
 
+const statusBadgeCommonProps = {
+  variant: 'dot',
+  sx: {
+    [`& .${badgeClasses.dot}`]: {
+      width: 12,
+      height: 12,
+      borderRadius: '50%',
+    },
+    '& .MuiBadge-badge': {
+      right: 0,
+      top: -3,
+    },
+  },
+} as const;
 const statusToIcon: Record<TaskStatus, ReactNode> = {
-  [TaskStatus.notAssigned]: '🔥',
-  [TaskStatus.inProgress]: '🔥',
-  [TaskStatus.completed]: '✅',
+  [TaskStatus.notAssigned]: <Badge color="error" {...statusBadgeCommonProps} />,
+  [TaskStatus.inProgress]: <Badge color="error" {...statusBadgeCommonProps} />,
+  [TaskStatus.completed]: <Badge color="success" {...statusBadgeCommonProps} />,
 };
 
 const statusToColor: Record<TaskStatus, Color> = {
@@ -79,10 +95,8 @@ export const TaskCard: FC<Props> = ({task}) => {
           borderRadius: '15px',
         }}
       >
-        <Box display="flex">
-          <Typography variant="b1semibold">
-            {statusToIcon[status]}&nbsp;
-          </Typography>
+        <Box display="flex" alignItems="center" gap={1.5}>
+          <Typography variant="b1semibold">{statusToIcon[status]}</Typography>
 
           <Typography variant="b1semibold">{name}</Typography>
         </Box>
