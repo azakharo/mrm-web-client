@@ -8,7 +8,7 @@ import {
   Typography,
 } from '@mui/material';
 
-import {Task, TaskStatus} from '@entities/task';
+import {statusToLabel, Task, TaskStatus} from '@entities/task';
 import {Color} from '@shared/types';
 
 import {
@@ -27,11 +27,6 @@ const statusToIcon: Record<TaskStatus, ReactNode> = {
 const statusToColor: Record<TaskStatus, Color> = {
   [TaskStatus.inProgress]: COLOR__WARNING,
   [TaskStatus.completed]: COLOR__SUCCESS,
-};
-
-const statusToLabel: Record<TaskStatus, string> = {
-  [TaskStatus.inProgress]: 'В процессе',
-  [TaskStatus.completed]: 'Выполнено',
 };
 
 const progressBarContainerProps = {
