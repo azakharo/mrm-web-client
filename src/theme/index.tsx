@@ -21,6 +21,7 @@ import {
   COLOR__WARNING,
   COLOR__WHITE,
 } from './colors';
+import ExpandIcon from './expand.svg?react';
 import typography from './typography';
 
 declare module '@mui/material/styles' {
@@ -260,6 +261,33 @@ const theme = createTheme(
         styleOverrides: {
           root: {
             color: COLOR__MAIN_BLACK,
+          },
+        },
+      },
+      MuiSelect: {
+        defaultProps: {
+          IconComponent: ExpandIcon,
+        },
+        styleOverrides: {
+          root: {
+            backgroundColor: COLOR__WHITE,
+            borderRadius: '10px',
+            border: 'none',
+            '& fieldset': {
+              border: `1px solid ${COLOR__LINE}`,
+            },
+            '&:hover fieldset': {
+              border: `1px solid ${COLOR__LIGHT_GRAY} !important`,
+            },
+            '&:focus-within fieldset, &:focus-visible fieldset': {
+              border: `1px solid ${COLOR__PRIMARY} !important`,
+            },
+            '&.Mui-focused fieldset': {
+              border: `1px solid ${COLOR__PRIMARY} !important`,
+            },
+          },
+          select: {
+            padding: '8px 12px',
           },
         },
       },
