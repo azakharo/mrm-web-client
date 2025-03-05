@@ -20,7 +20,7 @@ export const TasksForToday: FC = () => {
       }}
     >
       <Typography variant="b1semibold" mb={1.5} component="div">
-        Задачи на сегодня
+        Ваши задачи по магазину
       </Typography>
 
       <Box

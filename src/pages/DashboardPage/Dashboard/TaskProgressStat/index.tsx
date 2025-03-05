@@ -3,12 +3,7 @@ import {Box} from '@mui/material';
 
 import {Value} from './Value';
 
-import {
-  COLOR__ERROR,
-  COLOR__SUCCESS,
-  COLOR__WARNING,
-  COLOR__WHITE,
-} from '@/theme/colors';
+import {COLOR__WHITE} from '@/theme/colors';
 
 export const TaskProgressStat: FC = () => {
   return (
@@ -21,9 +16,9 @@ export const TaskProgressStat: FC = () => {
       display="flex"
       gap={1.5}
     >
-      <Value count={2} badgeColor={COLOR__ERROR} label="Не начато" />
-      <Value count={3} badgeColor={COLOR__WARNING} label="В работе" />
-      <Value count={3} badgeColor={COLOR__SUCCESS} label="Завершено" />
+      <Value count={2} backgroundColor="#FDEBED" label="Не начато" />
+      <Value count={3} backgroundColor="#FAEED8" label="В работе" />
+      <Value count={3} backgroundColor="#E4F6DF" label="Завершено" />
     </Box>
   );
 };
