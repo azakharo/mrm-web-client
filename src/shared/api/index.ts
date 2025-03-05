@@ -1,0 +1,1 @@
+export {axi} from './axiosSetup';

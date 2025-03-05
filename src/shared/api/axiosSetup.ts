@@ -1,13 +1,15 @@
+import {
+  getAuthTokenFromLocalStorage,
+  remAuthTokenFromLocalStorage,
+} from '@features/auth';
 import axios, {isAxiosError} from 'axios';
-
-import {getAuthToken, remAuthToken} from '@/helpers/localStorage';
 
 export const axi = axios.create({
   baseURL: import.meta.env.VITE_API_URL,
 });
 
 axi.interceptors.request.use(function (config) {
-  const token = getAuthToken();
+  const token = getAuthTokenFromLocalStorage();
   config.headers.Authorization = token ? `Bearer ${token}` : '';
   return config;
 });
@@ -19,7 +21,7 @@ axi.interceptors.response.use(
       const resp = error.response;
 
       if (resp?.status === 401) {
-        remAuthToken();
+        remAuthTokenFromLocalStorage();
         window.location.reload();
       }
 

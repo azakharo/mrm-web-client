@@ -1,14 +1,14 @@
 import {memo, useEffect} from 'react';
 import {BrowserRouter} from 'react-router-dom';
+import {AuthProvider} from '@features/auth';
 import {ThemeProvider} from '@mui/material/styles';
 
+import {isProduction} from '@shared/constants';
 import GlobalStyles from './GlobalStyles';
 
 import './font.css';
 
 import Routes from '@/app/Routes';
-import {isProduction} from '@/constants';
-import {AuthProvider} from '@/contexts/AuthContext';
 import theme from '@/theme';
 
 const vitePreloadErrorEvent = 'vite:preloadError';

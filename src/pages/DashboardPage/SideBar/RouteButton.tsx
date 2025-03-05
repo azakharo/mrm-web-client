@@ -2,7 +2,7 @@ import {FC} from 'react';
 import {matchPath, useLocation, useNavigate} from 'react-router-dom';
 import {Box, Button, Typography} from '@mui/material';
 
-import {ROUTE__DASHBOARD} from '../../../constants';
+import {ROUTE__DASHBOARD} from '@shared/constants';
 import {SideBarMenuItem} from './types';
 
 import {COLOR__MAIN_BLACK, COLOR__WARNING, COLOR__WHITE} from '@/theme/colors';

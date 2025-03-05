@@ -8,6 +8,9 @@ import {
   Typography,
 } from '@mui/material';
 
+import {Task, TaskStatus} from '@entities/task';
+import {Color} from '@shared/types';
+
 import {
   COLOR__LIGHT_BACK,
   COLOR__LIGHT_GRAY,
@@ -15,8 +18,6 @@ import {
   COLOR__WARNING,
   COLOR__WHITE,
 } from '@/theme/colors';
-import {Task, TaskStatus} from '@/types/tasks';
-import {Color} from '@/types/ui';
 
 const statusToIcon: Record<TaskStatus, ReactNode> = {
   [TaskStatus.inProgress]: '🔥',

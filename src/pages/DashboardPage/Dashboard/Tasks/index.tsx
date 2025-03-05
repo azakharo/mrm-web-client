@@ -1,9 +1,8 @@
 import {FC} from 'react';
 import {Box} from '@mui/material';
 
+import {Task, TaskStatus} from '@entities/task';
 import {TaskCard} from './TaskCard';
-
-import {Task, TaskStatus} from '@/types/tasks';
 
 const tasks: Task[] = [
   {

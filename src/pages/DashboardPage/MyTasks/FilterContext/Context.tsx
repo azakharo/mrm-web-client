@@ -1,7 +1,7 @@
 import React, {createContext, FC, ReactNode, useMemo} from 'react';
 import {useQueryState} from 'react-router-use-location-state';
 
-import {TaskStatus} from '@/types/tasks';
+import {TaskStatus} from '@entities/task';
 
 export enum ActivityFilter {
   all = 'all',

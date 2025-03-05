@@ -1,16 +1,16 @@
 import {FC} from 'react';
 import {useNavigate} from 'react-router-dom';
+import {useAuth} from '@features/auth';
 import {Avatar, Box, Stack, Typography} from '@mui/material';
 
+import {ButtonWithArrow} from '@shared/components';
+import {ROUTE__LOGIN} from '@shared/constants';
 import {Header} from '../Header';
 import {About} from './About';
 import LogoutIcon from './logout.svg?react';
 import {Settings} from './Settings';
 import userAvatarSrc from './userAvatar.png';
 
-import {ButtonWithArrow} from '@/components/Buttons/ButtonWithArrow';
-import {ROUTE__LOGIN} from '@/constants';
-import {useAuth} from '@/hooks/useAuth';
 import {COLOR__LIGHT_GRAY} from '@/theme/colors';
 
 const avatarSize = 106;

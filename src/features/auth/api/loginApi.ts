@@ -1,8 +1,7 @@
+import {LoginProvider} from '@features/auth';
 import {AxiosResponse} from 'axios';
 
 import {axi} from './loginApiAxiosSetup';
-
-import {LoginProvider} from '@/types/auth';
 
 export const getLoginProviders = async (): Promise<LoginProvider[]> => {
   const response = await axi.get<

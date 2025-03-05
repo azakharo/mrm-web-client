@@ -1,12 +1,13 @@
 import {FC, memo} from 'react';
 import {Route, Routes as ReactRoutes} from 'react-router-dom';
+import {ProtectedRoute} from '@features/auth';
 
-import {ProtectedRoute} from '@/components/ProtectedRoute';
 import {
   ROUTE__DASHBOARD,
   ROUTE__LOGIN,
   ROUTE__LOGIN_CALLBACK,
-} from '@/constants';
+} from '@shared/constants';
+
 import {DashboardPage} from '@/pages/DashboardPage';
 import {Dashboard} from '@/pages/DashboardPage/Dashboard';
 import {MyTasks} from '@/pages/DashboardPage/MyTasks';

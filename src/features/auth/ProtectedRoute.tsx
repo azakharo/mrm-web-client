@@ -1,8 +1,8 @@
 import {FC, PropsWithChildren} from 'react';
 import {Navigate, Outlet} from 'react-router-dom';
+import {useAuth} from '@features/auth';
 
-import {ROUTE__LOGIN} from '@/constants';
-import {useAuth} from '@/hooks/useAuth';
+import {ROUTE__LOGIN} from '@shared/constants';
 
 // The idea was taken from here:
 // https://www.robinwieruch.de/react-router-private-routes/

@@ -1,11 +1,10 @@
 import {FC} from 'react';
 import {useNavigate, useParams, useSearchParams} from 'react-router-dom';
+import {getAuthToken, useAuth} from '@features/auth';
 import {Alert, Box, CircularProgress} from '@mui/material';
 import useRequest from 'ahooks/es/useRequest';
 
-import {getAuthToken} from '@/api';
-import {ROUTE__DASHBOARD} from '@/constants';
-import {useAuth} from '@/hooks/useAuth';
+import {ROUTE__DASHBOARD} from '@shared/constants';
 
 export const LoginCallbackPage: FC = () => {
   const navigate = useNavigate();

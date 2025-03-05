@@ -1,12 +1,12 @@
 import {ChangeEvent, FC, useState} from 'react';
 import {Box, Stack, Switch, Typography} from '@mui/material';
 
+import {ButtonWithArrow} from '@shared/components';
 import NotifsIcon from '../../SideBar/icons/notifications.svg?react';
 import DocumentIcon from './icons/document.svg?react';
 import LayoutIcon from './icons/layout.svg?react';
 import HelpIcon from './icons/message.svg?react';
 
-import {ButtonWithArrow} from '@/components/Buttons/ButtonWithArrow';
 import {COLOR__LIGHT_GRAY} from '@/theme/colors';
 
 const commonIconProps = {

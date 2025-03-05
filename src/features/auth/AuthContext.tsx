@@ -8,11 +8,14 @@ import React, {
 } from 'react';
 import useMount from 'ahooks/es/useMount';
 
-import {getCurrentUser} from '@/api';
-import {getAuthToken, remAuthToken, setAuthToken} from '@/helpers/localStorage';
-import {User} from '@/types/auth';
+import {getCurrentUser, User} from '@entities/user';
+import {
+  getAuthTokenFromLocalStorage,
+  remAuthTokenFromLocalStorage,
+  setAuthTokenInLocalStorage,
+} from './helpers/localStorage';
 
-const isAuthed = (): boolean => !!getAuthToken();
+const isAuthed = (): boolean => !!getAuthTokenFromLocalStorage();
 
 export interface AuthState {
   isAuthenticated: boolean;
@@ -61,14 +64,14 @@ export const AuthProvider: FC<React.PropsWithChildren<Props>> = ({
 
   const onLoginSuccess = useCallback(
     (authToken: string) => {
-      setAuthToken(authToken);
+      setAuthTokenInLocalStorage(authToken);
       return getLoggedInUser();
     },
     [getLoggedInUser],
   );
 
   const logout = useCallback(() => {
-    remAuthToken();
+    remAuthTokenFromLocalStorage();
     setIsAuthenticated(false);
     setCurrentUser(null);
   }, []);

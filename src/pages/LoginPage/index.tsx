@@ -1,14 +1,13 @@
 import {FC} from 'react';
+import {getLoginProviders} from '@features/auth';
 import {Alert, Box, Skeleton, Stack, Typography} from '@mui/material';
 import useRequest from 'ahooks/es/useRequest';
 
+import {ButtonWithArrow} from '@shared/components';
+import {ROUTE__LOGIN, ROUTE__LOGIN_CALLBACK} from '@shared/constants';
 import {HelpButton} from './HelpButton';
 import lentaSputnikIconUrl from './lentaSputnik.jpg';
 import Logo from './logo.svg?react';
-
-import {getLoginProviders} from '@/api';
-import {ButtonWithArrow} from '@/components/Buttons/ButtonWithArrow';
-import {ROUTE__LOGIN, ROUTE__LOGIN_CALLBACK} from '@/constants';
 
 const skeleton = (
   <Skeleton

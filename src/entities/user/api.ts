@@ -1,6 +1,5 @@
-import {axi} from './axiosSetup';
-
-import {User} from '@/types/auth';
+import {User} from '@entities/user';
+import {axi} from '@shared/api';
 
 export const getCurrentUser = async (): Promise<User> => {
   const response = await axi.get<{

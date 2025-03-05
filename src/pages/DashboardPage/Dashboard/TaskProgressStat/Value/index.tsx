@@ -1,8 +1,9 @@
 import {FC} from 'react';
 import {Badge, badgeClasses, Box, Stack, Typography} from '@mui/material';
 
+import {Color} from '@shared/types';
+
 import {COLOR__LIGHT_GRAY, COLOR__LINE} from '@/theme/colors';
-import {Color} from '@/types/ui';
 
 const badgeSize = 10;
 
