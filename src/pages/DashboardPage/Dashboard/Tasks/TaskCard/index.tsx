@@ -59,7 +59,7 @@ interface Props {
 }
 
 export const TaskCard: FC<Props> = ({task}) => {
-  const {name, description, status, completionPercent} = task;
+  const {title, description, status, completionPercent} = task;
 
   const progressBar = (
     <LinearProgress
@@ -98,7 +98,7 @@ export const TaskCard: FC<Props> = ({task}) => {
         <Box display="flex" alignItems="center" gap={1.5}>
           <Typography variant="b1semibold">{statusToIcon[status]}</Typography>
 
-          <Typography variant="b1semibold">{name}</Typography>
+          <Typography variant="b1semibold">{title}</Typography>
         </Box>
 
         <Typography

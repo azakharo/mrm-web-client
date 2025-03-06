@@ -6,8 +6,10 @@ export enum TaskStatus {
 
 export interface Task {
   id: number;
-  name: string;
+  title: string;
   description: string;
   status: TaskStatus;
   completionPercent: number;
+  created: Date;
+  updated: Date;
 }
