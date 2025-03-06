@@ -1,3 +1,5 @@
+import {UseQueryOptions} from '@tanstack/react-query';
+
 export interface GetListInputParams {
   page?: number;
   pageSize?: number;
@@ -10,3 +12,7 @@ export interface GetListOutput<T> {
   total: number;
   totalPages: number;
 }
+
+export type QueryOptionsForList<T extends object, SelectedData> = Partial<
+  UseQueryOptions<GetListOutput<T>, Error, SelectedData>
+>;

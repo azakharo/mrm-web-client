@@ -3,12 +3,12 @@ import {Task} from '../types';
 import {GetTasksBackendResponse} from './backendTypes';
 import {mapFromBackend} from './dataMappers';
 
-type GetUsersInputParams = GetListInputParams;
+export type GetTasksInputParams = GetListInputParams;
 
 export const getTasks = async ({
   page,
   pageSize,
-}: GetUsersInputParams = {}): Promise<GetListOutput<Task>> => {
+}: GetTasksInputParams = {}): Promise<GetListOutput<Task>> => {
   const resp = await axi.get<GetTasksBackendResponse>('/api/tasks', {
     params: {
       page,
