@@ -6,6 +6,7 @@ import React, {
   useMemo,
   useState,
 } from 'react';
+import {useQueryClient} from '@tanstack/react-query';
 import useMount from 'ahooks/es/useMount';
 
 import {getCurrentUser, User} from '@entities/user';
@@ -45,6 +46,7 @@ interface Props {
 export const AuthProvider: FC<React.PropsWithChildren<Props>> = ({
   children,
 }) => {
+  const queryClient = useQueryClient();
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [currentUser, setCurrentUser] = useState<User | null>(null);
   const [initializing, setInitializing] = useState(true);
@@ -71,10 +73,11 @@ export const AuthProvider: FC<React.PropsWithChildren<Props>> = ({
   );
 
   const logout = useCallback(() => {
+    queryClient.clear();
     remAuthTokenFromLocalStorage();
     setIsAuthenticated(false);
     setCurrentUser(null);
-  }, []);
+  }, [queryClient]);
 
   const contextValue = useMemo(
     () => ({

@@ -1,15 +1,25 @@
-import {memo, useEffect} from 'react';
+import {useEffect} from 'react';
 import {BrowserRouter} from 'react-router-dom';
 import {AuthProvider} from '@features/auth';
 import {ThemeProvider} from '@mui/material/styles';
+import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
 
-import {isProduction} from '@shared/constants';
+import {isDevelopment, isProduction} from '@shared/constants';
 import GlobalStyles from './GlobalStyles';
 
 import './font.css';
 
 import Routes from '@/app/Routes';
 import theme from '@/theme';
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      retry: false,
+      refetchOnWindowFocus: !isDevelopment,
+    },
+  },
+});
 
 const vitePreloadErrorEvent = 'vite:preloadError';
 const vitePreloadErrorHandler = () => {
@@ -35,14 +45,16 @@ const App = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <BrowserRouter basename={import.meta.env.VITE_PUBLIC_PATH}>
-        <GlobalStyles />
-        <AuthProvider>
-          <Routes />
-        </AuthProvider>
-      </BrowserRouter>
+      <QueryClientProvider client={queryClient}>
+        <BrowserRouter basename={import.meta.env.VITE_PUBLIC_PATH}>
+          <GlobalStyles />
+          <AuthProvider>
+            <Routes />
+          </AuthProvider>
+        </BrowserRouter>
+      </QueryClientProvider>
     </ThemeProvider>
   );
 };
 
-export default memo(App);
+export default App;
