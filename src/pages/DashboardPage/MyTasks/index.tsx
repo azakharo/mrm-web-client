@@ -1,11 +1,11 @@
 import {FC} from 'react';
 import {Box, Button} from '@mui/material';
 
-import {Tasks} from '../Dashboard/Tasks';
 import {Header} from '../Header';
 import {ActivityFilterButtons} from './ActivityFilterButtons';
 import {FilterProvider} from './FilterContext';
 import FilterPanel from './FilterPanel';
+import {TaskList} from './TaskList';
 
 export const MyTasks: FC = () => {
   return (
@@ -33,7 +33,7 @@ export const MyTasks: FC = () => {
 
         <FilterPanel />
 
-        <Tasks />
+        <TaskList />
       </Box>
     </FilterProvider>
   );
