@@ -4,6 +4,8 @@ import {AuthProvider} from '@features/auth';
 import {ThemeProvider} from '@mui/material/styles';
 import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
 import {ReactQueryDevtools} from '@tanstack/react-query-devtools';
+import {setDefaultOptions} from 'date-fns';
+import {ru as ruLocale} from 'date-fns/locale';
 
 import {isDevelopment, isProduction} from '@shared/constants';
 import GlobalStyles from './GlobalStyles';
@@ -12,6 +14,9 @@ import './font.css';
 
 import Routes from '@/app/Routes';
 import theme from '@/theme';
+
+// Set global locale for date-fns
+setDefaultOptions({locale: ruLocale});
 
 const queryClient = new QueryClient({
   defaultOptions: {
