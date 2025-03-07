@@ -13,6 +13,7 @@ import {
 
 import {statusToLabel, Task, TaskStatus} from '@entities/task';
 import {Color} from '@shared/types';
+import {limitString} from '@shared/utils/strings';
 
 import {
   COLOR__LIGHT_BACK,
@@ -21,6 +22,8 @@ import {
   COLOR__WARNING,
   COLOR__WHITE,
 } from '@/theme/colors';
+
+const descriptionLenLimit = 2 * 40;
 
 const statusBadgeCommonProps = {
   variant: 'dot',
@@ -90,6 +93,17 @@ export const TaskCard: FC<Props> = ({task}) => {
     </Typography>
   );
 
+  const descriptionElem = (
+    <Typography
+      variant="b2regular"
+      sx={{color: COLOR__LIGHT_GRAY, minHeight: 42}}
+      textAlign="left"
+      display="block"
+    >
+      {limitString(description, descriptionLenLimit)}
+    </Typography>
+  );
+
   return (
     <ButtonBase
       onClick={() => {
@@ -125,14 +139,19 @@ export const TaskCard: FC<Props> = ({task}) => {
           )}
         </Box>
 
-        <Typography
-          variant="b2regular"
-          sx={{color: COLOR__LIGHT_GRAY}}
-          textAlign="left"
-          display="block"
-        >
-          {description}
-        </Typography>
+        {description.length > descriptionLenLimit ? (
+          <Tooltip
+            title={
+              <Typography variant="b2regular" sx={{color: COLOR__WHITE}}>
+                {description}
+              </Typography>
+            }
+          >
+            {descriptionElem}
+          </Tooltip>
+        ) : (
+          descriptionElem
+        )}
 
         <Stack>
           {/* Here we render a hidden progress bar.
