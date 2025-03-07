@@ -61,6 +61,8 @@ export const TaskList: FC = () => {
               backgroundColor: COLOR__WHITE,
               border: `1px solid ${COLOR__BACK}`,
               borderRadius: '8px',
+              boxShadow:
+                '0px 2px 4px -1px #0A090B05, 0px 5px 13px -5px #0A090B0D',
             },
             '& .MuiPaginationItem-page': {
               borderRadius: '6px',
