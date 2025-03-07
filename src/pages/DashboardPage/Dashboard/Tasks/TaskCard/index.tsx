@@ -7,6 +7,7 @@ import {
   ButtonBase,
   LinearProgress,
   Stack,
+  Tooltip,
   Typography,
 } from '@mui/material';
 
@@ -77,6 +78,18 @@ export const TaskCard: FC<Props> = ({task}) => {
     />
   );
 
+  const titleElem = (
+    <Typography
+      variant="b1semibold"
+      textAlign="left"
+      noWrap
+      overflow="hidden"
+      textOverflow="ellipsis"
+    >
+      {title}
+    </Typography>
+  );
+
   return (
     <ButtonBase
       onClick={() => {
@@ -97,7 +110,19 @@ export const TaskCard: FC<Props> = ({task}) => {
         <Box display="flex" alignItems="center" gap={1.5}>
           <Typography variant="b1semibold">{statusToIcon[status]}</Typography>
 
-          <Typography variant="b1semibold">{title}</Typography>
+          {title.length > 36 ? (
+            <Tooltip
+              title={
+                <Typography variant="b2regular" sx={{color: COLOR__WHITE}}>
+                  {title}
+                </Typography>
+              }
+            >
+              {titleElem}
+            </Tooltip>
+          ) : (
+            titleElem
+          )}
         </Box>
 
         <Typography
