@@ -6,7 +6,7 @@ import {SideBar} from './SideBar';
 
 export const DashboardPage: FC = () => {
   return (
-    <Box display="flex" height="100dvh">
+    <Box display="flex" minHeight="100dvh">
       <Box flex="0 1 240px">
         <SideBar />
       </Box>
