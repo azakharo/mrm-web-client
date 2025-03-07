@@ -1,4 +1,5 @@
 import {useEffect} from 'react';
+import ModalContainer from 'react-modal-promise';
 import {BrowserRouter} from 'react-router-dom';
 import {AuthProvider} from '@features/auth';
 import {ThemeProvider} from '@mui/material/styles';
@@ -56,6 +57,7 @@ const App = () => {
           <GlobalStyles />
           <AuthProvider>
             <Routes />
+            <ModalContainer />
           </AuthProvider>
         </BrowserRouter>
 

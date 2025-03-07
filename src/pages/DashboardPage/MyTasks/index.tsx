@@ -3,11 +3,16 @@ import {Box, Button} from '@mui/material';
 
 import {Header} from '../Header';
 import {ActivityFilterButtons} from './ActivityFilterButtons';
+import {openCreateTaskDialog} from './CreateTaskDialog';
 import {FilterProvider} from './FilterContext';
 import FilterPanel from './FilterPanel';
 import {TaskList} from './TaskList';
 
 export const MyTasks: FC = () => {
+  const handleCreate = () => {
+    void openCreateTaskDialog();
+  };
+
   return (
     <Box height="100%" display="flex" flexDirection="column" pb={4}>
       <FilterProvider>
@@ -23,13 +28,7 @@ export const MyTasks: FC = () => {
           >
             <ActivityFilterButtons />
 
-            <Button
-              onClick={() => {
-                alert('Ещё не реализовано');
-              }}
-            >
-              Создать задачу
-            </Button>
+            <Button onClick={handleCreate}>Создать задачу</Button>
           </Box>
 
           <FilterPanel />

@@ -33,3 +33,14 @@ export const getTasks = async ({
     totalPages: total_pages,
   };
 };
+
+export const createTask = (title: string, description: string): Promise<void> =>
+  axi.post('/api/internal/tasks', {
+    title,
+    type_id: 1,
+    description,
+    date_from: '2025-04-06T13:05:56.134',
+    date_to: '2025-04-09T13:05:56.134',
+    executor_id: null,
+    validator_id: null,
+  });
