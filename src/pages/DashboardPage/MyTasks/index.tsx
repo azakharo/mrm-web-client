@@ -10,7 +10,7 @@ import {TaskList} from './TaskList';
 
 export const MyTasks: FC = () => {
   const handleCreate = () => {
-    void openCreateTaskDialog();
+    void openCreateTaskDialog().catch(() => {});
   };
 
   return (
