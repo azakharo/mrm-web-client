@@ -11,7 +11,12 @@ export const getDateFromIsoString = (
     return nullDate;
   }
 
-  const dt = parseISO(dateTimeIsoString as string);
+  let normalizedString = dateTimeIsoString!;
+  if (!normalizedString.endsWith('Z')) {
+    normalizedString += 'Z';
+  }
+
+  const dt = parseISO(normalizedString);
   if (!isValid(dt)) {
     return nullDate;
   }
