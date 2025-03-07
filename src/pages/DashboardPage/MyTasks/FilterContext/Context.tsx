@@ -10,7 +10,7 @@ export enum ActivityFilter {
 }
 
 const DEFAULT_PAGE = 1;
-const DEFAULT_PAGE_SIZE = 10;
+const DEFAULT_PAGE_SIZE = 9;
 
 export interface ContextProps {
   page: number;

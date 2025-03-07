@@ -88,8 +88,7 @@ export const TaskCard: FC<Props> = ({task}) => {
       <Stack
         p={2.25}
         spacing={1}
-        width="fit-content"
-        maxWidth={360}
+        width={360}
         sx={{
           backgroundColor: COLOR__WHITE,
           borderRadius: '15px',
