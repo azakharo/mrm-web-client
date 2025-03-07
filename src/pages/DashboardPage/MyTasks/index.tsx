@@ -9,32 +9,34 @@ import {TaskList} from './TaskList';
 
 export const MyTasks: FC = () => {
   return (
-    <FilterProvider>
-      <Header title="Мои задачи" />
+    <Box height="100%" display="flex" flexDirection="column" pb={4}>
+      <FilterProvider>
+        <Header title="Мои задачи" />
 
-      <Box px={4}>
-        <Box
-          display="flex"
-          alignItems="center"
-          gap={4}
-          justifyContent="space-between"
-          mb={3.5}
-        >
-          <ActivityFilterButtons />
-
-          <Button
-            onClick={() => {
-              alert('Ещё не реализовано');
-            }}
+        <Box px={4}>
+          <Box
+            display="flex"
+            alignItems="center"
+            gap={4}
+            justifyContent="space-between"
+            mb={3.5}
           >
-            Создать задачу
-          </Button>
+            <ActivityFilterButtons />
+
+            <Button
+              onClick={() => {
+                alert('Ещё не реализовано');
+              }}
+            >
+              Создать задачу
+            </Button>
+          </Box>
+
+          <FilterPanel />
         </Box>
 
-        <FilterPanel />
-
         <TaskList />
-      </Box>
-    </FilterProvider>
+      </FilterProvider>
+    </Box>
   );
 };
