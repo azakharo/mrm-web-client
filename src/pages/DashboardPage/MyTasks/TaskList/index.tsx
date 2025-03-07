@@ -1,12 +1,14 @@
-import {FC} from 'react';
+import {ChangeEvent, FC} from 'react';
 import {Box, Pagination} from '@mui/material';
 
 import {useGetTasks} from '@entities/task/apiHooks';
 import {SomethingWentWrong} from '@shared/widgets';
 import {TaskCard} from '../../Dashboard/Tasks/TaskCard';
+import {useFilters} from '../FilterContext';
 
 export const TaskList: FC = () => {
-  const {data, isPending, error} = useGetTasks({page: 1, pageSize: 10});
+  const {page, setPage, pageSize} = useFilters();
+  const {data, isPending, error} = useGetTasks({page, pageSize});
 
   if (isPending) {
     // TODO improve loading UI
@@ -16,6 +18,8 @@ export const TaskList: FC = () => {
   if (error) {
     return <SomethingWentWrong />;
   }
+
+  const {items, totalPages} = data;
 
   return (
     <Box
@@ -27,11 +31,17 @@ export const TaskList: FC = () => {
       gap={3.5}
     >
       <Box display="flex" gap={4} flexWrap="wrap">
-        {data?.items.map(task => <TaskCard key={task.id} task={task} />)}
+        {items.map(task => (
+          <TaskCard key={task.id} task={task} />
+        ))}
       </Box>
 
       <Pagination
-        count={10}
+        count={totalPages}
+        page={page}
+        onChange={(_event: ChangeEvent<unknown>, value: number) => {
+          setPage(value);
+        }}
         variant="outlined"
         shape="rounded"
         sx={{alignSelf: 'center'}}
