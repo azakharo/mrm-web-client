@@ -6,7 +6,7 @@ export interface TaskOnBackend {
   updated_at: string;
 }
 
-export interface GetTasksBackendResponse {
+export interface GetTasksResponse {
   array: TaskOnBackend[];
   page: number;
   items_per_page: number;
