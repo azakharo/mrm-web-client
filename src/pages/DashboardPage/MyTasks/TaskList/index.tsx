@@ -46,44 +46,46 @@ export const TaskList: FC = () => {
         ))}
       </Box>
 
-      <Pagination
-        count={totalPages}
-        page={page}
-        onChange={(_event: ChangeEvent<unknown>, value: number) => {
-          setPage(value);
-        }}
-        variant="outlined"
-        shape="rounded"
-        sx={{
-          alignSelf: 'center',
-          '& .MuiPaginationItem-previousNext': {
-            backgroundColor: COLOR__WHITE,
-            border: `1px solid ${COLOR__BACK}`,
-            borderRadius: '8px',
-          },
-          '& .MuiPaginationItem-page': {
-            borderRadius: '6px',
-            border: 'none',
-            fontSize: 16,
-            color: COLOR__GRAY,
-          },
-          '& .MuiPaginationItem-page.Mui-selected': {
-            backgroundColor: COLOR__WHITE,
-            border: `1px solid ${COLOR__WARNING}`,
-            color: COLOR__WARNING,
-            fontWeight: 450,
-            '&:hover': {
-              backgroundColor: COLOR__LIGHT_BACK,
+      {totalPages > 1 && (
+        <Pagination
+          count={totalPages}
+          page={page}
+          onChange={(_event: ChangeEvent<unknown>, value: number) => {
+            setPage(value);
+          }}
+          variant="outlined"
+          shape="rounded"
+          sx={{
+            alignSelf: 'center',
+            '& .MuiPaginationItem-previousNext': {
+              backgroundColor: COLOR__WHITE,
+              border: `1px solid ${COLOR__BACK}`,
+              borderRadius: '8px',
             },
-          },
-        }}
-        renderItem={item => (
-          <PaginationItem
-            slots={{previous: WestOutlinedIcon, next: EastOutlinedIcon}}
-            {...item}
-          />
-        )}
-      />
+            '& .MuiPaginationItem-page': {
+              borderRadius: '6px',
+              border: 'none',
+              fontSize: 16,
+              color: COLOR__GRAY,
+            },
+            '& .MuiPaginationItem-page.Mui-selected': {
+              backgroundColor: COLOR__WHITE,
+              border: `1px solid ${COLOR__WARNING}`,
+              color: COLOR__WARNING,
+              fontWeight: 450,
+              '&:hover': {
+                backgroundColor: COLOR__LIGHT_BACK,
+              },
+            },
+          }}
+          renderItem={item => (
+            <PaginationItem
+              slots={{previous: WestOutlinedIcon, next: EastOutlinedIcon}}
+              {...item}
+            />
+          )}
+        />
+      )}
     </Box>
   );
 };
