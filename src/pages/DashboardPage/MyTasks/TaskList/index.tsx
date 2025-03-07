@@ -8,6 +8,14 @@ import {SomethingWentWrong} from '@shared/widgets';
 import {TaskCard} from '../../Dashboard/Tasks/TaskCard';
 import {useFilters} from '../FilterContext';
 
+import {
+  COLOR__BACK,
+  COLOR__GRAY,
+  COLOR__LIGHT_BACK,
+  COLOR__WARNING,
+  COLOR__WHITE,
+} from '@/theme/colors';
+
 export const TaskList: FC = () => {
   const {page, setPage, pageSize} = useFilters();
   const {data, isPending, error} = useGetTasks({page, pageSize});
@@ -46,7 +54,29 @@ export const TaskList: FC = () => {
         }}
         variant="outlined"
         shape="rounded"
-        sx={{alignSelf: 'center'}}
+        sx={{
+          alignSelf: 'center',
+          '& .MuiPaginationItem-previousNext': {
+            backgroundColor: COLOR__WHITE,
+            border: `1px solid ${COLOR__BACK}`,
+            borderRadius: '8px',
+          },
+          '& .MuiPaginationItem-page': {
+            borderRadius: '6px',
+            border: 'none',
+            fontSize: 16,
+            color: COLOR__GRAY,
+          },
+          '& .MuiPaginationItem-page.Mui-selected': {
+            backgroundColor: COLOR__WHITE,
+            border: `1px solid ${COLOR__WARNING}`,
+            color: COLOR__WARNING,
+            fontWeight: 450,
+            '&:hover': {
+              backgroundColor: COLOR__LIGHT_BACK,
+            },
+          },
+        }}
         renderItem={item => (
           <PaginationItem
             slots={{previous: WestOutlinedIcon, next: EastOutlinedIcon}}
