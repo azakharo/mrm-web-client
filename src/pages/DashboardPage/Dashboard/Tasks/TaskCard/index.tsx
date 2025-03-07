@@ -124,6 +124,7 @@ export const TaskCard: FC<Props> = ({task}) => {
             display="flex"
             alignItems="center"
             justifyContent="space-between"
+            gap={4}
           >
             <Typography
               variant="b2semibold"
