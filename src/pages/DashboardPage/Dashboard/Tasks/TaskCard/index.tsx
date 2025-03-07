@@ -16,6 +16,7 @@ import {Color} from '@shared/types';
 import {limitString} from '@shared/utils/strings';
 
 import {
+  COLOR__ERROR,
   COLOR__LIGHT_BACK,
   COLOR__LIGHT_GRAY,
   COLOR__SUCCESS,
@@ -46,7 +47,7 @@ const statusToIcon: Record<TaskStatus, ReactNode> = {
 };
 
 const statusToColor: Record<TaskStatus, Color> = {
-  [TaskStatus.notAssigned]: COLOR__WARNING,
+  [TaskStatus.notAssigned]: COLOR__ERROR,
   [TaskStatus.inProgress]: COLOR__WARNING,
   [TaskStatus.completed]: COLOR__SUCCESS,
 };
