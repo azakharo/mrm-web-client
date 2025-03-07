@@ -1,5 +1,7 @@
 import {ChangeEvent, FC} from 'react';
-import {Box, Pagination} from '@mui/material';
+import EastOutlinedIcon from '@mui/icons-material/EastOutlined';
+import WestOutlinedIcon from '@mui/icons-material/WestOutlined';
+import {Box, Pagination, PaginationItem} from '@mui/material';
 
 import {useGetTasks} from '@entities/task/apiHooks';
 import {SomethingWentWrong} from '@shared/widgets';
@@ -45,6 +47,12 @@ export const TaskList: FC = () => {
         variant="outlined"
         shape="rounded"
         sx={{alignSelf: 'center'}}
+        renderItem={item => (
+          <PaginationItem
+            slots={{previous: WestOutlinedIcon, next: EastOutlinedIcon}}
+            {...item}
+          />
+        )}
       />
     </Box>
   );
