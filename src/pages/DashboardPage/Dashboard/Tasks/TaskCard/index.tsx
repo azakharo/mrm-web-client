@@ -59,6 +59,11 @@ const progressBarContainerProps = {
   justifyContent: 'center',
 } as const;
 
+const tooltipTypographyProps = {
+  variant: 'b2regular',
+  sx: {color: COLOR__WHITE},
+} as const;
+
 interface Props {
   task: Task;
 }
@@ -128,9 +133,7 @@ export const TaskCard: FC<Props> = ({task}) => {
           {title.length > 36 ? (
             <Tooltip
               title={
-                <Typography variant="b2regular" sx={{color: COLOR__WHITE}}>
-                  {title}
-                </Typography>
+                <Typography {...tooltipTypographyProps}>{title}</Typography>
               }
             >
               {titleElem}
@@ -143,9 +146,7 @@ export const TaskCard: FC<Props> = ({task}) => {
         {description.length > descriptionLenLimit ? (
           <Tooltip
             title={
-              <Typography variant="b2regular" sx={{color: COLOR__WHITE}}>
-                {description}
-              </Typography>
+              <Typography {...tooltipTypographyProps}>{description}</Typography>
             }
           >
             {descriptionElem}
