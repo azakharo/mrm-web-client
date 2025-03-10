@@ -4,8 +4,7 @@ import WestOutlinedIcon from '@mui/icons-material/WestOutlined';
 import {Box, Pagination, PaginationItem} from '@mui/material';
 
 import {useGetTasks} from '@entities/task/apiHooks';
-import {SomethingWentWrong} from '@shared/widgets';
-import {TaskCard} from '../../Dashboard/Tasks/TaskCard';
+import {SomethingWentWrong} from '@widgets/common';
 import {useFilters} from '../FilterContext';
 
 import {
@@ -15,6 +14,7 @@ import {
   COLOR__WARNING,
   COLOR__WHITE,
 } from '@/theme/colors';
+import {TaskCard} from '@/widgets/task';
 
 export const TaskList: FC = () => {
   const {page, setPage, pageSize} = useFilters();

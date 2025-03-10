@@ -2,7 +2,8 @@ import {FC} from 'react';
 import {Box} from '@mui/material';
 
 import {Task, TaskStatus} from '@entities/task';
-import {TaskCard} from './TaskCard';
+
+import {TaskCard} from '@/widgets/task';
 
 const now = new Date();
 

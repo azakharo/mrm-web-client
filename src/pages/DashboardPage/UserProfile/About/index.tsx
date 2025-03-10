@@ -1,4 +1,5 @@
 import {FC, ReactNode} from 'react';
+import {useAuth} from '@features/auth';
 import {Avatar, Divider, Stack, Typography} from '@mui/material';
 
 import userAvatarSrc from '../userAvatar.png';
@@ -16,18 +17,23 @@ const valueTextStyles = {
   lineHeight: '20px',
 };
 const avatarSize = 24;
+// TODO get real data from the current user
+const managerFullName = 'Иванов Иван Иванович';
 
 export const About: FC = () => {
-  // TODO get real data from the current user
-  const managerFullName = 'Иванов Иван Иванович';
+  const {currentUser} = useAuth();
+  const {position, division} = currentUser!;
+
   const items: Item[] = [
     {
       label: 'Должность',
-      value: <Typography sx={valueTextStyles}>Управляющий</Typography>,
+      value: (
+        <Typography sx={valueTextStyles}>{position || 'Работник'}</Typography>
+      ),
     },
     {
       label: 'Подразделение работы',
-      value: <Typography sx={valueTextStyles}>Подразделение работы</Typography>,
+      value: <Typography sx={valueTextStyles}>{division}</Typography>,
     },
     {
       label: 'Руководитель',

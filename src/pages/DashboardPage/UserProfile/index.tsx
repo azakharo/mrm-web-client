@@ -16,13 +16,10 @@ import {COLOR__LIGHT_GRAY} from '@/theme/colors';
 const avatarSize = 106;
 const logoutIconSize = 24;
 
-// TODO get real data
-const userFullName = 'Миронова Елена Дмитриевна';
-const userId = 'Табельный 3443';
-
 export const UserProfile: FC = () => {
-  const {logout} = useAuth();
+  const {currentUser, logout} = useAuth();
   const navigate = useNavigate();
+  const {code, fullName} = currentUser!;
 
   const handleLogoutClick = () => {
     logout();
@@ -37,7 +34,7 @@ export const UserProfile: FC = () => {
         <Box display="flex" alignItems="center" gap={2}>
           <Avatar
             src={userAvatarSrc}
-            alt={userFullName}
+            alt={fullName}
             sx={{width: avatarSize, height: avatarSize}}
           />
 
@@ -49,7 +46,7 @@ export const UserProfile: FC = () => {
                 lineHeight: '28px',
               }}
             >
-              {userFullName}
+              {fullName}
             </Typography>
 
             <Typography
@@ -60,7 +57,7 @@ export const UserProfile: FC = () => {
                 color: COLOR__LIGHT_GRAY,
               }}
             >
-              {userId}
+              Табельный {code}
             </Typography>
           </Stack>
 

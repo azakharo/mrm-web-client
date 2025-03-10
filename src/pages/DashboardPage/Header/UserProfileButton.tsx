@@ -1,5 +1,6 @@
 import {FC} from 'react';
 import {useNavigate} from 'react-router-dom';
+import {useAuth} from '@features/auth';
 import {Avatar, Box, ButtonBase, Stack, Typography} from '@mui/material';
 import {darken} from '@mui/material/styles';
 
@@ -11,10 +12,8 @@ const backgroundColorOnHover = darken(COLOR__WHITE, 0.1);
 
 export const UserProfileButton: FC = () => {
   const navigate = useNavigate();
-
-  // TODO get user info from useAuth()
-  const userName = 'Елена Викторовна';
-  const userPosition = 'Директор';
+  const {currentUser} = useAuth();
+  const {fullName, position} = currentUser!;
 
   const handleClick = () => {
     navigate('user-profile');
@@ -39,7 +38,7 @@ export const UserProfileButton: FC = () => {
           },
         }}
       >
-        <Avatar src={userAvatarSrc} alt={userName} sx={{marginLeft: 1}} />
+        <Avatar src={userAvatarSrc} alt={fullName} sx={{marginLeft: 1}} />
 
         <Stack alignItems="flex-start">
           <Typography
@@ -50,7 +49,7 @@ export const UserProfileButton: FC = () => {
               lineHeight: '18px',
             }}
           >
-            {userName}
+            {fullName}
           </Typography>
 
           <Typography
@@ -62,7 +61,7 @@ export const UserProfileButton: FC = () => {
               color: '#767485',
             }}
           >
-            {userPosition}
+            {position || 'Работник'}
           </Typography>
         </Stack>
       </Box>
