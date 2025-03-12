@@ -19,7 +19,11 @@ export interface GetTasksResponse {
 
 export interface CommentOnBackend {
   id: number;
-  author: string;
+  author: {
+    id: number;
+    employee_code: string;
+    employee_name: string;
+  };
   text: string;
   created_at: string;
 }

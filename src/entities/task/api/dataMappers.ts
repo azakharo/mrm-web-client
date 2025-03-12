@@ -34,7 +34,7 @@ export const mapCommentFromBackend = (
 
   return {
     id,
-    author,
+    author: author.employee_name,
     text,
     created: getDateFromIsoString(created_at),
   };

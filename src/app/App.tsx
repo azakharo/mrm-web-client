@@ -7,6 +7,7 @@ import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
 import {ReactQueryDevtools} from '@tanstack/react-query-devtools';
 import {setDefaultOptions} from 'date-fns';
 import {ru as ruLocale} from 'date-fns/locale';
+import {SnackbarProvider} from 'notistack';
 
 import {isDevelopment, isProduction} from '@shared/constants';
 import GlobalStyles from './GlobalStyles';
@@ -55,10 +56,12 @@ const App = () => {
       <QueryClientProvider client={queryClient}>
         <BrowserRouter basename={import.meta.env.VITE_PUBLIC_PATH}>
           <GlobalStyles />
-          <AuthProvider>
-            <Routes />
-            <ModalContainer />
-          </AuthProvider>
+          <SnackbarProvider>
+            <AuthProvider>
+              <Routes />
+              <ModalContainer />
+            </AuthProvider>
+          </SnackbarProvider>
         </BrowserRouter>
 
         <ReactQueryDevtools

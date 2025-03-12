@@ -1,37 +1,43 @@
-import {FC, useState} from 'react';
-import {Stack, TextField, Typography} from '@mui/material';
+import {ChangeEvent, FC, useState} from 'react';
+import {Box, Stack, TextField, Typography} from '@mui/material';
+import {useSnackbar} from 'notistack';
 
-import {useGetComments} from '@entities/task';
+import {useCreateComment, useGetComments} from '@entities/task';
+import {Pagination} from '@shared/components';
 import {CommentWidget} from './Comment';
 
 import {COLOR__WHITE} from '@/theme/colors';
 import {SomethingWentWrong} from '@/widgets/common';
+
+const pageSize = 10;
 
 interface Props {
   taskId: number;
 }
 
 export const Comments: FC<Props> = ({taskId}) => {
+  const {enqueueSnackbar} = useSnackbar();
   const [text, setText] = useState('');
-  const [page] = useState(1);
-  const [pageSize] = useState(10);
+  const [page, setPage] = useState(1);
 
   const {
     data: comments,
-    isPending,
+    isPending: isLoading,
     error,
   } = useGetComments({taskId, page, pageSize});
 
-  if (isPending) {
+  const {mutate, isPending: isCreating} = useCreateComment();
+
+  if (isLoading) {
     // TODO improve loading UI
-    return 'Загрузка...';
+    return <Box p={3}>Загрузка...</Box>;
   }
 
   if (error) {
     return <SomethingWentWrong />;
   }
 
-  const {items} = comments;
+  const {items, totalPages} = comments;
 
   return (
     <Stack
@@ -47,8 +53,24 @@ export const Comments: FC<Props> = ({taskId}) => {
       <form
         onSubmit={event => {
           event.preventDefault();
-          console.log({text});
-          setText('');
+
+          mutate(
+            {
+              taskId,
+              text,
+            },
+            {
+              onSuccess: () => {
+                setText('');
+              },
+              onError: () => {
+                enqueueSnackbar(
+                  'Не удалось создать комментарий. Попробуйте ещё раз.',
+                  {variant: 'error'},
+                );
+              },
+            },
+          );
         }}
         noValidate
       >
@@ -59,6 +81,7 @@ export const Comments: FC<Props> = ({taskId}) => {
           }}
           placeholder="Добавить комментарий"
           fullWidth
+          disabled={isCreating}
         />
       </form>
 
@@ -67,6 +90,16 @@ export const Comments: FC<Props> = ({taskId}) => {
           <CommentWidget key={comment.id} comment={comment} />
         ))}
       </Stack>
+
+      {totalPages > 1 && (
+        <Pagination
+          count={totalPages}
+          page={page}
+          onChange={(_event: ChangeEvent<unknown>, value: number) => {
+            setPage(value);
+          }}
+        />
+      )}
     </Stack>
   );
 };

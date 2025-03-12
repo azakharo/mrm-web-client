@@ -1,6 +1,6 @@
 import {UseQueryOptions} from '@tanstack/react-query';
 
-export interface GetListInputParams {
+export interface GetListParams {
   page?: number;
   pageSize?: number;
 }
