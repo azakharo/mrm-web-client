@@ -27,59 +27,57 @@ export const UserProfile: FC = () => {
   };
 
   return (
-    <>
+    <Box px={4}>
       <Header title="Профиль" hiddenUserProfileButton />
 
-      <Box px={4}>
-        <Box display="flex" alignItems="center" gap={2}>
-          <Avatar
-            src={userAvatarSrc}
-            alt={fullName}
-            sx={{width: avatarSize, height: avatarSize}}
+      <Box display="flex" alignItems="center" gap={2}>
+        <Avatar
+          src={userAvatarSrc}
+          alt={fullName}
+          sx={{width: avatarSize, height: avatarSize}}
+        />
+
+        <Stack spacing={1}>
+          <Typography
+            sx={{
+              fontWeight: 500,
+              fontSize: 22,
+              lineHeight: '28px',
+            }}
+          >
+            {fullName}
+          </Typography>
+
+          <Typography
+            sx={{
+              fontWeight: 400,
+              fontSize: 18,
+              lineHeight: '23px',
+              color: COLOR__LIGHT_GRAY,
+            }}
+          >
+            Табельный {code}
+          </Typography>
+        </Stack>
+
+        <Box marginLeft="auto">
+          <ButtonWithArrow
+            icon={
+              <LogoutIcon
+                width={logoutIconSize}
+                height={logoutIconSize}
+                style={{color: '#FE8414'}}
+              />
+            }
+            text="Выйти из профиля"
+            onClick={handleLogoutClick}
           />
-
-          <Stack spacing={1}>
-            <Typography
-              sx={{
-                fontWeight: 500,
-                fontSize: 22,
-                lineHeight: '28px',
-              }}
-            >
-              {fullName}
-            </Typography>
-
-            <Typography
-              sx={{
-                fontWeight: 400,
-                fontSize: 18,
-                lineHeight: '23px',
-                color: COLOR__LIGHT_GRAY,
-              }}
-            >
-              Табельный {code}
-            </Typography>
-          </Stack>
-
-          <Box marginLeft="auto">
-            <ButtonWithArrow
-              icon={
-                <LogoutIcon
-                  width={logoutIconSize}
-                  height={logoutIconSize}
-                  style={{color: '#FE8414'}}
-                />
-              }
-              text="Выйти из профиля"
-              onClick={handleLogoutClick}
-            />
-          </Box>
         </Box>
-
-        <About />
-
-        <Settings />
       </Box>
-    </>
+
+      <About />
+
+      <Settings />
+    </Box>
   );
 };

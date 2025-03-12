@@ -14,25 +14,23 @@ export const MyTasks: FC = () => {
   };
 
   return (
-    <Box height="100%" display="flex" flexDirection="column" pb={4}>
+    <Box height="100%" display="flex" flexDirection="column" pb={4} px={4}>
       <FilterProvider>
         <Header title="Мои задачи" />
 
-        <Box px={4}>
-          <Box
-            display="flex"
-            alignItems="center"
-            gap={4}
-            justifyContent="space-between"
-            mb={3.5}
-          >
-            <ActivityFilterButtons />
+        <Box
+          display="flex"
+          alignItems="center"
+          gap={4}
+          justifyContent="space-between"
+          mb={3.5}
+        >
+          <ActivityFilterButtons />
 
-            <Button onClick={handleCreate}>Создать задачу</Button>
-          </Box>
-
-          <FilterPanel />
+          <Button onClick={handleCreate}>Создать задачу</Button>
         </Box>
+
+        <FilterPanel />
 
         <TaskList />
       </FilterProvider>

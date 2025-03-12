@@ -6,12 +6,17 @@ import {
   ROUTE__DASHBOARD,
   ROUTE__LOGIN,
   ROUTE__LOGIN_CALLBACK,
+  ROUTE__MY_TASK_DETAIL,
+  ROUTE__MY_TASK_DETAIL__SUB_TASKS,
+  ROUTE__MY_TASKS,
 } from '@shared/constants';
 
 import {DashboardPage} from '@/pages/DashboardPage';
 import {Dashboard} from '@/pages/DashboardPage/Dashboard';
 import {MyTasks} from '@/pages/DashboardPage/MyTasks';
 import NotImplemented from '@/pages/DashboardPage/NotImplemented';
+import {SubTasks} from '@/pages/DashboardPage/SubTasks';
+import {TaskDetails} from '@/pages/DashboardPage/TaskDetails';
 import {UserProfile} from '@/pages/DashboardPage/UserProfile';
 import ErrorPage404 from '@/pages/Errors/404';
 import {LoginCallbackPage} from '@/pages/LoginCallbackPage';
@@ -32,7 +37,9 @@ const Routes: FC = () => {
         }
       >
         <Route index element={<Dashboard />} />
-        <Route path="my-tasks" element={<MyTasks />} />
+        <Route path={ROUTE__MY_TASKS} element={<MyTasks />} />
+        <Route path={ROUTE__MY_TASK_DETAIL} element={<TaskDetails />} />
+        <Route path={ROUTE__MY_TASK_DETAIL__SUB_TASKS} element={<SubTasks />} />
         <Route
           path="tasks"
           element={<NotImplemented pageName="Все задачи" />}

@@ -16,3 +16,7 @@ export interface GetListOutput<T> {
 export type QueryOptionsForList<T extends object, SelectedData> = Partial<
   UseQueryOptions<GetListOutput<T>, Error, SelectedData>
 >;
+
+export type QueryOptionsForOne<T extends object, SelectedData> = Partial<
+  UseQueryOptions<T, Error, SelectedData>
+>;

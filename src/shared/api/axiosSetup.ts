@@ -4,8 +4,10 @@ import {
 } from '@features/auth';
 import axios, {isAxiosError} from 'axios';
 
+import {isDevelopment} from '@/shared/constants';
+
 export const axi = axios.create({
-  baseURL: import.meta.env.VITE_API_URL,
+  baseURL: isDevelopment ? '' : import.meta.env.VITE_API_URL,
 });
 
 axi.interceptors.request.use(function (config) {

@@ -35,7 +35,7 @@ const NotImplemented: FC<Props> = ({pageName}) => {
         </Typography>
 
         <Button variant="contained" onClick={handleGoHome}>
-          Вернуться на Дашборд
+          Вернуться на Главную
         </Button>
       </Box>
     </Box>

@@ -17,6 +17,8 @@ const tasks: Task[] = [
     completionPercent: 75,
     created: now,
     updated: now,
+    startDate: new Date('2025-04-06T13:05:56.134000Z'),
+    endDate: new Date('2025-04-09T13:05:56.134000Z'),
   },
   {
     id: 2,
@@ -27,6 +29,8 @@ const tasks: Task[] = [
     completionPercent: 90,
     created: now,
     updated: now,
+    startDate: new Date('2025-04-06T13:05:56.134000Z'),
+    endDate: new Date('2025-04-09T13:05:56.134000Z'),
   },
   {
     id: 3,
@@ -37,6 +41,8 @@ const tasks: Task[] = [
     completionPercent: 100,
     created: now,
     updated: now,
+    startDate: new Date('2025-04-06T13:05:56.134000Z'),
+    endDate: new Date('2025-04-09T13:05:56.134000Z'),
   },
 ];
 

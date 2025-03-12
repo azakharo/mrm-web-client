@@ -1,5 +1,5 @@
 import {FC} from 'react';
-import {matchPath, useLocation, useNavigate} from 'react-router-dom';
+import {useLocation, useNavigate} from 'react-router-dom';
 import {Box, Button, Typography} from '@mui/material';
 
 import {ROUTE__DASHBOARD} from '@shared/constants';
@@ -20,7 +20,9 @@ export const RouteButton: FC<Props> = ({menuItem}) => {
   const navigate = useNavigate();
   const {pathname} = useLocation();
   const {Icon, text, route} = menuItem;
-  const isCurrentRoute = matchPath(ROUTE__DASHBOARD + route, pathname);
+  const absRoute = route.startsWith('/') ? route : ROUTE__DASHBOARD + route;
+  const isCurrentRoute =
+    route === '/' ? pathname === '/' : pathname.startsWith(absRoute);
   const currentColor = isCurrentRoute ? COLOR__WARNING : COLOR__MAIN_BLACK;
 
   return (

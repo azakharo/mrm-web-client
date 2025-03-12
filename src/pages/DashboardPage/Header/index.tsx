@@ -14,7 +14,6 @@ export const Header: FC<Props> = ({title, hiddenUserProfileButton = false}) => {
       display="flex"
       alignItems="center"
       justifyContent="space-between"
-      px={4}
       pt={4}
       pb={3}
       minHeight={114}

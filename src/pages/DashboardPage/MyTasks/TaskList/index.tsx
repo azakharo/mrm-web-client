@@ -3,7 +3,7 @@ import EastOutlinedIcon from '@mui/icons-material/EastOutlined';
 import WestOutlinedIcon from '@mui/icons-material/WestOutlined';
 import {Box, Pagination, PaginationItem} from '@mui/material';
 
-import {useGetTasks} from '@entities/task/apiHooks';
+import {useGetTasks} from '@entities/task';
 import {SomethingWentWrong} from '@widgets/common';
 import {useFilters} from '../FilterContext';
 
@@ -33,7 +33,6 @@ export const TaskList: FC = () => {
 
   return (
     <Box
-      px={4}
       flex="1 1 0"
       display="flex"
       flexDirection="column"

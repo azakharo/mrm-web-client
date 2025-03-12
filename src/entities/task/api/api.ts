@@ -1,7 +1,11 @@
 import {axi, GetListInputParams, GetListOutput} from '@shared/api';
-import {Task} from '../types';
-import {GetTasksResponse} from './backendTypes';
-import {mapFromBackend} from './dataMappers';
+import {Comment, Task} from '../types';
+import {
+  GetCommentsResponse,
+  GetTasksResponse,
+  TaskOnBackend,
+} from './backendTypes';
+import {mapCommentFromBackend, mapTaskFromBackend} from './dataMappers';
 
 export type GetTasksInputParams = GetListInputParams;
 
@@ -23,7 +27,7 @@ export const getTasks = async ({
     page: pageFromBackend,
     items_per_page: pageSizeFromBackend,
   } = resp.data;
-  const items = array.map(item => mapFromBackend(item));
+  const items = array.map(item => mapTaskFromBackend(item));
 
   return {
     items,
@@ -44,3 +48,47 @@ export const createTask = (title: string, description: string): Promise<void> =>
     executor_id: null,
     validator_id: null,
   });
+
+export const getTask = async (id: number): Promise<Task> => {
+  const resp = await axi.get<TaskOnBackend>(`/api/tasks/${id}`);
+
+  return mapTaskFromBackend(resp.data);
+};
+
+export interface GetCommentsInputParams extends GetListInputParams {
+  taskId: number;
+}
+
+export const getComments = async ({
+  taskId,
+  page,
+  pageSize,
+}: GetCommentsInputParams): Promise<GetListOutput<Comment>> => {
+  const resp = await axi.get<GetCommentsResponse>(
+    `/api/tasks/${taskId}/comments`,
+    {
+      params: {
+        page,
+        per_page: pageSize,
+      },
+    },
+  );
+
+  const {comments, pagination} = resp.data;
+  const {
+    total,
+    total_pages,
+    page: pageFromBackend,
+    items_per_page: pageSizeFromBackend,
+  } = pagination;
+
+  const items = comments.map(item => mapCommentFromBackend(item));
+
+  return {
+    items,
+    page: pageFromBackend,
+    pageSize: pageSizeFromBackend,
+    total,
+    totalPages: total_pages,
+  };
+};

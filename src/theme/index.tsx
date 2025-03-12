@@ -38,6 +38,12 @@ declare module '@mui/material/styles' {
   }
 }
 
+declare module '@mui/material/Button' {
+  interface ButtonPropsVariantOverrides {
+    subtle: true;
+  }
+}
+
 const theme = createTheme(
   {
     palette: {
@@ -93,7 +99,7 @@ const theme = createTheme(
         },
         styleOverrides: {
           root: ({ownerState}) => ({
-            borderRadius: 15,
+            borderRadius: 17,
             ...(ownerState.variant === 'contained' && {
               '&:hover': {
                 backgroundColor: '#FFA806',
@@ -127,6 +133,24 @@ const theme = createTheme(
                 backgroundColor: COLOR__PRIMARY_LIGHT,
                 color: '#FFE083',
                 border: '1px solid transparent',
+              },
+            }),
+            ...(ownerState.variant === 'subtle' && {
+              backgroundColor: COLOR__WHITE,
+              color: COLOR__WARNING,
+              border: `1px solid ${COLOR__LINE}`,
+              '& span.MuiCircularProgress-root': {
+                color: COLOR__PRIMARY,
+              },
+              '&:hover': {
+                backgroundColor: COLOR__WHITE,
+                boxShadow: '0 0 8px 8px #FFFAEC',
+              },
+              '&:focus': {},
+              '&:active': {},
+              '&.Mui-disabled': {
+                color: COLOR__WARNING,
+                opacity: 0.5,
               },
             }),
           }),

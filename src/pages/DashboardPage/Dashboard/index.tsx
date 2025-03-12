@@ -9,18 +9,16 @@ import {TkIndex} from './TkIndex';
 
 export const Dashboard: FC = () => {
   return (
-    <>
-      <Header title="Дашборд" />
+    <Box px={4}>
+      <Header title="Главная" />
 
-      <Box px={4}>
-        <Box display="flex" gap={4} flexWrap="wrap" mb={4}>
-          <TkIndex />
-          <TasksForToday />
-          <TaskProgressStat />
-        </Box>
-
-        <Tasks />
+      <Box display="flex" gap={4} flexWrap="wrap" mb={4}>
+        <TkIndex />
+        <TasksForToday />
+        <TaskProgressStat />
       </Box>
-    </>
+
+      <Tasks />
+    </Box>
   );
 };

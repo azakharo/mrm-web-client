@@ -1,1 +1,2 @@
-export {ButtonWithArrow} from './Buttons/ButtonWithArrow';
+export * from './Buttons';
+export * from './Tabs';

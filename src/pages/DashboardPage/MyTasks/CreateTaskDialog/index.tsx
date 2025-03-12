@@ -10,8 +10,7 @@ import {
 } from '@mui/material';
 import {useQueryClient} from '@tanstack/react-query';
 
-import {QUERY__TASK_LIST, QUERY__TASK_ROOT} from '@entities/task';
-import {createTask} from '@entities/task/api';
+import {createTask, QUERY__TASK_LIST, QUERY__TASK_ROOT} from '@entities/task';
 
 const CreateTaskDialog: FC<InstanceProps<unknown>> = ({
   onReject,

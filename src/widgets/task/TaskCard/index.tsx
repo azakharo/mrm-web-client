@@ -1,28 +1,23 @@
 import {FC, ReactNode} from 'react';
+import {useNavigate} from 'react-router-dom';
 import EastOutlinedIcon from '@mui/icons-material/EastOutlined';
 import {
   Badge,
   badgeClasses,
   Box,
   ButtonBase,
-  LinearProgress,
   Stack,
   Tooltip,
   Typography,
 } from '@mui/material';
+import {format} from 'date-fns';
 
-import {statusToLabel, Task, TaskStatus} from '@entities/task';
-import {Color} from '@shared/types';
+import {statusToColor, statusToLabel, Task, TaskStatus} from '@entities/task';
+import {ProgressBar} from '@shared/components/ProgressBar';
+import {ROUTE__MY_TASK_DETAIL} from '@shared/constants';
 import {limitString} from '@shared/utils/strings';
 
-import {
-  COLOR__ERROR,
-  COLOR__LIGHT_BACK,
-  COLOR__LIGHT_GRAY,
-  COLOR__SUCCESS,
-  COLOR__WARNING,
-  COLOR__WHITE,
-} from '@/theme/colors';
+import {COLOR__LIGHT_GRAY, COLOR__WHITE} from '@/theme/colors';
 
 const descriptionLenLimit = 2 * 40;
 
@@ -46,19 +41,6 @@ const statusToIcon: Record<TaskStatus, ReactNode> = {
   [TaskStatus.completed]: <Badge color="success" {...statusBadgeCommonProps} />,
 };
 
-const statusToColor: Record<TaskStatus, Color> = {
-  [TaskStatus.notAssigned]: COLOR__ERROR,
-  [TaskStatus.inProgress]: COLOR__WARNING,
-  [TaskStatus.completed]: COLOR__SUCCESS,
-};
-
-const progressBarContainerProps = {
-  minHeight: 23,
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'center',
-} as const;
-
 const tooltipTypographyProps = {
   variant: 'b2regular',
   sx: {color: COLOR__WHITE},
@@ -69,22 +51,11 @@ interface Props {
 }
 
 export const TaskCard: FC<Props> = ({task}) => {
-  const {title, description, status, completionPercent} = task;
+  const navigate = useNavigate();
+  const {title, description, status, completionPercent, endDate, id} = task;
 
   const progressBar = (
-    <LinearProgress
-      variant="determinate"
-      value={completionPercent}
-      color="info"
-      sx={{
-        height: 6,
-        borderRadius: '3px',
-        backgroundColor: COLOR__LIGHT_BACK,
-        '& .MuiLinearProgress-bar': {
-          background: COLOR__WARNING,
-        },
-      }}
-    />
+    <ProgressBar color={statusToColor[status]} value={completionPercent} />
   );
 
   const titleElem = (
@@ -113,9 +84,7 @@ export const TaskCard: FC<Props> = ({task}) => {
   return (
     <ButtonBase
       onClick={() => {
-        alert(
-          'Ещё не реализовано - по клику, возможно, будет переход на отдельную страницу задачи',
-        );
+        navigate(ROUTE__MY_TASK_DETAIL.replace(':id', id.toString()));
       }}
     >
       <Stack
@@ -128,7 +97,7 @@ export const TaskCard: FC<Props> = ({task}) => {
         }}
       >
         <Box display="flex" alignItems="center" gap={1.5}>
-          <Typography variant="b1semibold">{statusToIcon[status]}</Typography>
+          {statusToIcon[status]}
 
           {title.length > 36 ? (
             <Tooltip
@@ -142,6 +111,10 @@ export const TaskCard: FC<Props> = ({task}) => {
             titleElem
           )}
         </Box>
+
+        <Typography variant="b2regular" textAlign="left">
+          Номер SAP: 23422422
+        </Typography>
 
         {description.length > descriptionLenLimit ? (
           <Tooltip
@@ -160,9 +133,7 @@ export const TaskCard: FC<Props> = ({task}) => {
           It's necessary for proper vertical alignment of the components.
            The progress bar's height equals to the height of the status text. */}
           {status !== TaskStatus.inProgress && (
-            <Box {...progressBarContainerProps} visibility="hidden">
-              {progressBar}
-            </Box>
+            <Box visibility="hidden">{progressBar}</Box>
           )}
 
           <Box
@@ -183,13 +154,13 @@ export const TaskCard: FC<Props> = ({task}) => {
             </Typography>
           </Box>
 
-          {status === TaskStatus.inProgress && (
-            <Box {...progressBarContainerProps}>{progressBar}</Box>
-          )}
+          {status === TaskStatus.inProgress && progressBar}
         </Stack>
 
         <Box display="flex" alignItems="center" justifyContent="space-between">
-          <Typography variant="b2regular">🕒 12 часов | до 22.01.25</Typography>
+          <Typography variant="b2regular">
+            🕒 12 часов | до {format(endDate, 'dd.MM.yy')}
+          </Typography>
 
           <Stack direction="row" spacing={0.5}>
             <Typography variant="b1semibold">{completionPercent}%</Typography>

@@ -5,8 +5,9 @@ import {TaskStatus} from '@entities/task';
 
 export enum ActivityFilter {
   all = 'all',
+  notStarted = 'not-started',
   active = 'active',
-  archive = 'archive',
+  finished = 'finished',
 }
 
 const DEFAULT_PAGE = 1;

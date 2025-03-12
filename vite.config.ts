@@ -4,6 +4,7 @@ import * as path from 'path';
 import {defineConfig, loadEnv} from 'vite';
 import react from '@vitejs/plugin-react';
 import svgr from 'vite-plugin-svgr';
+import mockDevServerPlugin from 'vite-plugin-mock-dev-server';
 
 export default defineConfig(({mode}) => {
   const {VITE_API_URL, VITE_PUBLIC_PATH} = loadEnv(mode, process.cwd());
@@ -14,6 +15,7 @@ export default defineConfig(({mode}) => {
       react(),
       // svgr options: https://react-svgr.com/docs/options/
       svgr({svgrOptions: {icon: true}}),
+      mockDevServerPlugin(),
     ],
     resolve: {
       alias: {

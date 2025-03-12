@@ -1,9 +1,18 @@
 import {getDateFromIsoString} from '@shared/api';
-import {Task, TaskStatus} from '../types';
-import {TaskOnBackend} from './backendTypes';
+import {Comment, Task, TaskStatus} from '../types';
+import {CommentOnBackend, TaskOnBackend} from './backendTypes';
 
-export const mapFromBackend = (taskBackend: TaskOnBackend): Task => {
-  const {id, title, description, created_at, updated_at} = taskBackend;
+export const mapTaskFromBackend = (taskBackend: TaskOnBackend): Task => {
+  const {
+    id,
+    title,
+    description,
+    created_at,
+    updated_at,
+    current_status,
+    date_from,
+    date_to,
+  } = taskBackend;
 
   return {
     id,
@@ -11,7 +20,22 @@ export const mapFromBackend = (taskBackend: TaskOnBackend): Task => {
     description,
     created: getDateFromIsoString(created_at),
     updated: getDateFromIsoString(updated_at),
-    status: TaskStatus.notAssigned,
+    status: current_status as TaskStatus,
+    startDate: getDateFromIsoString(date_from),
+    endDate: getDateFromIsoString(date_to),
     completionPercent: 0,
+  };
+};
+
+export const mapCommentFromBackend = (
+  commentBackend: CommentOnBackend,
+): Comment => {
+  const {id, author, text, created_at} = commentBackend;
+
+  return {
+    id,
+    author,
+    text,
+    created: getDateFromIsoString(created_at),
   };
 };
