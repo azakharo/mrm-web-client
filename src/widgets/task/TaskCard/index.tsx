@@ -14,7 +14,10 @@ import {format} from 'date-fns';
 
 import {statusToColor, statusToLabel, Task, TaskStatus} from '@entities/task';
 import {ProgressBar} from '@shared/components/ProgressBar';
-import {ROUTE__MY_TASK_DETAIL} from '@shared/constants';
+import {
+  DATE_FORMAT__SHORT_YEAR,
+  ROUTE__MY_TASK_DETAIL,
+} from '@shared/constants';
 import {limitString} from '@shared/utils/strings';
 
 import {COLOR__LIGHT_GRAY, COLOR__WHITE} from '@/theme/colors';
@@ -159,7 +162,7 @@ export const TaskCard: FC<Props> = ({task}) => {
 
         <Box display="flex" alignItems="center" justifyContent="space-between">
           <Typography variant="b2regular">
-            🕒 12 часов | до {format(endDate, 'dd.MM.yy')}
+            🕒 12 часов | до {format(endDate, DATE_FORMAT__SHORT_YEAR)}
           </Typography>
 
           <Stack direction="row" spacing={0.5}>
