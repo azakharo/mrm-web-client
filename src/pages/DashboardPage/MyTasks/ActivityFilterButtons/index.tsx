@@ -1,7 +1,7 @@
 import {FC} from 'react';
 import {Stack} from '@mui/material';
 
-import {ActivityFilter} from '../FilterContext';
+import {ActivityFilter} from '@entities/task';
 import {FilterButton} from './FilterButton';
 
 export const ActivityFilterButtons: FC = () => {

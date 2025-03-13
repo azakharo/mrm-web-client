@@ -1,14 +1,7 @@
 import React, {createContext, FC, ReactNode, useCallback, useMemo} from 'react';
 import {useQueryState} from 'react-router-use-location-state';
 
-import {TaskStatus} from '@entities/task';
-
-export enum ActivityFilter {
-  all = 'all',
-  notStarted = 'not-started',
-  active = 'active',
-  finished = 'finished',
-}
+import {ActivityFilter, TaskStatus} from '@entities/task';
 
 const DEFAULT_PAGE = 1;
 const DEFAULT_PAGE_SIZE = 9;

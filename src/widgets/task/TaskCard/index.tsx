@@ -12,7 +12,7 @@ import {
 } from '@mui/material';
 import {format} from 'date-fns';
 
-import {statusToColor, statusToLabel, Task, TaskStatus} from '@entities/task';
+import {getColor, getLabel, Task, TaskStatus} from '@entities/task';
 import {ProgressBar} from '@shared/components/ProgressBar';
 import {
   DATE_FORMAT__SHORT_YEAR,
@@ -38,11 +38,16 @@ const statusBadgeCommonProps = {
     },
   },
 } as const;
-const statusToIcon: Record<TaskStatus, ReactNode> = {
-  [TaskStatus.notAssigned]: <Badge color="error" {...statusBadgeCommonProps} />,
-  [TaskStatus.inProgress]: <Badge color="error" {...statusBadgeCommonProps} />,
-  [TaskStatus.completed]: <Badge color="success" {...statusBadgeCommonProps} />,
+
+const status2Icon: Record<TaskStatus, ReactNode> = {
+  [TaskStatus.new]: <Badge color="error" {...statusBadgeCommonProps} />,
+  [TaskStatus.closed]: <Badge color="success" {...statusBadgeCommonProps} />,
 };
+
+const getStatusIcon = (status: string) =>
+  status2Icon[status as TaskStatus] ?? (
+    <Badge color="error" {...statusBadgeCommonProps} />
+  );
 
 const tooltipTypographyProps = {
   variant: 'b2regular',
@@ -58,7 +63,7 @@ export const TaskCard: FC<Props> = ({task}) => {
   const {title, description, status, completionPercent, endDate, id} = task;
 
   const progressBar = (
-    <ProgressBar color={statusToColor[status]} value={completionPercent} />
+    <ProgressBar color={getColor(status)} value={completionPercent} />
   );
 
   const titleElem = (
@@ -100,7 +105,7 @@ export const TaskCard: FC<Props> = ({task}) => {
         }}
       >
         <Box display="flex" alignItems="center" gap={1.5}>
-          {statusToIcon[status]}
+          {getStatusIcon(status)}
 
           {title.length > 36 ? (
             <Tooltip
@@ -135,7 +140,7 @@ export const TaskCard: FC<Props> = ({task}) => {
           {/* Here we render a hidden progress bar.
           It's necessary for proper vertical alignment of the components.
            The progress bar's height equals to the height of the status text. */}
-          {status !== TaskStatus.inProgress && (
+          {status !== ('В процессе' as TaskStatus) && (
             <Box visibility="hidden">{progressBar}</Box>
           )}
 
@@ -145,11 +150,8 @@ export const TaskCard: FC<Props> = ({task}) => {
             justifyContent="space-between"
             gap={4}
           >
-            <Typography
-              variant="b2semibold"
-              sx={{color: statusToColor[status]}}
-            >
-              {statusToLabel[status]}
+            <Typography variant="b2semibold" sx={{color: getColor(status)}}>
+              {getLabel(status)}
             </Typography>
 
             <Typography variant="b2medium" sx={{color: '#B5B5B5'}}>
@@ -157,7 +159,7 @@ export const TaskCard: FC<Props> = ({task}) => {
             </Typography>
           </Box>
 
-          {status === TaskStatus.inProgress && progressBar}
+          {status === ('В процессе' as TaskStatus) && progressBar}
         </Stack>
 
         <Box display="flex" alignItems="center" justifyContent="space-between">

@@ -3,7 +3,7 @@ import {Avatar, Stack, Typography} from '@mui/material';
 import {format} from 'date-fns';
 
 import {Comment} from '@entities/task';
-import {DATE_FORMAT} from '@shared/constants';
+import {DATETIME_FORMAT} from '@shared/constants';
 
 import {COLOR__LIGHT_GRAY} from '@/theme/colors';
 
@@ -27,7 +27,7 @@ export const CommentWidget: FC<Props> = ({comment}) => {
       <Typography variant="b2regular">{text}</Typography>
 
       <Typography variant="b3regular" sx={{color: COLOR__LIGHT_GRAY}}>
-        {format(created, DATE_FORMAT)}
+        {format(created, DATETIME_FORMAT)}
       </Typography>
     </Stack>
   );

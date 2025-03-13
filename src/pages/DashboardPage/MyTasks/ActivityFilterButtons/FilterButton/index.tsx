@@ -1,7 +1,8 @@
 import {FC} from 'react';
 
+import {ActivityFilter} from '@entities/task';
 import {TabButton} from '@shared/components';
-import {ActivityFilter, useFilters} from '../../FilterContext';
+import {useFilters} from '../../FilterContext';
 
 const valueToText: Record<ActivityFilter, string> = {
   [ActivityFilter.all]: 'Все',

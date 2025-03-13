@@ -4,7 +4,7 @@ import {
   GetListOutput,
   GetListParams,
 } from '@shared/api';
-import {Comment, Task} from '../types';
+import {ActivityFilter, Comment, Task} from '../types';
 import {
   GetCommentsResponse,
   GetTasksResponse,
@@ -12,17 +12,25 @@ import {
 } from './backendTypes';
 import {mapCommentFromBackend, mapTaskFromBackend} from './dataMappers';
 
-export type GetTasksParams = GetListParams;
+export interface GetTasksParams extends GetListParams {
+  activityFilter?: ActivityFilter;
+}
 
-export const getTasks = async ({page, pageSize}: GetTasksParams = {}): Promise<
-  GetListOutput<Task>
-> => {
-  const resp = await axi.get<GetTasksResponse>('/api/tasks', {
-    params: {
-      page,
-      per_page: pageSize,
+export const getTasks = async ({
+  activityFilter,
+  page,
+  pageSize,
+}: GetTasksParams = {}): Promise<GetListOutput<Task>> => {
+  const resp = await axi.get<GetTasksResponse>(
+    activityFilter ? '/api/tasks/by/status' : '/api/tasks',
+    {
+      params: {
+        status: activityFilter || undefined,
+        page,
+        per_page: pageSize,
+      },
     },
-  });
+  );
 
   const {
     array,

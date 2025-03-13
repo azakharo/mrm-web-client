@@ -1,8 +1,7 @@
 // values are backend specific
 export enum TaskStatus {
-  notAssigned = 'Новая',
-  inProgress = 'В процессе',
-  completed = 'Закрыта',
+  new = 'Новая',
+  closed = 'Закрыта',
 }
 
 export interface TaskPerson {
@@ -31,4 +30,13 @@ export interface Comment {
   author: string;
   text: string;
   created: Date;
+}
+
+// The values are backend specific.
+// "all" means that the filter is NOT set.
+export enum ActivityFilter {
+  all = '',
+  notStarted = 'new',
+  active = 'in_progress',
+  finished = 'done',
 }

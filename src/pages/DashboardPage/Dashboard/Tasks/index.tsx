@@ -13,7 +13,7 @@ const tasks: Task[] = [
     title: 'Проверка молочной продукции',
     description:
       'Необходимо проверить молочные продукты на соблюдение срока годности ',
-    status: TaskStatus.inProgress,
+    status: 'В процессе' as TaskStatus,
     completionPercent: 75,
     created: now,
     updated: now,
@@ -36,7 +36,7 @@ const tasks: Task[] = [
     title: 'Проверка молочной продукции',
     description:
       'Необходимо проверить молочные продукты на соблюдение срока годности ',
-    status: TaskStatus.completed,
+    status: TaskStatus.closed,
     completionPercent: 90,
     created: now,
     updated: now,
@@ -59,7 +59,7 @@ const tasks: Task[] = [
     title: 'Проверка молочной продукции',
     description:
       'Необходимо проверить молочные продукты на соблюдение срока годности ',
-    status: TaskStatus.completed,
+    status: TaskStatus.closed,
     completionPercent: 100,
     created: now,
     updated: now,

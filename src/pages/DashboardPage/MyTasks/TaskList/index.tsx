@@ -9,8 +9,12 @@ import {useFilters} from '../FilterContext';
 import {TaskCard} from '@/widgets/task';
 
 export const TaskList: FC = () => {
-  const {page, setPage, pageSize} = useFilters();
-  const {data, isPending, error} = useGetTasks({page, pageSize});
+  const {page, setPage, pageSize, activityFilter} = useFilters();
+  const {data, isPending, error} = useGetTasks({
+    page,
+    pageSize,
+    activityFilter: activityFilter || undefined,
+  });
 
   if (isPending) {
     // TODO improve loading UI

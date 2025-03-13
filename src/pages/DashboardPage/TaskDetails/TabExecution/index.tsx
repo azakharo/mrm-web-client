@@ -1,7 +1,7 @@
 import {FC} from 'react';
 import {Box, Stack, Typography} from '@mui/material';
 
-import {statusToColor, statusToLabel, TaskStatus} from '@entities/task';
+import {getColor, getLabel, TaskStatus} from '@entities/task';
 import {ProgressBar} from '@shared/components/ProgressBar';
 import {Comments} from '@widgets/task/Comments';
 
@@ -62,21 +62,15 @@ export const TabExecution: FC<Props> = ({
             justifyContent="space-between"
             gap={4}
           >
-            <Typography
-              variant="b1semibold"
-              sx={{color: statusToColor[status]}}
-            >
-              {statusToLabel[status]}
+            <Typography variant="b1semibold" sx={{color: getColor(status)}}>
+              {getLabel(status)}
             </Typography>
 
             <Typography variant="b1semibold">{completionPercent}%</Typography>
           </Box>
 
-          {status === TaskStatus.inProgress && (
-            <ProgressBar
-              color={statusToColor[status]}
-              value={completionPercent}
-            />
+          {status === ('В процессе' as TaskStatus) && (
+            <ProgressBar color={getColor(status)} value={completionPercent} />
           )}
         </Stack>
       </Stack>

@@ -1,5 +1,6 @@
 import {defineMock} from 'vite-plugin-mock-dev-server';
-import {CommentOnBackend} from "src/entities/task/api/backendTypes";
+
+import {CommentOnBackend} from 'src/entities/task/api/backendTypes';
 
 const comments: CommentOnBackend[] = [
   {
@@ -49,9 +50,10 @@ export default defineMock({
   url: '/api/tasks/:taskId/comments',
   method: 'GET',
   delay: 1500,
-  body: (params) => {
+  body: params => {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
-    const id = params.taskId;
+    const id = Number(params.taskId);
 
     return {
       task_id: id,
@@ -63,5 +65,5 @@ export default defineMock({
         total: comments.length,
       },
     };
-  }
+  },
 });

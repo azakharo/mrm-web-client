@@ -51,6 +51,17 @@ module.exports = {
       'LabeledStatement',
       'WithStatement',
     ],
+
+    // Из Lodash нужно импортировать каждую функцию из индивидуального модуля.
+    // Это нужно для того, чтобы вся библиотека не была включена в bundle.
+    'no-restricted-imports': ['error', {"paths": [
+        {
+          'name': 'lodash',
+          'message': 'Import [module] from lodash/[module] instead',
+        },
+      ]
+    }],
+
     // https://basarat.gitbooks.io/typescript/docs/tips/defaultIsBad.html
     'import/prefer-default-export': 'off',
     'import/no-default-export': 'off',
