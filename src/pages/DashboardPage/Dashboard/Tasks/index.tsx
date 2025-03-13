@@ -19,6 +19,17 @@ const tasks: Task[] = [
     updated: now,
     startDate: new Date('2025-04-06T13:05:56.134000Z'),
     endDate: new Date('2025-04-09T13:05:56.134000Z'),
+    type: 'Инвентаризация',
+    executor: {
+      id: 1,
+      name: 'Пользователь Тестовый None',
+      code: '9979991112233',
+    },
+    validator: {
+      id: 1,
+      name: 'Пользователь Тестовый None',
+      code: '9979991112233',
+    },
   },
   {
     id: 2,
@@ -31,6 +42,17 @@ const tasks: Task[] = [
     updated: now,
     startDate: new Date('2025-04-06T13:05:56.134000Z'),
     endDate: new Date('2025-04-09T13:05:56.134000Z'),
+    type: 'Инвентаризация',
+    executor: {
+      id: 1,
+      name: 'Пользователь Тестовый None',
+      code: '9979991112233',
+    },
+    validator: {
+      id: 1,
+      name: 'Пользователь Тестовый None',
+      code: '9979991112233',
+    },
   },
   {
     id: 3,
@@ -43,6 +65,17 @@ const tasks: Task[] = [
     updated: now,
     startDate: new Date('2025-04-06T13:05:56.134000Z'),
     endDate: new Date('2025-04-09T13:05:56.134000Z'),
+    type: 'Инвентаризация',
+    executor: {
+      id: 1,
+      name: 'Пользователь Тестовый None',
+      code: '9979991112233',
+    },
+    validator: {
+      id: 1,
+      name: 'Пользователь Тестовый None',
+      code: '9979991112233',
+    },
   },
 ];
 

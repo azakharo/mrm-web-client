@@ -9,8 +9,10 @@ import {
   TextField,
 } from '@mui/material';
 import {useQueryClient} from '@tanstack/react-query';
+import {parse} from 'date-fns';
 
 import {createTask, QUERY__TASK_LIST, QUERY__TASK_ROOT} from '@entities/task';
+import {DATE_FORMAT} from '@shared/constants';
 
 const CreateTaskDialog: FC<InstanceProps<unknown>> = ({
   onReject,
@@ -19,10 +21,25 @@ const CreateTaskDialog: FC<InstanceProps<unknown>> = ({
   const client = useQueryClient();
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
+  const [typeId, setTypeId] = useState('1');
+  const [startDate, setStartDate] = useState('');
+  const [endDate, setEndDate] = useState('');
+  const [executorId, setExecutorId] = useState('');
+  const [validatorId, setValidatorId] = useState('');
 
   const handleSubmit = async () => {
     try {
-      await createTask(title, description);
+      await createTask({
+        title,
+        description,
+        typeId: typeId ? Number(typeId) : 1,
+        executorId: executorId ? Number(executorId) : undefined,
+        validatorId: validatorId ? Number(validatorId) : undefined,
+        startDate: startDate
+          ? parse(startDate, DATE_FORMAT, new Date())
+          : new Date(),
+        endDate: endDate ? parse(endDate, DATE_FORMAT, new Date()) : new Date(),
+      });
     } catch (err) {
       console.log(err);
       return;
@@ -54,6 +71,48 @@ const CreateTaskDialog: FC<InstanceProps<unknown>> = ({
               setDescription(event.target.value);
             }}
             label="Описание"
+          />
+
+          <TextField
+            value={typeId}
+            onChange={event => {
+              setTypeId(event.target.value);
+            }}
+            label="ID типа задачи"
+          />
+
+          <TextField
+            value={startDate}
+            onChange={event => {
+              setStartDate(event.target.value);
+            }}
+            label="Дата начала"
+            placeholder={DATE_FORMAT}
+          />
+
+          <TextField
+            value={endDate}
+            onChange={event => {
+              setEndDate(event.target.value);
+            }}
+            label="Дата завершения"
+            placeholder={DATE_FORMAT}
+          />
+
+          <TextField
+            value={executorId}
+            onChange={event => {
+              setExecutorId(event.target.value);
+            }}
+            label="ID исполнителя"
+          />
+
+          <TextField
+            value={validatorId}
+            onChange={event => {
+              setValidatorId(event.target.value);
+            }}
+            label="ID проверяющего"
           />
 
           <Button

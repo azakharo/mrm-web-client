@@ -31,7 +31,7 @@ export const getCurrentUser = async (): Promise<User> => {
   return {
     id,
     code: employeecode,
-    fullName: fullname,
+    name: fullname,
     gender,
     email: workemail,
     phone,

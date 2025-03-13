@@ -1,10 +1,26 @@
+export interface TaskPersonOnBackend {
+  id: number;
+  employee_code: string;
+  employee_name: string;
+}
+
+export interface TaskTypeOnBackend {
+  id: number;
+  name: string;
+  type: 'auto' | 'manual';
+  slug: string;
+}
+
 export interface TaskOnBackend {
   id: number;
   title: string;
   description: string;
+  type: TaskTypeOnBackend;
   current_status: string;
   date_from: string;
   date_to: string;
+  assignee: TaskPersonOnBackend | null;
+  validator: TaskPersonOnBackend | null;
   created_at: string;
   updated_at: string;
 }

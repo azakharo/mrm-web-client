@@ -1,4 +1,9 @@
-import {axi, GetListOutput, GetListParams} from '@shared/api';
+import {
+  axi,
+  createBackendDateIsoString,
+  GetListOutput,
+  GetListParams,
+} from '@shared/api';
 import {Comment, Task} from '../types';
 import {
   GetCommentsResponse,
@@ -37,15 +42,33 @@ export const getTasks = async ({page, pageSize}: GetTasksParams = {}): Promise<
   };
 };
 
-export const createTask = (title: string, description: string): Promise<void> =>
+interface CreateTaskParams {
+  title: string;
+  description: string;
+  typeId: number;
+  startDate: Date;
+  endDate: Date;
+  executorId?: number;
+  validatorId?: number;
+}
+
+export const createTask = ({
+  title,
+  description,
+  typeId,
+  startDate,
+  endDate,
+  executorId,
+  validatorId,
+}: CreateTaskParams): Promise<void> =>
   axi.post('/api/internal/tasks', {
     title,
-    type_id: 1,
     description,
-    date_from: '2025-04-06T13:05:56.134',
-    date_to: '2025-04-09T13:05:56.134',
-    executor_id: null,
-    validator_id: null,
+    type_id: typeId,
+    date_from: createBackendDateIsoString(startDate),
+    date_to: createBackendDateIsoString(endDate),
+    executor_id: executorId ?? null,
+    validator_id: validatorId ?? null,
   });
 
 export const getTask = async (id: number): Promise<Task> => {

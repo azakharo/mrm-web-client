@@ -13,7 +13,7 @@ const backgroundColorOnHover = darken(COLOR__WHITE, 0.1);
 export const UserProfileButton: FC = () => {
   const navigate = useNavigate();
   const {currentUser} = useAuth();
-  const {fullName, position} = currentUser!;
+  const {name, position} = currentUser!;
 
   const handleClick = () => {
     navigate('user-profile');
@@ -38,7 +38,7 @@ export const UserProfileButton: FC = () => {
           },
         }}
       >
-        <Avatar src={userAvatarSrc} alt={fullName} sx={{marginLeft: 1}} />
+        <Avatar src={userAvatarSrc} alt={name} sx={{marginLeft: 1}} />
 
         <Stack alignItems="flex-start">
           <Typography
@@ -49,7 +49,7 @@ export const UserProfileButton: FC = () => {
               lineHeight: '18px',
             }}
           >
-            {fullName}
+            {name}
           </Typography>
 
           <Typography

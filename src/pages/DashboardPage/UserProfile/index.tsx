@@ -19,7 +19,7 @@ const logoutIconSize = 24;
 export const UserProfile: FC = () => {
   const {currentUser, logout} = useAuth();
   const navigate = useNavigate();
-  const {code, fullName} = currentUser!;
+  const {code, name} = currentUser!;
 
   const handleLogoutClick = () => {
     logout();
@@ -33,7 +33,7 @@ export const UserProfile: FC = () => {
       <Box display="flex" alignItems="center" gap={2}>
         <Avatar
           src={userAvatarSrc}
-          alt={fullName}
+          alt={name}
           sx={{width: avatarSize, height: avatarSize}}
         />
 
@@ -45,7 +45,7 @@ export const UserProfile: FC = () => {
               lineHeight: '28px',
             }}
           >
-            {fullName}
+            {name}
           </Typography>
 
           <Typography

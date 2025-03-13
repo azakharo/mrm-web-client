@@ -1,5 +1,6 @@
 import {isValid, parseISO} from 'date-fns';
 import isEmpty from 'lodash/isEmpty';
+import trimEnd from 'lodash/trimEnd';
 
 // if invalid input, returns "0 date"
 export const getDateFromIsoString = (
@@ -23,3 +24,6 @@ export const getDateFromIsoString = (
 
   return dt;
 };
+
+export const createBackendDateIsoString = (date: Date): string =>
+  trimEnd(date.toISOString(), 'Z');

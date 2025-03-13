@@ -17,7 +17,7 @@ interface Props {
 }
 
 export const TabInfo: FC<Props> = ({task}) => {
-  const {startDate, endDate} = task;
+  const {startDate, endDate, executor, validator} = task;
 
   return (
     <CardBox>
@@ -78,13 +78,13 @@ export const TabInfo: FC<Props> = ({task}) => {
 
         <PersonItem
           responsibility="Исполнитель"
-          name="Иванов Иван Иванович"
+          name={executor?.name ?? ''}
           position="Младший контролёр"
         />
 
         <PersonItem
           responsibility="Согласующий"
-          name="Петров Иван Иванович"
+          name={validator?.name ?? ''}
           position="Старший контролёр"
         />
 
