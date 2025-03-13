@@ -12,6 +12,7 @@ import {useQueryClient} from '@tanstack/react-query';
 import {parse} from 'date-fns';
 
 import {createTask, QUERY__TASK_LIST, QUERY__TASK_ROOT} from '@entities/task';
+import {InputType, NumberInput} from '@shared/components';
 import {DATE_FORMAT} from '@shared/constants';
 
 const CreateTaskDialog: FC<InstanceProps<unknown>> = ({
@@ -73,7 +74,8 @@ const CreateTaskDialog: FC<InstanceProps<unknown>> = ({
             label="Описание"
           />
 
-          <TextField
+          <NumberInput
+            inputType={InputType.positiveInteger}
             value={typeId}
             onChange={event => {
               setTypeId(event.target.value);
@@ -99,7 +101,8 @@ const CreateTaskDialog: FC<InstanceProps<unknown>> = ({
             placeholder={DATE_FORMAT}
           />
 
-          <TextField
+          <NumberInput
+            inputType={InputType.positiveInteger}
             value={executorId}
             onChange={event => {
               setExecutorId(event.target.value);
@@ -107,7 +110,8 @@ const CreateTaskDialog: FC<InstanceProps<unknown>> = ({
             label="ID исполнителя"
           />
 
-          <TextField
+          <NumberInput
+            inputType={InputType.positiveInteger}
             value={validatorId}
             onChange={event => {
               setValidatorId(event.target.value);
