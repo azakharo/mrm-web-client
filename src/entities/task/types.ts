@@ -40,3 +40,10 @@ export enum ActivityFilter {
   active = 'in_progress',
   finished = 'done',
 }
+
+export interface TaskCustomField {
+  name: string;
+  description: string;
+  value: string | number | Date | object | boolean;
+  order: number;
+}

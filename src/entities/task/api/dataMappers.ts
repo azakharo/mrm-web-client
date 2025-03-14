@@ -1,7 +1,8 @@
 import {getDateFromIsoString} from '@shared/api';
-import {Comment, Task, TaskPerson, TaskStatus} from '../types';
+import {Comment, Task, TaskCustomField, TaskPerson, TaskStatus} from '../types';
 import {
   CommentOnBackend,
+  TaskCustomFieldOnBackend,
   TaskOnBackend,
   TaskPersonOnBackend,
 } from './backendTypes';
@@ -63,5 +64,23 @@ export const mapCommentFromBackend = (
     author: author.employee_name,
     text,
     created: getDateFromIsoString(created_at),
+  };
+};
+
+export const mapTaskCustomFieldFromBackend = (
+  field: TaskCustomFieldOnBackend,
+): TaskCustomField => {
+  const {type, value, name, description, order} = field;
+
+  let normalizedValue = value;
+  if (type === 'date') {
+    normalizedValue = getDateFromIsoString(value);
+  }
+
+  return {
+    name,
+    description: description ?? '',
+    order,
+    value: normalizedValue,
   };
 };

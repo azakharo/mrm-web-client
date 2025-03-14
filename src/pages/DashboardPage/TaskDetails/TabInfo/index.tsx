@@ -3,7 +3,8 @@ import EastOutlinedIcon from '@mui/icons-material/EastOutlined';
 import {Box, Divider, IconButton, Stack, Typography} from '@mui/material';
 import {format} from 'date-fns';
 
-import {Task} from '@entities/task';
+import {Task, useGetTaskCustomFields} from '@entities/task';
+import {getTaskCustomFieldValueDisplayString} from '@entities/task/helpers';
 import {CardBox} from '@shared/components';
 import {DATE_FORMAT} from '@shared/constants';
 import {ItemWithCustomLabel} from './ItemWithCustomLabel';
@@ -17,7 +18,9 @@ interface Props {
 }
 
 export const TabInfo: FC<Props> = ({task}) => {
-  const {startDate, endDate, executor, validator} = task;
+  const {startDate, endDate, executor, validator, type, id} = task;
+
+  const {data: customFields} = useGetTaskCustomFields(id);
 
   return (
     <CardBox>
@@ -62,9 +65,13 @@ export const TabInfo: FC<Props> = ({task}) => {
 
         <SimpleItem label="Время на выполнение" value="12 часов" />
 
-        <SimpleItem label="Номер задания SAP" value="23433533" />
-
-        <SimpleItem label="Статус SAP" value="Актуализировано" />
+        {customFields?.map(({name, value}) => (
+          <SimpleItem
+            key={name}
+            label={name}
+            value={getTaskCustomFieldValueDisplayString(value)}
+          />
+        ))}
 
         <SimpleItem
           label="Дата начала"
@@ -94,7 +101,7 @@ export const TabInfo: FC<Props> = ({task}) => {
           position="Менеджер"
         />
 
-        <SimpleItem label="Тип задачи" value="ЦИ" />
+        <SimpleItem label="Тип задачи" value={type} />
       </Stack>
     </CardBox>
   );

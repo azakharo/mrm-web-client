@@ -54,3 +54,32 @@ export interface GetCommentsResponse {
     total: number;
   };
 }
+
+export type TaskCustomFieldOnBackend = (
+  | {
+      type: 'string' | 'date' | 'text';
+      value: string;
+    }
+  | {
+      type: 'number';
+      value: number;
+    }
+  | {
+      type: 'json';
+      value: object;
+    }
+  | {
+      type: 'boolean';
+      value: boolean;
+    }
+) & {
+  order: number;
+  name: string;
+  description: string | null;
+};
+
+export interface GetTaskCustomFieldsResponse {
+  custom_fields: {
+    [name: string]: TaskCustomFieldOnBackend;
+  };
+}

@@ -1,16 +1,23 @@
+import orderBy from 'lodash/orderBy';
+
 import {
   axi,
   createBackendDateIsoString,
   GetListOutput,
   GetListParams,
 } from '@shared/api';
-import {ActivityFilter, Comment, Task} from '../types';
+import {ActivityFilter, Comment, Task, TaskCustomField} from '../types';
 import {
   GetCommentsResponse,
+  GetTaskCustomFieldsResponse,
   GetTasksResponse,
   TaskOnBackend,
 } from './backendTypes';
-import {mapCommentFromBackend, mapTaskFromBackend} from './dataMappers';
+import {
+  mapCommentFromBackend,
+  mapTaskCustomFieldFromBackend,
+  mapTaskFromBackend,
+} from './dataMappers';
 
 export interface GetTasksParams extends GetListParams {
   activityFilter?: ActivityFilter;
@@ -135,4 +142,18 @@ export const createComment = async ({
   return axi.post(`/api/tasks/${taskId}/comments`, {
     text,
   });
+};
+
+export const getTaskCustomFields = async (
+  taskId: number,
+): Promise<TaskCustomField[]> => {
+  const resp = await axi.get<GetTaskCustomFieldsResponse>(
+    `/api/tasks/${taskId}/custom-fields`,
+  );
+
+  const fields = Object.values(resp.data.custom_fields).map(item =>
+    mapTaskCustomFieldFromBackend(item),
+  );
+
+  return orderBy(fields, 'order', 'asc');
 };
