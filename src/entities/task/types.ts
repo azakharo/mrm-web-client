@@ -1,3 +1,5 @@
+import {TaskActionOnBackend} from './api/backendTypes';
+
 // values are backend specific
 export enum TaskStatus {
   new = 'Новая',
@@ -47,3 +49,5 @@ export interface TaskCustomField {
   value: string | number | Date | object | boolean;
   order: number;
 }
+
+export type TaskAction = TaskActionOnBackend;

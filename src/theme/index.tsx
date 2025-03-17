@@ -3,11 +3,12 @@
 import type {} from '@mui/lab/themeAugmentation';
 import {CircularProgress, colors} from '@mui/material';
 import {ruRU} from '@mui/material/locale';
-import {createTheme} from '@mui/material/styles';
+import {createTheme, lighten} from '@mui/material/styles';
 
 import {
   COLOR__BACK,
   COLOR__ERROR,
+  COLOR__ERROR_LIGHT,
   COLOR__INFO,
   COLOR__LIGHT_GRAY,
   COLOR__LINE,
@@ -135,24 +136,44 @@ const theme = createTheme(
                 border: '1px solid transparent',
               },
             }),
-            ...(ownerState.variant === 'subtle' && {
-              backgroundColor: COLOR__WHITE,
-              color: COLOR__WARNING,
-              border: `1px solid ${COLOR__LINE}`,
-              '& span.MuiCircularProgress-root': {
-                color: COLOR__PRIMARY,
-              },
-              '&:hover': {
+            ...(ownerState.variant === 'subtle' &&
+              ownerState.color === 'primary' && {
                 backgroundColor: COLOR__WHITE,
-                boxShadow: '0 0 8px 8px #FFFAEC',
-              },
-              '&:focus': {},
-              '&:active': {},
-              '&.Mui-disabled': {
                 color: COLOR__WARNING,
-                opacity: 0.5,
-              },
-            }),
+                border: `1px solid ${COLOR__LINE}`,
+                '& span.MuiCircularProgress-root': {
+                  color: COLOR__PRIMARY,
+                },
+                '&:hover': {
+                  backgroundColor: COLOR__WHITE,
+                  boxShadow: '0 0 8px 8px #FFFAEC',
+                },
+                '&:focus': {},
+                '&:active': {},
+                '&.Mui-disabled': {
+                  color: COLOR__WARNING,
+                  opacity: 0.5,
+                },
+              }),
+            ...(ownerState.variant === 'subtle' &&
+              ownerState.color === 'error' && {
+                backgroundColor: COLOR__ERROR_LIGHT,
+                color: COLOR__ERROR,
+                border: `1px solid ${COLOR__LINE}`,
+                '& span.MuiCircularProgress-root': {
+                  color: COLOR__PRIMARY,
+                },
+                '&:hover': {
+                  backgroundColor: COLOR__ERROR_LIGHT,
+                  boxShadow: `0 0 8px 8px ${lighten(COLOR__ERROR_LIGHT, 0.1)}`,
+                },
+                '&:focus': {},
+                '&:active': {},
+                '&.Mui-disabled': {
+                  color: COLOR__ERROR,
+                  opacity: 0.5,
+                },
+              }),
           }),
           sizeMedium: {
             padding: '14px 32px',
@@ -313,6 +334,44 @@ const theme = createTheme(
           },
           select: {
             padding: '8px 12px',
+          },
+        },
+      },
+      MuiDialog: {
+        defaultProps: {
+          PaperProps: {
+            style: {
+              borderRadius: '15px',
+              padding: 24,
+            },
+          },
+        },
+      },
+      MuiDialogTitle: {
+        defaultProps: {
+          component: 'div',
+        },
+        styleOverrides: {
+          root: {
+            padding: 0,
+            marginBottom: 8,
+          },
+        },
+      },
+      MuiDialogContent: {
+        styleOverrides: {
+          root: {
+            padding: 0,
+            marginBottom: 24,
+          },
+        },
+      },
+      MuiDialogActions: {
+        styleOverrides: {
+          root: {
+            padding: 0,
+            justifyContent: 'flex-start',
+            gap: 12,
           },
         },
       },

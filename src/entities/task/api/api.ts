@@ -6,9 +6,16 @@ import {
   GetListOutput,
   GetListParams,
 } from '@shared/api';
-import {ActivityFilter, Comment, Task, TaskCustomField} from '../types';
+import {
+  ActivityFilter,
+  Comment,
+  Task,
+  TaskAction,
+  TaskCustomField,
+} from '../types';
 import {
   GetCommentsResponse,
+  GetTaskActionsResponse,
   GetTaskCustomFieldsResponse,
   GetTasksResponse,
   TaskOnBackend,
@@ -156,4 +163,26 @@ export const getTaskCustomFields = async (
   );
 
   return orderBy(fields, 'order', 'asc');
+};
+
+export const getTaskActions = async (taskId: number): Promise<TaskAction[]> => {
+  const resp = await axi.get<GetTaskActionsResponse>(
+    `/api/tasks/${taskId}/workflow/actions`,
+  );
+
+  return resp.data.actions;
+};
+
+export interface CreateTaskActionParams {
+  taskId: number;
+  actionId: number;
+}
+
+export const createTaskAction = async ({
+  taskId,
+  actionId,
+}: CreateTaskActionParams): Promise<void> => {
+  return axi.post(`/api/tasks/${taskId}/workflow/actions`, {
+    action_id: actionId,
+  });
 };

@@ -83,3 +83,14 @@ export interface GetTaskCustomFieldsResponse {
     [name: string]: TaskCustomFieldOnBackend;
   };
 }
+
+export interface TaskActionOnBackend {
+  id: number;
+  name: string;
+  direction: 'forward' | 'backward';
+  next_status_type: 'new' | 'in_progress' | 'done';
+}
+
+export interface GetTaskActionsResponse {
+  actions: TaskActionOnBackend[];
+}
