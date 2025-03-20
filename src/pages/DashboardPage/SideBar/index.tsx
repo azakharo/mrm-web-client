@@ -1,7 +1,7 @@
 import {FC} from 'react';
 import {Box, Stack} from '@mui/material';
 
-import {ROUTE__DASHBOARD, ROUTE__MY_TASKS} from '@shared/constants';
+import {ROUTE__DASHBOARD_MAIN, ROUTE__MY_TASKS} from '@shared/constants';
 import AllTasksIcon from './icons/allTasks.svg?react';
 import DashboardIcon from './icons/dashboard.svg?react';
 import EmployeesIcon from './icons/employees.svg?react';
@@ -17,7 +17,7 @@ const menuItems: SideBarMenuItem[] = [
   {
     Icon: DashboardIcon,
     text: 'Главная',
-    route: ROUTE__DASHBOARD,
+    route: ROUTE__DASHBOARD_MAIN,
   },
   {
     Icon: MyTasksIcon,

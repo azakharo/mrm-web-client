@@ -8,19 +8,27 @@ import {createTheme, lighten} from '@mui/material/styles';
 import {
   COLOR__BACK,
   COLOR__ERROR,
+  COLOR__ERROR_DARK,
   COLOR__ERROR_LIGHT,
   COLOR__INFO,
   COLOR__LIGHT_GRAY,
   COLOR__LINE,
   COLOR__MAIN_BLACK,
   COLOR__PRIMARY,
+  COLOR__PRIMARY_DARK,
   COLOR__PRIMARY_LIGHT,
   COLOR__SECONDARY,
+  COLOR__SECONDARY_DARK,
+  COLOR__SECONDARY_LIGHT,
   COLOR__SUCCESS,
+  COLOR__SUCCESS_DARK,
+  COLOR__SUCCESS_LIGHT,
   COLOR__TEXT_DISABLED,
   COLOR__TEXT_PRIMARY,
   COLOR__TEXT_SECONDARY,
   COLOR__WARNING,
+  COLOR__WARNING_DARK,
+  COLOR__WARNING_LIGHT,
   COLOR__WHITE,
 } from './colors';
 import ExpandIcon from './expand.svg?react';
@@ -50,17 +58,25 @@ const theme = createTheme(
     palette: {
       primary: {
         main: COLOR__PRIMARY,
+        light: COLOR__PRIMARY_LIGHT,
+        dark: COLOR__PRIMARY_DARK,
         contrastText: COLOR__MAIN_BLACK,
       },
       secondary: {
         main: COLOR__SECONDARY,
+        light: COLOR__SECONDARY_LIGHT,
+        dark: COLOR__SECONDARY_DARK,
         contrastText: colors.common.white,
       },
       error: {
         main: COLOR__ERROR,
+        light: COLOR__ERROR_LIGHT,
+        dark: COLOR__ERROR_DARK,
       },
       warning: {
         main: COLOR__WARNING,
+        light: COLOR__WARNING_LIGHT,
+        dark: COLOR__WARNING_DARK,
       },
       info: {
         main: COLOR__INFO,
@@ -68,6 +84,8 @@ const theme = createTheme(
       },
       success: {
         main: COLOR__SUCCESS,
+        light: COLOR__SUCCESS_LIGHT,
+        dark: COLOR__SUCCESS_DARK,
       },
       text: {
         primary: COLOR__TEXT_PRIMARY,

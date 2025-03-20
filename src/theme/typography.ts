@@ -18,6 +18,7 @@ declare module '@mui/material/styles' {
     b2medium: CSSProperties;
     b2semibold: CSSProperties;
     b3regular: CSSProperties;
+    b3medium: CSSProperties;
     b3semibold: CSSProperties;
     bigBalance: CSSProperties;
   }
@@ -36,6 +37,7 @@ declare module '@mui/material/styles' {
     b2medium?: CSSProperties;
     b2semibold?: CSSProperties;
     b3regular?: CSSProperties;
+    b3medium?: CSSProperties;
     b3semibold?: CSSProperties;
     bigBalance?: CSSProperties;
   }
@@ -72,6 +74,7 @@ declare module '@mui/material/Typography' {
     b2medium: true;
     b2semibold: true;
     b3regular: true;
+    b3medium: true;
     b3semibold: true;
     bigBalance: true;
     // Variants from Figma
@@ -156,6 +159,11 @@ export const typographyOptions: TypographyOptions = {
   b3regular: {
     fontSize: 14,
     fontWeight: 400,
+    lineHeight: '18px',
+  },
+  b3medium: {
+    fontSize: 14,
+    fontWeight: 450,
     lineHeight: '18px',
   },
   b3semibold: {

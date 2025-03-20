@@ -1,4 +1,4 @@
-import React, {createContext, FC, ReactNode, useCallback, useMemo} from 'react';
+import React, {createContext, FC, useCallback, useMemo} from 'react';
 import {useQueryState} from 'react-router-use-location-state';
 
 import {ActivityFilter, TaskStatus} from '@entities/task';
@@ -31,13 +31,7 @@ export const FilterContext = createContext<ContextProps>({
   setStatusFilter: () => {},
 });
 
-interface Props {
-  children: ReactNode;
-}
-
-export const FilterProvider: FC<React.PropsWithChildren<Props>> = ({
-  children,
-}) => {
+export const FilterProvider: FC<React.PropsWithChildren> = ({children}) => {
   const [page, setPage] = useQueryState<number>('page', DEFAULT_PAGE);
   const [pageSize, setPageSize] = useQueryState<number>(
     'pageSize',

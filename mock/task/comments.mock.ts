@@ -47,7 +47,7 @@ const comments: CommentOnBackend[] = [
 
 export default defineMock({
   enabled: false,
-  url: '/api/tasks/:taskId/comments',
+  url: '/mrm-tasks/api/tasks/:taskId/comments',
   method: 'GET',
   delay: 1500,
   body: params => {

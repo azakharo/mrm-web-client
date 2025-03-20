@@ -35,7 +35,7 @@ export default defineConfig(({mode}) => {
       open: true,
       port: 4000,
       proxy: {
-        '^/api': {
+        '^/(mrm-tasks|mrm-reports)/api': {
           target: VITE_API_URL,
           changeOrigin: true,
           secure: true,

@@ -1,14 +1,16 @@
 import {FC, memo} from 'react';
-import {Route, Routes as ReactRoutes} from 'react-router-dom';
+import {Navigate, Route, Routes as ReactRoutes} from 'react-router-dom';
 import {ProtectedRoute} from '@features/auth';
 
 import {
   ROUTE__DASHBOARD,
+  ROUTE__DASHBOARD_MAIN,
   ROUTE__LOGIN,
   ROUTE__LOGIN_CALLBACK,
   ROUTE__MY_TASK_DETAIL,
   ROUTE__MY_TASK_DETAIL__SUB_TASKS,
   ROUTE__MY_TASKS,
+  ROUTE__TK_STATISTICS,
 } from '@shared/constants';
 
 import {DashboardPage} from '@/pages/DashboardPage';
@@ -17,6 +19,7 @@ import {MyTasks} from '@/pages/DashboardPage/MyTasks';
 import NotImplemented from '@/pages/DashboardPage/NotImplemented';
 import {SubTasks} from '@/pages/DashboardPage/SubTasks';
 import {TaskDetails} from '@/pages/DashboardPage/TaskDetails';
+import {TkStatistics} from '@/pages/DashboardPage/TkStatistics';
 import {UserProfile} from '@/pages/DashboardPage/UserProfile';
 import ErrorPage404 from '@/pages/Errors/404';
 import {LoginCallbackPage} from '@/pages/LoginCallbackPage';
@@ -36,7 +39,8 @@ const Routes: FC = () => {
           </ProtectedRoute>
         }
       >
-        <Route index element={<Dashboard />} />
+        <Route path={ROUTE__DASHBOARD_MAIN} element={<Dashboard />} />
+        <Route path={ROUTE__TK_STATISTICS} element={<TkStatistics />} />
         <Route path={ROUTE__MY_TASKS} element={<MyTasks />} />
         <Route path={ROUTE__MY_TASK_DETAIL} element={<TaskDetails />} />
         <Route path={ROUTE__MY_TASK_DETAIL__SUB_TASKS} element={<SubTasks />} />
@@ -53,8 +57,19 @@ const Routes: FC = () => {
           path="notifications"
           element={<NotImplemented pageName="Уведомления" />}
         />
+
+        <Route
+          index
+          element={<Navigate replace to={ROUTE__DASHBOARD_MAIN} />}
+        />
+
         <Route path="*" element={<ErrorPage404 />} />
       </Route>
+
+      <Route
+        path="/"
+        element={<Navigate replace to={ROUTE__DASHBOARD_MAIN} />}
+      />
 
       <Route path="*" element={<ErrorPage404 />} />
     </ReactRoutes>

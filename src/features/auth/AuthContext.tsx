@@ -1,11 +1,4 @@
-import React, {
-  createContext,
-  FC,
-  ReactNode,
-  useCallback,
-  useMemo,
-  useState,
-} from 'react';
+import React, {createContext, FC, useCallback, useMemo, useState} from 'react';
 import {useQueryClient} from '@tanstack/react-query';
 import useMount from 'ahooks/es/useMount';
 
@@ -39,13 +32,7 @@ export const AuthContext = createContext<AuthContextType>({
   logout: () => {},
 });
 
-interface Props {
-  children: ReactNode;
-}
-
-export const AuthProvider: FC<React.PropsWithChildren<Props>> = ({
-  children,
-}) => {
+export const AuthProvider: FC<React.PropsWithChildren> = ({children}) => {
   const queryClient = useQueryClient();
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [currentUser, setCurrentUser] = useState<User | null>(null);

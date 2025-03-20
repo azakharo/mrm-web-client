@@ -20,9 +20,10 @@ export const RouteButton: FC<Props> = ({menuItem}) => {
   const navigate = useNavigate();
   const {pathname} = useLocation();
   const {Icon, text, route} = menuItem;
-  const absRoute = route.startsWith('/') ? route : ROUTE__DASHBOARD + route;
-  const isCurrentRoute =
-    route === '/' ? pathname === '/' : pathname.startsWith(absRoute);
+  const absRoute = route.startsWith('/')
+    ? route
+    : `${ROUTE__DASHBOARD}/${route}`;
+  const isCurrentRoute = pathname.startsWith(absRoute);
   const currentColor = isCurrentRoute ? COLOR__WARNING : COLOR__MAIN_BLACK;
 
   return (

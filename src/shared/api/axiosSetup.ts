@@ -4,10 +4,12 @@ import {
 } from '@features/auth';
 import axios, {isAxiosError} from 'axios';
 
+import {getErrorMessageFromApiError} from './helpers';
+
 import {isDevelopment} from '@/shared/constants';
 
 export const axi = axios.create({
-  baseURL: isDevelopment ? '' : import.meta.env.VITE_API_URL,
+  baseURL: (isDevelopment ? '' : import.meta.env.VITE_API_URL) + '/mrm-tasks',
 });
 
 axi.interceptors.request.use(function (config) {
@@ -27,12 +29,8 @@ axi.interceptors.response.use(
         window.location.reload();
       }
 
-      // Здесь не описываю detail в Typescript, просто проверяю наличие в runtime
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-      const errorMessage1 = error.response?.data?.detail?.msg as string;
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-      const errorMessage2 = error.response?.data?.detail as string;
-      const errorMessage = errorMessage1 || errorMessage2;
+      const errorMessage = getErrorMessageFromApiError(error);
+
       if (errorMessage) {
         return Promise.reject(new Error(errorMessage));
       }

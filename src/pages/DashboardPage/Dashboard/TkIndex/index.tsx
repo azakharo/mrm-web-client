@@ -1,7 +1,9 @@
 import {FC} from 'react';
+import {useNavigate} from 'react-router-dom';
 import EastOutlinedIcon from '@mui/icons-material/EastOutlined';
 import {Box, Button, ButtonBase, Stack, Typography} from '@mui/material';
 
+import {ROUTE__TK_STATISTICS} from '@shared/constants';
 import SettingsIcon from './settings.svg?react';
 import {Value} from './Value';
 
@@ -15,10 +17,13 @@ import {
 const iconSize = 24;
 
 export const TkIndex: FC = () => {
+  const navigate = useNavigate();
+
   return (
     <ButtonBase
       onClick={() => {
-        alert('Ещё не реализовано - по клику будет переход на другую страницу');
+        // TODO use real TK number
+        navigate(ROUTE__TK_STATISTICS.replace(':tkId', '612'));
       }}
     >
       <Stack

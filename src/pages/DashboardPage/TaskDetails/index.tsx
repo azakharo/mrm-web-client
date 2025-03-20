@@ -1,15 +1,15 @@
 import {FC, useState} from 'react';
 import {useParams} from 'react-router-dom';
-import {Box, Stack} from '@mui/material';
+import {Stack} from '@mui/material';
 
-import {useGetTask} from '@entities/task';
+import {Task, useGetTask} from '@entities/task';
 import {TabButton} from '@shared/components';
-import {SomethingWentWrong} from '@widgets/common';
 import {TaskActions} from '@widgets/task/TaskActions';
-import {Header} from './Header';
 import {TabExecution} from './TabExecution';
 import {TabHistory} from './TabHistory';
 import {TabInfo} from './TabInfo';
+
+import {Header, PageContentLayout} from '@/widgets/dashboard';
 
 interface TabProps {
   index: number;
@@ -39,51 +39,50 @@ export const TaskDetails: FC = () => {
     setCurrentTabIndex(tabIndex);
   };
 
-  const {data: task, isPending, error} = useGetTask(taskId);
+  const {data, isPending, error} = useGetTask(taskId);
 
-  if (isPending) {
-    // TODO improve loading UI
+  const renderContent = (task: Task | undefined) => {
+    if (!task) {
+      return null;
+    }
+
+    const {id, description, title, status, completionPercent} = task;
+
     return (
-      <Box p={4} display="flex" justifyContent="center">
-        Загрузка...
-      </Box>
+      <>
+        <Header title={title} rightPart={<TaskActions taskId={id} />} />
+
+        <Stack direction="row" gap={1.5} mb={4}>
+          {tabs.map(({index, label}) => (
+            <TabButton
+              key={index}
+              value={index}
+              label={label}
+              isSelected={currentTabIndex === index}
+              onSelect={handleTabSelect}
+            />
+          ))}
+        </Stack>
+
+        {currentTabIndex === 0 && (
+          <TabExecution
+            id={id}
+            description={description}
+            status={status}
+            completionPercent={completionPercent}
+          />
+        )}
+
+        {currentTabIndex === 1 && <TabInfo task={task} />}
+
+        {currentTabIndex === 2 && <TabHistory taskId={id} />}
+      </>
     );
-  }
-
-  if (error) {
-    return <SomethingWentWrong />;
-  }
-
-  const {id, description, title, status, completionPercent} = task;
+  };
 
   return (
-    <Box height="100%" display="flex" flexDirection="column" px={4} pb={4}>
-      <Header title={title} rightPart={<TaskActions taskId={id} />} />
-
-      <Stack direction="row" gap={1.5} mb={4}>
-        {tabs.map(({index, label}) => (
-          <TabButton
-            key={index}
-            value={index}
-            label={label}
-            isSelected={currentTabIndex === index}
-            onSelect={handleTabSelect}
-          />
-        ))}
-      </Stack>
-
-      {currentTabIndex === 0 && (
-        <TabExecution
-          id={id}
-          description={description}
-          status={status}
-          completionPercent={completionPercent}
-        />
-      )}
-
-      {currentTabIndex === 1 && <TabInfo task={task} />}
-
-      {currentTabIndex === 2 && <TabHistory taskId={id} />}
-    </Box>
+    <PageContentLayout isPending={isPending} error={error}>
+      {renderContent(data)}
+    </PageContentLayout>
   );
 };

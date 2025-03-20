@@ -1,3 +1,4 @@
+import {AxiosError} from 'axios';
 import {isValid, parseISO} from 'date-fns';
 import isEmpty from 'lodash/isEmpty';
 import trimEnd from 'lodash/trimEnd';
@@ -27,3 +28,18 @@ export const getDateFromIsoString = (
 
 export const createBackendDateIsoString = (date: Date): string =>
   trimEnd(date.toISOString(), 'Z');
+
+export const getErrorMessageFromApiError = (error: AxiosError): string => {
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+  const detail = error.response?.data?.detail;
+
+  // Здесь не описываю detail в Typescript, просто проверяю наличие в runtime
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+  const errorMessage1 = detail?.msg as string;
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+  const errorMessage2 = detail as string;
+
+  return errorMessage1 || errorMessage2 || '';
+};

@@ -14,7 +14,7 @@ export const MyTasks: FC = () => {
   };
 
   return (
-    <Box height="100%" display="flex" flexDirection="column" pb={4} px={4}>
+    <Box pb={4} px={4}>
       <FilterProvider>
         <Header title="Мои задачи" />
 
