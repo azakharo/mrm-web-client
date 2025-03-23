@@ -106,6 +106,15 @@ const theme = createTheme(
           noSsr: true,
         },
       },
+      MuiIconButton: {
+        styleOverrides: {
+          root: ({ownerState}) => ({
+            ...(ownerState.color === 'default' && {
+              color: COLOR__TEXT_PRIMARY,
+            }),
+          }),
+        },
+      },
       MuiButtonBase: {
         defaultProps: {
           disableRipple: true,
@@ -321,13 +330,6 @@ const theme = createTheme(
           },
         },
       },
-      MuiSvgIcon: {
-        styleOverrides: {
-          root: {
-            color: COLOR__MAIN_BLACK,
-          },
-        },
-      },
       MuiSelect: {
         defaultProps: {
           IconComponent: ExpandIcon,
@@ -390,6 +392,13 @@ const theme = createTheme(
             padding: 0,
             justifyContent: 'flex-start',
             gap: 12,
+          },
+        },
+      },
+      MuiAlert: {
+        styleOverrides: {
+          standardError: {
+            backgroundColor: COLOR__ERROR_LIGHT,
           },
         },
       },

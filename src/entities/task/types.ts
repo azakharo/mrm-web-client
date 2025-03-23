@@ -1,4 +1,4 @@
-import {TaskActionOnBackend} from './api/backendTypes';
+import {TaskActionOnBackend, TaskTypeSlug} from './api/backendTypes';
 
 // values are backend specific
 export enum TaskStatus {
@@ -16,13 +16,13 @@ export interface Task {
   id: number;
   title: string;
   description: string;
-  type: string;
+  type: TaskTypeSlug;
+  typeDisplayString: string;
   status: TaskStatus;
   startDate: Date;
   endDate: Date;
   executor: TaskPerson | null;
   validator: TaskPerson | null;
-  completionPercent: number;
   created: Date;
   updated: Date;
 }
@@ -43,11 +43,33 @@ export enum ActivityFilter {
   finished = 'done',
 }
 
+export type TaskCustomFieldValue = string | number | Date | object | boolean;
+
 export interface TaskCustomField {
+  id: string; // name on the backend
   name: string;
   description: string;
-  value: string | number | Date | object | boolean;
+  value: TaskCustomFieldValue;
   order: number;
 }
 
 export type TaskAction = TaskActionOnBackend;
+
+export interface TaskInventoryCustomFields {
+  sapTaskNumber: number | null;
+  sapTaskStatus: string | null;
+  sapTaskProgress: number | null;
+  sapTaskCurrentValue: number | null;
+  sapTaskOverallValue: number | null;
+}
+
+export type TaskInventory = Task & TaskInventoryCustomFields;
+
+export interface TaskTbpCustomFields {
+  overallCost: number | null;
+  overallCount: number | null;
+  overallWeight: number | null;
+  progress: number | null;
+}
+
+export type TaskTbp = Task & TaskTbpCustomFields;

@@ -6,7 +6,7 @@ import {Pagination} from '@shared/components';
 import {SomethingWentWrong} from '@widgets/common';
 import {useFilters} from '../FilterContext';
 
-import {TaskCard} from '@/widgets/task';
+import {TaskGenericCard, taskTypeSlugToCardComponent} from '@/widgets/task';
 
 export const TaskList: FC = () => {
   const {page, setPage, pageSize, activityFilter} = useFilters();
@@ -36,9 +36,15 @@ export const TaskList: FC = () => {
       gap={3.5}
     >
       <Box display="flex" gap={4} flexWrap="wrap" alignItems="flex-start">
-        {items.map(task => (
-          <TaskCard key={task.id} task={task} />
-        ))}
+        {items.map(task => {
+          const CardComp = taskTypeSlugToCardComponent[task.type];
+
+          if (CardComp) {
+            return <CardComp key={task.id} task={task} />;
+          }
+
+          return <TaskGenericCard key={task.id} task={task} />;
+        })}
       </Box>
 
       {totalPages > 1 && (

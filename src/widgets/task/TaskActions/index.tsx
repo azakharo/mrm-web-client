@@ -86,7 +86,9 @@ export const TaskActions: FC<Props> = ({taskId}) => {
       {isPending && 'Загрузка...'}
 
       {error && (
-        <Alert severity="error">Не удалось загрузить действия для задачи</Alert>
+        <Alert severity="error" color="error">
+          Не удалось загрузить действия для задачи
+        </Alert>
       )}
 
       {backwardAction && (

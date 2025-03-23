@@ -1,9 +1,9 @@
 import {FC} from 'react';
 import {Divider, Stack} from '@mui/material';
+import isNull from 'lodash/isNull';
 
 import {TkStatItem} from '@entities/dashboard';
 import {CardBox, CountValue, CurrencyValue} from '@shared/components';
-import {COLOR__GRAY} from '../../../theme/colors';
 import {ColorPercentValue} from './ColorPercentValue';
 import {GreyRow} from './GreyRow';
 import {PercentValue} from './PercentValue';
@@ -11,6 +11,8 @@ import {Row} from './Row';
 import {RowStack} from './RowStack';
 import {SecondaryValue} from './SecondaryValue';
 import {Value} from './Value';
+
+import {COLOR__GRAY} from '@/theme/colors';
 
 interface Props {
   stat: TkStatItem;
@@ -48,10 +50,12 @@ export const StatTab: FC<Props> = ({stat}) => {
               value={<ColorPercentValue value={sales_delta_py} />}
             />
 
-            <GreyRow
-              label="Продажи to KPI"
-              value={<PercentValue value={sales_delta_kpi ?? 0} />}
-            />
+            {!isNull(sales_delta_kpi) && (
+              <GreyRow
+                label="Продажи to KPI"
+                value={<PercentValue value={sales_delta_kpi} />}
+              />
+            )}
           </RowStack>
 
           <Row

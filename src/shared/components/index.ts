@@ -6,4 +6,5 @@ export {CurrencyValue} from './CurrencyValue';
 export * from './dialogs';
 export {InputType, NumberInput} from './NumberInput';
 export {Pagination} from './Pagination';
+export {ProgressBar} from './ProgressBar';
 export * from './Tabs';

@@ -40,7 +40,11 @@ export const LoginCallbackPage: FC = () => {
       <Box flex="0 1 360px">
         {loading && <CircularProgress color="secondary" />}
 
-        {error && <Alert severity="error">{error.message}</Alert>}
+        {error && (
+          <Alert severity="error" color="error">
+            {error.message}
+          </Alert>
+        )}
       </Box>
     </Box>
   );

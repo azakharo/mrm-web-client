@@ -1,3 +1,11 @@
+// The values are from the backend
+export enum TaskTypeSlug {
+  INVENTORY = 'INV',
+  // WRITE_OFF = 'WRF',
+  TBP = 'TBP',
+  // MRM = 'MRM',
+}
+
 export interface TaskPersonOnBackend {
   id: number;
   employee_code: string;
@@ -11,18 +19,26 @@ export interface TaskTypeOnBackend {
   slug: string;
 }
 
+type CustomFields = {
+  [name: string]: TaskCustomFieldOnBackend;
+};
+
 export interface TaskOnBackend {
   id: number;
   title: string;
   description: string;
   type: TaskTypeOnBackend;
-  current_status: string;
+  current_status: {
+    name: string;
+    color: string;
+  };
   date_from: string;
   date_to: string;
   assignee: TaskPersonOnBackend | null;
   validator: TaskPersonOnBackend | null;
   created_at: string;
   updated_at: string;
+  custom_fields: CustomFields;
 }
 
 export interface GetTasksResponse {
@@ -74,14 +90,12 @@ export type TaskCustomFieldOnBackend = (
     }
 ) & {
   order: number;
-  name: string;
-  description: string | null;
+  name?: string;
+  description?: string | null;
 };
 
 export interface GetTaskCustomFieldsResponse {
-  custom_fields: {
-    [name: string]: TaskCustomFieldOnBackend;
-  };
+  custom_fields: CustomFields;
 }
 
 export interface TaskActionOnBackend {

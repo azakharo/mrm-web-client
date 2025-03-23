@@ -5,7 +5,9 @@ import {
   TaskCustomFieldOnBackend,
   TaskOnBackend,
   TaskPersonOnBackend,
+  TaskTypeSlug,
 } from './backendTypes';
+import {taskTypeSlugToGetCustomFieldsFunc} from './constants';
 
 export const mapTaskPersonFromBackend = (
   taskPerson: TaskPersonOnBackend | null,
@@ -23,6 +25,26 @@ export const mapTaskPersonFromBackend = (
   };
 };
 
+export const mapTaskCustomFieldFromBackend = (
+  field: TaskCustomFieldOnBackend,
+  id: string,
+): TaskCustomField => {
+  const {type, value, name, description, order} = field;
+
+  let normalizedValue = value;
+  if (type === 'date') {
+    normalizedValue = getDateFromIsoString(value);
+  }
+
+  return {
+    id,
+    name: name ?? '',
+    description: description ?? '',
+    order,
+    value: normalizedValue,
+  };
+};
+
 export const mapTaskFromBackend = (taskBackend: TaskOnBackend): Task => {
   const {
     id,
@@ -36,22 +58,39 @@ export const mapTaskFromBackend = (taskBackend: TaskOnBackend): Task => {
     type,
     assignee,
     validator,
+    custom_fields,
   } = taskBackend;
 
-  return {
+  const commonProps = {
     id,
     title,
     description,
-    type: type.name,
+    type: type.slug as TaskTypeSlug,
+    typeDisplayString: type.name,
     created: getDateFromIsoString(created_at),
     updated: getDateFromIsoString(updated_at),
-    status: current_status as TaskStatus,
+    status: current_status.name as TaskStatus,
     startDate: getDateFromIsoString(date_from),
     endDate: getDateFromIsoString(date_to),
     executor: mapTaskPersonFromBackend(assignee),
     validator: mapTaskPersonFromBackend(validator),
-    completionPercent: 0,
   };
+
+  const customFields = Object.entries(custom_fields).map(([key, fld]) =>
+    mapTaskCustomFieldFromBackend(fld, key),
+  );
+
+  const getCustomFieldsFunc =
+    taskTypeSlugToGetCustomFieldsFunc[type.slug as TaskTypeSlug];
+
+  if (getCustomFieldsFunc) {
+    return {
+      ...commonProps,
+      ...getCustomFieldsFunc(customFields),
+    };
+  }
+
+  return commonProps;
 };
 
 export const mapCommentFromBackend = (
@@ -64,23 +103,5 @@ export const mapCommentFromBackend = (
     author: author.employee_name,
     text,
     created: getDateFromIsoString(created_at),
-  };
-};
-
-export const mapTaskCustomFieldFromBackend = (
-  field: TaskCustomFieldOnBackend,
-): TaskCustomField => {
-  const {type, value, name, description, order} = field;
-
-  let normalizedValue = value;
-  if (type === 'date') {
-    normalizedValue = getDateFromIsoString(value);
-  }
-
-  return {
-    name,
-    description: description ?? '',
-    order,
-    value: normalizedValue,
   };
 };

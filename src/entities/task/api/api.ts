@@ -83,7 +83,7 @@ export const createTask = ({
   executorId,
   validatorId,
 }: CreateTaskParams): Promise<void> =>
-  axi.post('/api/internal/tasks', {
+  axi.post('/api/tasks', {
     title,
     description,
     type_id: typeId,
@@ -91,6 +91,9 @@ export const createTask = ({
     date_to: createBackendDateIsoString(endDate),
     executor_id: executorId ?? null,
     validator_id: validatorId ?? null,
+    // TODO supply real department and priority IDs
+    department_id: 1,
+    //priority_id: 0,
   });
 
 export const getTask = async (id: number): Promise<Task> => {
@@ -158,8 +161,8 @@ export const getTaskCustomFields = async (
     `/api/tasks/${taskId}/custom-fields`,
   );
 
-  const fields = Object.values(resp.data.custom_fields).map(item =>
-    mapTaskCustomFieldFromBackend(item),
+  const fields = Object.entries(resp.data.custom_fields).map(([key, item]) =>
+    mapTaskCustomFieldFromBackend(item, key),
   );
 
   return orderBy(fields, 'order', 'asc');

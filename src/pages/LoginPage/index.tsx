@@ -79,7 +79,11 @@ export const LoginPage: FC = () => {
             </>
           )}
 
-          {error && <Alert severity="error">{error.message}</Alert>}
+          {error && (
+            <Alert severity="error" color="error">
+              {error.message}
+            </Alert>
+          )}
 
           {loginProviders?.map(({id, appName}) => (
             <ButtonWithArrow

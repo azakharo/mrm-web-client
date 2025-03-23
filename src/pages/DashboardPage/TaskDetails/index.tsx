@@ -4,7 +4,7 @@ import {Stack} from '@mui/material';
 
 import {Task, useGetTask} from '@entities/task';
 import {TabButton} from '@shared/components';
-import {TaskActions} from '@widgets/task/TaskActions';
+import {TaskActions} from '@widgets/task';
 import {TabExecution} from './TabExecution';
 import {TabHistory} from './TabHistory';
 import {TabInfo} from './TabInfo';
@@ -46,7 +46,7 @@ export const TaskDetails: FC = () => {
       return null;
     }
 
-    const {id, description, title, status, completionPercent} = task;
+    const {id, title} = task;
 
     return (
       <>
@@ -64,14 +64,7 @@ export const TaskDetails: FC = () => {
           ))}
         </Stack>
 
-        {currentTabIndex === 0 && (
-          <TabExecution
-            id={id}
-            description={description}
-            status={status}
-            completionPercent={completionPercent}
-          />
-        )}
+        {currentTabIndex === 0 && <TabExecution task={task} />}
 
         {currentTabIndex === 1 && <TabInfo task={task} />}
 

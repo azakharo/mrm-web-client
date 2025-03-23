@@ -3,8 +3,11 @@ import EastOutlinedIcon from '@mui/icons-material/EastOutlined';
 import {Box, Divider, IconButton, Stack, Typography} from '@mui/material';
 import {format} from 'date-fns';
 
-import {Task, useGetTaskCustomFields} from '@entities/task';
-import {getTaskCustomFieldValueDisplayString} from '@entities/task/helpers';
+import {
+  getTaskCustomFieldValueDisplayString,
+  Task,
+  useGetTaskCustomFields,
+} from '@entities/task';
 import {CardBox} from '@shared/components';
 import {DATE_FORMAT} from '@shared/constants';
 import {ItemWithCustomLabel} from './ItemWithCustomLabel';
@@ -18,7 +21,7 @@ interface Props {
 }
 
 export const TabInfo: FC<Props> = ({task}) => {
-  const {startDate, endDate, executor, validator, type, id} = task;
+  const {startDate, endDate, executor, validator, typeDisplayString, id} = task;
 
   const {data: customFields} = useGetTaskCustomFields(id);
 
@@ -101,7 +104,7 @@ export const TabInfo: FC<Props> = ({task}) => {
           position="Менеджер"
         />
 
-        <SimpleItem label="Тип задачи" value={type} />
+        <SimpleItem label="Тип задачи" value={typeDisplayString} />
       </Stack>
     </CardBox>
   );

@@ -1,78 +1,51 @@
 import {FC} from 'react';
-import {Box, Stack, Typography} from '@mui/material';
+import {Stack, Typography} from '@mui/material';
 
-import {getColor, getLabel, TaskStatus} from '@entities/task';
-import {ProgressBar} from '@shared/components/ProgressBar';
-import {Comments} from '@widgets/task/Comments';
+import {Task} from '@entities/task';
+import {CardBox} from '@shared/components';
+import {Comments} from '@widgets/task';
+import {taskTypeSlugToExeCardComponent} from './executionCards/constants';
+import {GenericExecCard} from './executionCards/GenericExecCard';
 
-import {COLOR__LIGHT_GRAY, COLOR__WHITE} from '@/theme/colors';
+const renderExeCard = (task: Task) => {
+  const CardComp = taskTypeSlugToExeCardComponent[task.type];
 
-const cardCommonProps = {
-  flex: '1 1 0',
-  p: 3,
-  sx: {
-    backgroundColor: COLOR__WHITE,
-    borderRadius: '15px',
-  },
-} as const;
+  if (CardComp) {
+    return <CardComp task={task} />;
+  }
+
+  return <GenericExecCard task={task} />;
+};
 
 interface Props {
-  id: number;
-  description: string;
-  status: TaskStatus;
-  completionPercent: number;
+  task: Task;
 }
 
-export const TabExecution: FC<Props> = ({
-  id,
-  description,
-  status,
-  completionPercent,
-}) => {
+export const TabExecution: FC<Props> = ({task}) => {
+  const {id, description} = task;
+
   return (
     <Stack spacing={2}>
       {/* 1st row */}
-      <Stack direction="row" spacing={2}>
+      <Stack
+        direction="row"
+        spacing={2}
+        sx={{
+          '& > div': {
+            flex: '1 1 0',
+          },
+        }}
+        alignItems="flex-start"
+      >
         {/* Card "Description" */}
-        <Stack spacing={2} {...cardCommonProps}>
+        <CardBox display="flex" flexDirection="column" gap={2}>
           <Typography variant="b2semibold">Описание</Typography>
 
           <Typography variant="b1regular">{description}</Typography>
-        </Stack>
+        </CardBox>
 
         {/* Card "Execution" */}
-        <Stack {...cardCommonProps}>
-          <Box
-            display="flex"
-            alignItems="center"
-            justifyContent="space-between"
-            gap={4}
-            mb={2}
-          >
-            <Typography variant="b2semibold">Выполнение</Typography>
-
-            <Typography variant="b2regular" sx={{color: COLOR__LIGHT_GRAY}}>
-              380 000₽/400 000₽
-            </Typography>
-          </Box>
-
-          <Box
-            display="flex"
-            alignItems="center"
-            justifyContent="space-between"
-            gap={4}
-          >
-            <Typography variant="b1semibold" sx={{color: getColor(status)}}>
-              {getLabel(status)}
-            </Typography>
-
-            <Typography variant="b1semibold">{completionPercent}%</Typography>
-          </Box>
-
-          {status === ('В процессе' as TaskStatus) && (
-            <ProgressBar color={getColor(status)} value={completionPercent} />
-          )}
-        </Stack>
+        {renderExeCard(task)}
       </Stack>
 
       {/* 2nd row */}
