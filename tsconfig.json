@@ -31,7 +31,7 @@
     "noFallthroughCasesInSwitch": true,          /* Report errors for fallthrough cases in switch statement. */
     "noUncheckedIndexedAccess": true,            /* Include 'undefined' in index signature results */
     "noImplicitOverride": true,                  /* Ensure overriding members in derived classes are marked with an 'override' modifier. */
-    "noPropertyAccessFromIndexSignature": true,  /* Require undeclared properties from index signatures to use element accesses. */
+    "noPropertyAccessFromIndexSignature": false,  /* Don't require undeclared properties from index signatures to use element accesses. */
   },
   "include": ["src", "mock"],
   "references": [{ "path": "./tsconfig.node.json" }]

@@ -13,6 +13,7 @@ import {isDevelopment, isProduction} from '@shared/constants';
 import GlobalStyles from './GlobalStyles';
 
 import './font.css';
+import 'react-day-picker/style.css';
 
 import Routes from '@/app/Routes';
 import theme from '@/theme';

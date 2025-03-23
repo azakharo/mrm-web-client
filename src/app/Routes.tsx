@@ -5,6 +5,7 @@ import {ProtectedRoute} from '@features/auth';
 import {
   ROUTE__DASHBOARD,
   ROUTE__DASHBOARD_MAIN,
+  ROUTE__EMPLOYEES,
   ROUTE__LOGIN,
   ROUTE__LOGIN_CALLBACK,
   ROUTE__MY_TASK_DETAIL,
@@ -15,6 +16,7 @@ import {
 
 import {DashboardPage} from '@/pages/DashboardPage';
 import {Dashboard} from '@/pages/DashboardPage/Dashboard';
+import Employees from '@/pages/DashboardPage/Employees';
 import {MyTasks} from '@/pages/DashboardPage/MyTasks';
 import NotImplemented from '@/pages/DashboardPage/NotImplemented';
 import {SubTasks} from '@/pages/DashboardPage/SubTasks';
@@ -48,10 +50,7 @@ const Routes: FC = () => {
           path="tasks"
           element={<NotImplemented pageName="Все задачи" />}
         />
-        <Route
-          path="employees"
-          element={<NotImplemented pageName="Сотрудники" />}
-        />
+        <Route path={ROUTE__EMPLOYEES} element={<Employees />} />
         <Route path="user-profile" element={<UserProfile />} />
         <Route
           path="notifications"
